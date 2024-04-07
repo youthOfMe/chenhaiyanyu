@@ -1,0 +1,29 @@
+:root {
+  --primary-color: rgb(0 186 173 / 100%);
+  --second-color: rgb(133 133 133 / 100%);
+  --third-color: #000000;
+  --fourth-color: rgb(189 189 189 / 100%);
+  --line-color: #faf8f9;
+
+  /* 全局修改vant样式 */
+  --van-primary-color: var(--primary-color)
+}
+body {
+  font-size: 13px;
+  background: rgb(240 240 240 / 100%)
+}
+.nowrap_ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 40px;
+  color: var(--third-color);  
+}
+
+/* .plate-title {
+
+} */
