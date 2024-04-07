@@ -12,7 +12,6 @@ declare module 'vue' {
     SvgIcon: typeof import('./src/components/svg-icon/SvgIcon.vue')['default']
     TabBar: typeof import('./src/components/tab-bar/TabBar.vue')['default']
     TopBarMain: typeof import('./src/components/top-bar-main/TopBarMain.vue')['default']
-    TopBarOne: (typeof import('./src/components/top-bar-main/TopBarOne.vue'))['default']
     VanSearch: typeof import('vant/es')['Search']
     VanSwipe: typeof import('vant/es')['Swipe']
     VanSwipeItem: typeof import('vant/es')['SwipeItem']
