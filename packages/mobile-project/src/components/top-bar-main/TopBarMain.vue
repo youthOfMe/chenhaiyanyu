@@ -17,13 +17,15 @@
       </van-search>
     </div>
     <div class="message">
-      <svg-icon
-        class="message-icon"
-        name="home-message"
-        width="29px"
-        height="32px"
-        color="rgba(255, 255, 255, 0.59)"
-      ></svg-icon>
+      <router-link to="/message">
+        <svg-icon
+          class="message-icon"
+          name="home-message"
+          width="29px"
+          height="32px"
+          color="rgba(255, 255, 255, 0.59)"
+        ></svg-icon>
+      </router-link>
     </div>
   </div>
   <div class="bottom" v-if="!isHeadImgDisplay"></div>

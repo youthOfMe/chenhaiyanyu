@@ -19,4 +19,12 @@ export const constantRoute = [
     path: '/person',
     component: () => import('@/views/person/Person.vue'),
   },
+  {
+    path: '/error',
+    component: () => import('@/views/error/Error.vue'),
+  },
+  {
+    path: '/message',
+    component: () => import('@/views/message/Message.vue'),
+  },
 ]
