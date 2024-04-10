@@ -7,7 +7,7 @@
         color="black"
         width="35px"
         height="35px"
-        @click="$router.back(-1)"
+        @click="goBack()"
       ></svg-icon>
       <text>通知</text>
       <div class="right-icon">
@@ -43,8 +43,8 @@
           <svg-icon
             name="message-arrow"
             color="black"
-            width="35px"
-            height="35px"
+            width="30px"
+            height="30px"
           ></svg-icon>
         </div>
       </div>
@@ -63,8 +63,8 @@
           <svg-icon
             name="message-arrow"
             color="black"
-            width="35px"
-            height="35px"
+            width="30px"
+            height="30px"
           ></svg-icon>
         </div>
       </div>
@@ -83,8 +83,8 @@
           <svg-icon
             name="message-arrow"
             color="black"
-            width="35px"
-            height="35px"
+            width="30px"
+            height="30px"
           ></svg-icon>
         </div>
       </div>
@@ -103,41 +103,48 @@
           <svg-icon
             name="message-arrow"
             color="black"
-            width="35px"
-            height="35px"
+            width="30px"
+            height="30px"
           ></svg-icon>
         </div>
       </div>
-
-      <div class="every-item">
-        <div class="personalMsg-icon">
-          <svg-icon
-            name="message-personalMsg"
-            color="black"
-            width="45px"
-            height="45px"
-          ></svg-icon>
+      <router-link to="/privateMsg">
+        <div class="every-item">
+          <div class="personalMsg-icon">
+            <svg-icon
+              name="message-personalMsg"
+              color="black"
+              width="45px"
+              height="45px"
+            ></svg-icon>
+          </div>
+          <text class="text">私信</text>
+          <div class="arrow-icon">
+            <svg-icon
+              name="message-arrow"
+              color="black"
+              width="30px"
+              height="30px"
+            ></svg-icon>
+          </div>
         </div>
-        <text class="text">私信</text>
-        <div class="arrow-icon">
-          <svg-icon
-            name="message-arrow"
-            color="black"
-            width="35px"
-            height="35px"
-          ></svg-icon>
-        </div>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useRouter } from 'vue-router'
+const router = useRouter()
+
+let goBack = () => {
+  router.go(-1)
+}
+</script>
 
 <style lang="scss" scoped>
 .message {
   display: flex;
-  width: 100%;
   flex-direction: column;
 }
 .top-info {
@@ -179,14 +186,16 @@ hr {
 .every-item {
   display: flex;
   flex-direction: row;
-  margin: 10px;
-  width: 100%;
+  padding: 10px;
+  &:active {
+    color: white;
+    background-color: #cccccc;
+  }
 }
 .arrow-icon {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-right: 10px;
   width: 100%;
 }
 .text {

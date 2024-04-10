@@ -1,3 +1,5 @@
+import components from '@/components'
+
 export const constantRoute = [
   {
     path: '/',
@@ -26,5 +28,9 @@ export const constantRoute = [
   {
     path: '/message',
     component: () => import('@/views/message/Message.vue'),
+  },
+  {
+    path: '/privateMsg',
+    component: () => import('@/views/message/privateMsg/PrivateMsg.vue'),
   },
 ]

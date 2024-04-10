@@ -7,7 +7,7 @@
     <!-- <div class="nav-scroll"></div> -->
     <!-- 热门建议 -->
     <div class="section hot-suggests">
-      <template v-for="(item, index) in hotSuggests" :key="index">
+      <div v-for="(item, index) in hotSuggests" :key="index">
         <div
           class="item"
           :style="{
@@ -17,7 +17,7 @@
         >
           {{ item.tagText.text }}
         </div>
-      </template>
+      </div>
     </div>
   </div>
 </template>
