@@ -6,7 +6,7 @@
     <div class="nav-content"></div>
     <!-- <div class="nav-scroll"></div> -->
     <!-- 热门建议 -->
-    <div class="section hot-suggests">
+    <!-- <div class="section hot-suggests">
       <div v-for="(item, index) in hotSuggests" :key="index">
         <div
           class="item"
@@ -18,7 +18,13 @@
           {{ item.tagText.text }}
         </div>
       </div>
+    </div> -->
+    <!-- 板块列表 -->
+    <div class="list">
+      <PostBlock></PostBlock>
+      <PostBlock></PostBlock>
     </div>
+    <div class="block"></div>
   </div>
 </template>
 
@@ -35,8 +41,14 @@ const { hotSuggests } = storeToRefs(homeStore)
 </script>
 
 <style lang="scss" scoped>
+.home {
+  position: relative;
+  overflow-y: auto;
+  height: calc(100vh - 50px);
+}
 .home-bg {
   position: absolute;
+  top: 0;
   z-index: -1;
   width: 100%;
   height: 259px;
@@ -83,8 +95,9 @@ const { hotSuggests } = storeToRefs(homeStore)
   }
 }
 .hot-suggests {
-  margin: 10px 0;
+  margin: 14px 9px 0;
   height: auto;
+  border-radius: 12px;
   background-color: #ffffff;
   .item {
     margin: 4px;
@@ -93,5 +106,12 @@ const { hotSuggests } = storeToRefs(homeStore)
     border-radius: 14px;
     line-height: 1;
   }
+}
+.list {
+  margin: 14px 9px 0;
+  border-radius: 12px;
+}
+.block {
+  height: 20px;
 }
 </style>

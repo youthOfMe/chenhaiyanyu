@@ -1,4 +1,5 @@
 <template>
+  <!-- <div class="line"></div> -->
   <div class="tab-bar">
     <van-tabbar
       v-model="currentIndex"
@@ -50,6 +51,14 @@ const onChange = (active) => {
 </script>
 
 <style lang="scss" scoped>
+/* .line {
+  position: absolute;
+  bottom: 50px;
+  z-index: 999;
+  width: 100vw;
+  height: 1px;
+  background-color: var(--line-color);
+} */
 .tab-bar {
   --van-tabbar-item-icon-margin-bottom: 0;
   .item {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-view></router-view>
-    <tab-bar></tab-bar>
+    <tab-bar class="bottom"></tab-bar>
   </div>
 </template>
 
@@ -13,6 +13,10 @@ getCityAll().then((res) => {
 </script>
 
 <style lang="scss" scoped>
+.bottom {
+  height: 50px;
+}
+
 /* body {
   width: 55px;
   font-size: 55px;
