@@ -5,6 +5,7 @@ import PostBlock from '@/components/post-block/PostBlock.vue'
 import GoodPostBlock from '@/components/good-post-block/GoodPostBlock.vue'
 import ShopInfoCard from '@/components/shop-info-card/ShopInfoCard.vue'
 import CommodityCardV1 from '@/components/commodity-card-v1/CommodityCardV1.vue'
+import OurStoryCard from '@/components/our-story-card/OurStoryCard.vue'
 
 declare module 'vue' {
   interface GlobalComponents {
@@ -15,5 +16,6 @@ declare module 'vue' {
     GoodPostBlock: typeof GoodPostBlock
     ShopInfoCard: typeof ShopInfoCard
     CommodityCardV1: typeof CommodityCardV1
+    OurStoryCard: typeof OurStoryCard
   }
 }

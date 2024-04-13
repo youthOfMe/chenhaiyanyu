@@ -20,12 +20,12 @@ const tabBarData = [
     path: '/hall/officialStore',
   },
   {
-    title: '推荐',
-    path: '/hall/recommend',
+    title: '编程导航',
+    path: '/hall/codeNavigation',
   },
   {
     title: '推荐',
-    path: '/hall/recommend',
+    path: '/hall/navigation',
   },
 ]
 </script>

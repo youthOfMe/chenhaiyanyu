@@ -4,6 +4,7 @@ import PostBlock from '@/components/post-block/PostBlock.vue'
 import GoodPostBlock from '@/components/good-post-block/GoodPostBlock.vue'
 import ShopInfoCard from '@/components/shop-info-card/ShopInfoCard.vue'
 import CommodityCardV1 from '@/components/commodity-card-v1/CommodityCardV1.vue'
+import OurStoryCard from '@/components/our-story-card/OurStoryCard.vue'
 
 // 定义全局自动注册对象的类型
 type allGlobalComponentType = {
@@ -13,6 +14,7 @@ type allGlobalComponentType = {
   [goodPostBlock: string]: typeof GoodPostBlock
   [shopInfoCard: string]: typeof ShopInfoCard
   [commodityCardV1: string]: typeof CommodityCardV1
+  [ourStoryCard: string]: typeof OurStoryCard
 }
 
 export { allGlobalComponentType }

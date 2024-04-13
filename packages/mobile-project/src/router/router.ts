@@ -22,6 +22,11 @@ export const constantRoute = [
         component: () =>
           import('@/views/hall/child/official-store/OfficialStore.vue'),
       },
+      {
+        path: '/hall/codeNavigation',
+        component: () =>
+          import('@/views/hall/child/code-navigation/CodeNavigation.vue'),
+      },
     ],
   },
   {
@@ -58,6 +63,13 @@ export const constantRoute = [
   {
     path: '/commodity',
     component: () => import('@/views/commodity/Commodity.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
+    path: '/ourstory',
+    component: () => import('@/views/our-story/OurStory.vue'),
     meta: {
       hideTabBar: true,
     },
