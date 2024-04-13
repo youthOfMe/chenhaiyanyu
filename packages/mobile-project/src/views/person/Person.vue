@@ -41,6 +41,8 @@
       </div>
     </div>
 
+    <PurseInfo></PurseInfo>
+
     <div class="trade-info">
       <div class="info-title">交易信息</div>
       <div class="info-content">
@@ -96,6 +98,7 @@
 <script setup>
 import TabBar from './cpns/TabBar.vue'
 import PersonInfo from './cpns/PersonInfo.vue'
+import PurseInfo from './cpns/PurseInfo.vue'
 
 const currentRate = 70
 const gradientColor = {
@@ -128,7 +131,6 @@ const gradientColor = {
   }
 }
 .trade-info {
-  margin-top: 15px;
   padding: 15px 9px;
   background-color: #ffffff;
   .info-title {

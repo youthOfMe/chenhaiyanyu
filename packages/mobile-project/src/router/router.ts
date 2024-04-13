@@ -127,4 +127,11 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+  {
+    path: '/coupons',
+    component: () => import('@/views/coupons/Coupons.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
 ]

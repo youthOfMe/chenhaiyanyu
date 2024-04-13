@@ -25,6 +25,8 @@ declare module 'vue' {
     VanActionBarButton: typeof import('vant/es')['ActionBarButton']
     VanActionBarIcon: typeof import('vant/es')['ActionBarIcon']
     VanCircle: typeof import('vant/es')['Circle']
+    VanCouponCell: typeof import('vant/es')['CouponCell']
+    VanCouponList: typeof import('vant/es')['CouponList']
     VanFloatingBubble: typeof import('vant/es')['FloatingBubble']
     VanGrid: typeof import('vant/es')['Grid']
     VanGridItem: typeof import('vant/es')['GridItem']

@@ -28,14 +28,14 @@
       <van-tab>
         <template #title>
           <van-icon name="more-o" />
-          选项
+          官方接单
         </template>
         内容 {{ index }}
       </van-tab>
       <van-tab>
         <template #title>
           <van-icon name="more-o" />
-          选项
+          民间接单
         </template>
         内容 {{ index }}
       </van-tab>
