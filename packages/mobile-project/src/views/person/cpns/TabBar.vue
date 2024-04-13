@@ -17,7 +17,8 @@ import SvgIcon from '@/components/svg-icon/SvgIcon.vue'
 <style lang="less" scoped>
 .tab-bar {
   display: flex;
-  margin-top: 14px;
+  padding: 14px 9px 0;
+  background-color: #fff;
   .left {
     flex: 1;
   }
