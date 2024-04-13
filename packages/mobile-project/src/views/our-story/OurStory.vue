@@ -27,8 +27,11 @@
       </div>
     </div>
     <div class="list">
-      <PostBlock></PostBlock>
-      <PostBlock></PostBlock>
+      <PostBlock
+        v-for="value in postList"
+        :key="value"
+        :postItem="value"
+      ></PostBlock>
     </div>
   </div>
 </template>
@@ -45,6 +48,7 @@ const ourStoryStore = useOurStoryStore()
 ourStoryStore.fetchColumnList()
 ourStoryStore.fetchPostList()
 const { columnList, postList } = storeToRefs(ourStoryStore)
+
 // 路由回退
 const router = useRouter()
 const back = () => {
