@@ -10,9 +10,7 @@
   </div>
 </template>
 
-<script setup>
-import SvgIcon from '@/components/svg-icon/SvgIcon.vue'
-</script>
+<script setup></script>
 
 <style lang="less" scoped>
 .tab-bar {

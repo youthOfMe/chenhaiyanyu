@@ -1,7 +1,11 @@
 <template>
   <div class="person-info">
     <div class="base-info">
-      <img :src="getAssetURL('home/home-bg.jpg')" alt="" />
+      <img
+        :src="getAssetURL('home/home-bg.jpg')"
+        @click="toPersonInfo"
+        alt=""
+      />
       <div class="info">
         <div class="name-title">
           <span class="name">我是牛马你记住</span>
@@ -39,7 +43,13 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
+
+const router = useRouter()
+const toPersonInfo = () => {
+  router.push('/personInfo')
+}
 </script>
 
 <style lang="less" scoped>

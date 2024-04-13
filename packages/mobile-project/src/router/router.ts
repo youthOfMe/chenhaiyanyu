@@ -1,5 +1,3 @@
-import components from '@/components'
-
 export const constantRoute = [
   {
     path: '/',
@@ -28,9 +26,20 @@ export const constantRoute = [
   {
     path: '/message',
     component: () => import('@/views/message/Message.vue'),
+    meta: {
+      hideTabBar: true,
+    },
   },
   {
     path: '/privateMsg',
     component: () => import('@/views/message/privateMsg/PrivateMsg.vue'),
+  },
+  {
+    name: 'personInfo',
+    path: '/personInfo',
+    component: () => import('@/views/person-info/PersonInfo.vue'),
+    meta: {
+      hideTabBar: true,
+    },
   },
 ]
