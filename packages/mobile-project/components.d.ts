@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    GoodPostBlock: typeof import('./src/components/good-post-block/GoodPostBlock.vue')['default']
     PostBlock: typeof import('./src/components/post-block/PostBlock.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
@@ -14,6 +15,8 @@ declare module 'vue' {
     TabBar: typeof import('./src/components/tab-bar/TabBar.vue')['default']
     TopBarMain: typeof import('./src/components/top-bar-main/TopBarMain.vue')['default']
     VanCircle: typeof import('vant/es')['Circle']
+    VanGrid: typeof import('vant/es')['Grid']
+    VanGridItem: typeof import('vant/es')['GridItem']
     VanProgress: typeof import('vant/es')['Progress']
     VanSearch: typeof import('vant/es')['Search']
     VanSwipe: typeof import('vant/es')['Swipe']

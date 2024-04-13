@@ -10,6 +10,12 @@ export const constantRoute = [
   {
     path: '/hall',
     component: () => import('@/views/hall/Hall.vue'),
+    children: [
+      {
+        path: '/hall/recommend',
+        component: () => import('@/views/hall/child/recommend/Recommend.vue'),
+      },
+    ],
   },
   {
     path: '/community',

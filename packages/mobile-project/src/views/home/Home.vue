@@ -5,20 +5,6 @@
     <HomeNavCard></HomeNavCard>
     <div class="nav-content"></div>
     <!-- <div class="nav-scroll"></div> -->
-    <!-- 热门建议 -->
-    <!-- <div class="section hot-suggests">
-      <div v-for="(item, index) in hotSuggests" :key="index">
-        <div
-          class="item"
-          :style="{
-            color: item.tagText?.color,
-            background: item.tagText.background.color,
-          }"
-        >
-          {{ item.tagText.text }}
-        </div>
-      </div>
-    </div> -->
     <!-- 板块列表 -->
     <div class="list">
       <PostBlock></PostBlock>

@@ -28,10 +28,30 @@
       </router-link>
     </div>
   </div>
-  <div class="bottom" v-if="!isHeadImgDisplay"></div>
+  <div class="line" v-if="!isHeadImgDisplay"></div>
+  <div class="bottom" v-if="!isHeadImgDisplay">
+    <van-tabs
+      v-model:active="tabActive"
+      scrollspy
+      sticky
+      background="none"
+      class="tabs"
+      color="#fff"
+      title-active-color="#fff"
+      title-inactive-color="#000"
+    >
+      <van-tab
+        v-for="(item, index) in tabBarData"
+        :title="item.title"
+        :key="index"
+        :to="item.path"
+      ></van-tab>
+    </van-tabs>
+  </div>
 </template>
 
 <script lang="ts" setup>
+import { ref } from 'vue'
 const props = defineProps({
   themeColor: {
     type: String,
@@ -41,7 +61,15 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
+  tabBarData: {
+    type: Array,
+    // eslint-disable-next-line vue/require-valid-default-prop
+    default: [],
+  },
 })
+
+// 控制tabs
+const tabActive = ref(0)
 
 const color = props.themeColor
 const searchBarPLR = props.isHeadImgDisplay ? '0px' : '11px'
@@ -91,8 +119,15 @@ const messagePR = props.isHeadImgDisplay ? '0px' : '6px'
     }
   }
 }
+.line {
+  height: 10px;
+  background-color: var(--primary-color);
+}
 .bottom {
   height: 54px;
   background-color: var(--primary-color);
+  .tabs {
+    --van-tabs-line-height: 44px;
+  }
 }
 </style>

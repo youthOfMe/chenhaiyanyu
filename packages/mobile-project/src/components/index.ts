@@ -2,6 +2,7 @@ import TabBar from './tab-bar/TabBar.vue'
 import SvgIcon from './svg-icon/SvgIcon.vue'
 import TopBarMain from './top-bar-main/TopBarMain.vue'
 import PostBlock from './post-block/PostBlock.vue'
+import GoodPostBlock from './good-post-block/GoodPostBlock.vue'
 import type { allGlobalComponentType } from '@/types'
 
 // 全局对象
@@ -10,6 +11,7 @@ const allGlobalComponent: allGlobalComponentType = {
   svgIcon: SvgIcon,
   topBarMain: TopBarMain,
   postBlock: PostBlock,
+  goodPostBlock: GoodPostBlock,
 }
 
 // 对外暴露插件对象

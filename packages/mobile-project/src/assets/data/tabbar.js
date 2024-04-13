@@ -9,7 +9,7 @@ const tabbarData = [
     text: '大厅',
     image: 'tabbar-hall',
     imageActive: 'tabbar-hall-active',
-    path: '/hall',
+    path: '/hall/recommend',
   },
   {
     text: '社区',
