@@ -10,6 +10,48 @@ export const constantRoute = [
     component: () => import('@/views/home/Home.vue'),
   },
   {
+    path: '/login',
+    component: () => import('@/views/login/Login.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
+    path: '/phoneLogin',
+    component: () => import('@/views/login/PhoneLogin.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
+    path: '/resetPsw',
+    component: () => import('@/views/reset-psw/ResetPsw.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
+    path: '/phoneRegister',
+    component: () => import('@/views/register/PhoneRegister.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
+    path: '/register',
+    component: () => import('@/views/register/Register.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
+    path: '/foundAccount',
+    component: () => import('@/views/found-account/FoundAccount.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
     path: '/hall',
     component: () => import('@/views/hall/Hall.vue'),
     children: [
