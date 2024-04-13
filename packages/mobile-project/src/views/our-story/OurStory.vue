@@ -16,12 +16,12 @@
         </div>
       </div>
       <div class="content">
-        <van-grid square class="nav-content">
+        <van-grid square class="nav-content" icon-size="50px">
           <van-grid-item
-            v-for="value in 8"
+            v-for="value in ourStoryColumnList"
             :key="value"
-            icon="photo-o"
-            text="阿东"
+            :icon="value.coverUrl"
+            :text="value.name"
           />
         </van-grid>
       </div>
@@ -34,7 +34,18 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+import { getOurStoryColumnList } from '@/api'
 import { useRouter } from 'vue-router'
+
+const ourStoryColumnList = ref()
+
+// 获取数据
+getOurStoryColumnList().then((res) => {
+  console.log(res.data, 888)
+
+  ourStoryColumnList.value = res.data
+})
 
 // 路由回退
 const router = useRouter()

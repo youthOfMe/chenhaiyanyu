@@ -22,7 +22,7 @@ import HomeNavCard from './cpns/HomeNavCard.vue'
 // 热门建议
 const homeStore = useHomeStore()
 // 发送网络请求
-homeStore.fetchHotSuggestsData()
+// homeStore.fetchHotSuggestsData()
 const { hotSuggests } = storeToRefs(homeStore)
 </script>
 

@@ -3,8 +3,6 @@ import type { HotSuggests } from '@/types'
 import { AxiosHeaders } from 'axios'
 
 export function getHomeHotSuggests() {
-  console.log(666)
-
   return xhRequest.get<HotSuggests>({
     headers: new AxiosHeaders(),
     url: '/home/hotSuggests',
