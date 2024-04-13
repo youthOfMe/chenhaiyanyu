@@ -6,6 +6,7 @@ import GoodPostBlock from './good-post-block/GoodPostBlock.vue'
 import ShopInfoCard from './shop-info-card/ShopInfoCard.vue'
 import CommodityCardV1 from './commodity-card-v1/CommodityCardV1.vue'
 import OurStoryCard from './our-story-card/OurStoryCard.vue'
+import TopbarHeadV1 from './topbar-head-v1/TopbarHeadV1.vue'
 import type { allGlobalComponentType } from '@/types'
 
 // 全局对象
@@ -18,6 +19,7 @@ const allGlobalComponent: allGlobalComponentType = {
   shopInfoCard: ShopInfoCard,
   commodityCardV1: CommodityCardV1,
   ourStoryCard: OurStoryCard,
+  topbarHeadV1: TopbarHeadV1,
 }
 
 // 对外暴露插件对象

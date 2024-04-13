@@ -1,5 +1,5 @@
 <template>
-  <div class="post-block">
+  <div class="post-block" @click="goPostDetail">
     <div class="head">
       <img src="" alt="" class="head-img" />
       <div class="info">
@@ -61,10 +61,17 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import SvgIcon from '../svg-icon/SvgIcon.vue'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
 
 const imgCount = ref(88)
+
+// 跳转路由到帖子详情页
+const router = useRouter()
+const goPostDetail = () => {
+  router.push('/postDetail')
+}
 </script>
 
 <style lang="scss" scoped>

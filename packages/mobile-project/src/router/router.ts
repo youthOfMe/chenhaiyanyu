@@ -74,4 +74,11 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+  {
+    path: '/postDetail',
+    component: () => import('@/views/post-detail/PostDetail.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
 ]
