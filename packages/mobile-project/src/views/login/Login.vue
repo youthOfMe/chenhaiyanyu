@@ -2,7 +2,11 @@
   <div class="retrieve-account">
     <div class="topContent">
       <div class="top-back">
-        <svg-icon class="left-icon" name="login-back"></svg-icon>
+        <svg-icon
+          class="left-icon"
+          name="login-back"
+          @click="goBack()"
+        ></svg-icon>
       </div>
       <div class="user-avatar"></div>
     </div>
@@ -11,6 +15,9 @@
       <input type="text" />
       <text>密码</text>
       <input type="password" />
+      <router-link to="/phoneLogin">
+        <p>去使用手机号登录</p>
+      </router-link>
     </div>
     <button>登录</button>
     <div class="bottom-style">
@@ -21,15 +28,25 @@
         <div class="roundFour"></div>
       </div>
       <div class="bottom-words">
-        <text>注册</text>
+        <router-link to="/register">
+          <text>注册</text>
+        </router-link>
         <text>|</text>
-        <text>找回</text>
+        <router-link to="/foundAccount">
+          <text>找回</text>
+        </router-link>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useRouter } from 'vue-router'
+const router = useRouter()
+let goBack = () => {
+  router.go(-1)
+}
+</script>
 
 <style lang="scss" scoped>
 .retrieve-account {
@@ -66,7 +83,10 @@
   text {
     font-size: 4vw;
     color: #8888889c;
-    flex: 1;
+  }
+  p {
+    font-size: 3vw;
+    color: #888888ab;
   }
 
   /* 鼠标hover */

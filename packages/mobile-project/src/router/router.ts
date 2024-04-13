@@ -11,7 +11,14 @@ export const constantRoute = [
   },
   {
     path: '/login',
-    component: () => import('@/views//login/Login.vue'),
+    component: () => import('@/views/login/Login.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
+    path: '/phoneLogin',
+    component: () => import('@/views/login/PhoneLogin.vue'),
     meta: {
       hideTabBar: true,
     },
@@ -24,8 +31,15 @@ export const constantRoute = [
     },
   },
   {
-    path: '/welcome',
-    component: () => import('@/views/welcome/Welcome.vue'),
+    path: '/phoneRegister',
+    component: () => import('@/views/register/PhoneRegister.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
+    path: '/register',
+    component: () => import('@/views/register/Register.vue'),
     meta: {
       hideTabBar: true,
     },

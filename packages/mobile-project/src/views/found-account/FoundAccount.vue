@@ -21,9 +21,13 @@
         <div class="roundFour"></div>
       </div>
       <div class="bottom-words">
-        <text>登录</text>
+        <router-link to="/login">
+          <text>登录</text>
+        </router-link>
         <text>|</text>
-        <text>注册</text>
+        <router-link to="/register">
+          <text>注册</text>
+        </router-link>
       </div>
     </div>
   </div>

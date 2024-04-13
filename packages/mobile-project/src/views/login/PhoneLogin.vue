@@ -2,19 +2,21 @@
   <div class="retrieve-account">
     <div class="topContent">
       <div class="top-back">
-        <svg-icon class="left-icon" name="login-back"></svg-icon>
+        <svg-icon
+          class="left-icon"
+          name="login-back"
+          @click="goBack()"
+        ></svg-icon>
       </div>
-      <text>欢迎新用户</text>
+      <div class="user-avatar"></div>
     </div>
     <div class="userinfo">
-      <text>用户名</text>
+      <text>手机号</text>
       <input type="text" />
       <text>密码</text>
       <input type="password" />
-      <text>确认密码</text>
-      <input type="password" />
     </div>
-    <button>注册</button>
+    <button>登录</button>
     <div class="bottom-style">
       <div class="bottom-round">
         <div class="roundOne"></div>
@@ -23,13 +25,25 @@
         <div class="roundFour"></div>
       </div>
       <div class="bottom-words">
-        <text>已 有 账 号</text>
+        <router-link to="/register">
+          <text>注册</text>
+        </router-link>
+        <text>|</text>
+        <router-link to="/foundAccount">
+          <text>找回</text>
+        </router-link>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useRouter } from 'vue-router'
+const router = useRouter()
+let goBack = () => {
+  router.go(-1)
+}
+</script>
 
 <style lang="scss" scoped>
 .retrieve-account {
@@ -44,39 +58,42 @@
   width: 100%;
   height: 70vw;
   border-radius: 0% 0% 95% 10% / 0% 0% 45% 0%;
-  background-color: rgb(18 205 127 / 97.8%);
-  text {
-    position: absolute;
-    top: 22vw;
-    left: 11vw;
-    font-size: 12vw;
-    color: white;
-  }
+  background-color: rgb(15 98 254);
   .left-icon {
     margin: 10px;
     width: 8vw;
     height: 8vw;
   }
+  .user-avatar {
+    margin: 40vw 0 0 31vw;
+    width: 30vw;
+    height: 30vw;
+    border-radius: 50%;
+    background: #5bfded;
+  }
 }
 .userinfo {
   display: flex;
-  margin-top: 15vw;
+  margin-top: 35vw;
   text-align: left;
   flex-direction: column;
   text {
     font-size: 4vw;
-    color: #88888894;
-    flex: 1;
+    color: #8888889c;
+  }
+  p {
+    font-size: 4vw;
+    color: #888888ab;
   }
 
   /* 鼠标hover */
   input:hover {
-    border-color: rgb(18 205 127 / 97.8%);
+    border-color: rgb(15 98 254);
   }
 
   /* 获得焦点 */
   input:focus {
-    border-color: rgb(18 205 127 / 97.8%);
+    border-color: rgb(15 98 254);
   }
   input {
     margin: 0 0 5vw;
@@ -84,7 +101,7 @@
     height: 13vw;
     font-size: 5vw;
     border: none;
-    border-bottom: 2px solid #88888895;
+    border-bottom: 2px solid #88888860;
     color: black;
     background-color: transparent;
   }
@@ -100,7 +117,7 @@ button {
   font-weight: 400;
   border: 1px solid transparent;
   color: #ffffff;
-  background-color: rgb(18 205 127 / 97.8%);
+  background-color: rgb(15 98 254);
   outline: none;
   cursor: pointer;
 }
