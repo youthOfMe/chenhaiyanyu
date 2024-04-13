@@ -14,6 +14,25 @@
         <OurStoryCard></OurStoryCard>
       </div>
     </div>
+    <div class="code-web">
+      <div class="content-title">
+        <span class="main-title">编程推荐网站</span>
+        <div class="more">
+          <SvgIcon name="common-right"></SvgIcon>
+        </div>
+      </div>
+      <div class="content">
+        <CodeWebCard></CodeWebCard>
+      </div>
+    </div>
+    <div class="code-resource">
+      <div class="content-title">
+        <span class="main-title">编程学习路线</span>
+        <div class="more">
+          <SvgIcon name="common-right"></SvgIcon>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -47,6 +66,42 @@
     }
     > div {
       margin-right: 10px;
+    }
+  }
+}
+.code-web {
+  margin: 14px 9px 0;
+  padding: 10px 10px 0;
+  background-color: #ffffff;
+  .content-title {
+    display: flex;
+    justify-content: space-between;
+    .main-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--third-color);
+    }
+    .more {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+.code-resource {
+  margin: 14px 9px 0;
+  padding: 10px 10px 0;
+  background-color: #ffffff;
+  .content-title {
+    display: flex;
+    justify-content: space-between;
+    .main-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--third-color);
+    }
+    .more {
+      display: flex;
+      align-items: center;
     }
   }
 }

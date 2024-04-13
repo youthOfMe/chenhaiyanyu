@@ -7,6 +7,8 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    CodeWebCard: typeof import('./src/components/code-web-card/CodeWebCard.vue')['default']
+    CodeWebItem: typeof import('./src/components/code-web-item/CodeWebItem.vue')['default']
     CommodityCardV1: typeof import('./src/components/commodity-card-v1/CommodityCardV1.vue')['default']
     DetailSection: typeof import('./src/components/detail-section/DetailSection.vue')['default']
     GoodPostBlock: typeof import('./src/components/good-post-block/GoodPostBlock.vue')['default']
