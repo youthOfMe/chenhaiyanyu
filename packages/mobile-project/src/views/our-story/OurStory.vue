@@ -43,7 +43,8 @@ import { useOurStoryStore } from '@/stores'
 // 获取数据
 const ourStoryStore = useOurStoryStore()
 ourStoryStore.fetchColumnList()
-const { columnList } = storeToRefs(ourStoryStore)
+ourStoryStore.fetchPostList()
+const { columnList, postList } = storeToRefs(ourStoryStore)
 // 路由回退
 const router = useRouter()
 const back = () => {

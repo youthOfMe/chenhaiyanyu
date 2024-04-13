@@ -7,3 +7,10 @@ export function getOurStoryColumnList() {
     url: '/user/ourstory/columnlist',
   })
 }
+
+export function getOurStoryPostList() {
+  return xhRequest.get<any>({
+    headers: new AxiosHeaders(),
+    url: '/user/ourstory/postlist',
+  })
+}
