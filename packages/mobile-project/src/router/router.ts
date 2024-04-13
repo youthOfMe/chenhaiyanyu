@@ -1,3 +1,5 @@
+import components from '@/components'
+
 export const constantRoute = [
   {
     path: '/',
@@ -14,6 +16,11 @@ export const constantRoute = [
       {
         path: '/hall/recommend',
         component: () => import('@/views/hall/child/recommend/Recommend.vue'),
+      },
+      {
+        path: '/hall/officialStore',
+        component: () =>
+          import('@/views/hall/child/official-store/OfficialStore.vue'),
       },
     ],
   },
@@ -44,6 +51,13 @@ export const constantRoute = [
     name: 'personInfo',
     path: '/personInfo',
     component: () => import('@/views/person-info/PersonInfo.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
+    path: '/commodity',
+    component: () => import('@/views/commodity/Commodity.vue'),
     meta: {
       hideTabBar: true,
     },

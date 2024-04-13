@@ -3,6 +3,8 @@ import SvgIcon from './svg-icon/SvgIcon.vue'
 import TopBarMain from './top-bar-main/TopBarMain.vue'
 import PostBlock from './post-block/PostBlock.vue'
 import GoodPostBlock from './good-post-block/GoodPostBlock.vue'
+import ShopInfoCard from './shop-info-card/ShopInfoCard.vue'
+import CommodityCardV1 from './commodity-card-v1/CommodityCardV1.vue'
 import type { allGlobalComponentType } from '@/types'
 
 // 全局对象
@@ -12,6 +14,8 @@ const allGlobalComponent: allGlobalComponentType = {
   topBarMain: TopBarMain,
   postBlock: PostBlock,
   goodPostBlock: GoodPostBlock,
+  shopInfoCard: ShopInfoCard,
+  commodityCardV1: CommodityCardV1,
 }
 
 // 对外暴露插件对象

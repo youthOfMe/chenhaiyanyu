@@ -8,9 +8,9 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
 import { getCityAll } from '@/api/index'
-getCityAll().then((res) => {
-  console.log(res, 66)
-})
+// getCityAll().then((res) => {
+//   console.log(res, 66)
+// })
 
 const route = useRoute()
 </script>

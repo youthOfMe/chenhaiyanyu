@@ -22,7 +22,7 @@ class XHRequest {
       (res) => {
         console.log(res)
 
-        return res.data.data
+        return res.data
       },
       (err) => {
         return err

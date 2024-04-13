@@ -7,17 +7,25 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    CommodityCardV1: typeof import('./src/components/commodity-card-v1/CommodityCardV1.vue')['default']
+    DetailSection: typeof import('./src/components/detail-section/DetailSection.vue')['default']
     GoodPostBlock: typeof import('./src/components/good-post-block/GoodPostBlock.vue')['default']
     PostBlock: typeof import('./src/components/post-block/PostBlock.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ShopInfoCard: typeof import('./src/components/shop-info-card/ShopInfoCard.vue')['default']
     SvgIcon: typeof import('./src/components/svg-icon/SvgIcon.vue')['default']
     TabBar: typeof import('./src/components/tab-bar/TabBar.vue')['default']
     TopBarMain: typeof import('./src/components/top-bar-main/TopBarMain.vue')['default']
+    VanActionBar: typeof import('vant/es')['ActionBar']
+    VanActionBarButton: typeof import('vant/es')['ActionBarButton']
+    VanActionBarIcon: typeof import('vant/es')['ActionBarIcon']
     VanCircle: typeof import('vant/es')['Circle']
     VanGrid: typeof import('vant/es')['Grid']
     VanGridItem: typeof import('vant/es')['GridItem']
+    VanIcon: typeof import('vant/es')['Icon']
     VanProgress: typeof import('vant/es')['Progress']
+    VanRate: typeof import('vant/es')['Rate']
     VanSearch: typeof import('vant/es')['Search']
     VanSwipe: typeof import('vant/es')['Swipe']
     VanSwipeItem: typeof import('vant/es')['SwipeItem']
@@ -25,5 +33,6 @@ declare module 'vue' {
     VanTabbar: typeof import('vant/es')['Tabbar']
     VanTabbarItem: typeof import('vant/es')['TabbarItem']
     VanTabs: typeof import('vant/es')['Tabs']
+    VanTag: typeof import('vant/es')['Tag']
   }
 }
