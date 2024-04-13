@@ -18,7 +18,7 @@
       <div class="content">
         <van-grid square class="nav-content" icon-size="50px">
           <van-grid-item
-            v-for="value in ourStoryColumnList"
+            v-for="value in columnList"
             :key="value"
             :icon="value.coverUrl"
             :text="value.name"
@@ -37,16 +37,13 @@
 import { ref } from 'vue'
 import { getOurStoryColumnList } from '@/api'
 import { useRouter } from 'vue-router'
-
-const ourStoryColumnList = ref()
+import { storeToRefs } from 'pinia'
+import { useOurStoryStore } from '@/stores'
 
 // 获取数据
-getOurStoryColumnList().then((res) => {
-  console.log(res.data, 888)
-
-  ourStoryColumnList.value = res.data
-})
-
+const ourStoryStore = useOurStoryStore()
+ourStoryStore.fetchColumnList()
+const { columnList } = storeToRefs(ourStoryStore)
 // 路由回退
 const router = useRouter()
 const back = () => {
