@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="home-bg"></div>
-    <TopBarMain></TopBarMain>
+    <TopBarMain @click="showCehua"></TopBarMain>
     <HomeNavCard></HomeNavCard>
     <div class="nav-content"></div>
     <!-- <div class="nav-scroll"></div> -->
@@ -11,10 +11,14 @@
       <PostBlock></PostBlock>
     </div>
     <div class="block"></div>
+    <van-popup v-model:show="show" position="left" :style="{ padding: '64px' }">
+      内容
+    </van-popup>
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { useHomeStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import HomeNavCard from './cpns/HomeNavCard.vue'
@@ -24,6 +28,12 @@ const homeStore = useHomeStore()
 // 发送网络请求
 // homeStore.fetchHotSuggestsData()
 const { hotSuggests } = storeToRefs(homeStore)
+
+// 侧滑栏
+const show = ref(false)
+const showCehua = () => {
+  show.value = true
+}
 </script>
 
 <style lang="scss" scoped>
