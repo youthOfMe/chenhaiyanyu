@@ -66,10 +66,14 @@ const props = defineProps({
     // eslint-disable-next-line vue/require-valid-default-prop
     default: [],
   },
+  hallTabBarIndex: {
+    type: Number,
+    default: 0,
+  },
 })
 
 // 控制tabs
-const tabActive = ref(0)
+const tabActive = ref(props.hallTabBarIndex)
 
 const color = props.themeColor
 const searchBarPLR = props.isHeadImgDisplay ? '0px' : '11px'

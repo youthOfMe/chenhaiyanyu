@@ -69,6 +69,10 @@ export const constantRoute = [
         component: () =>
           import('@/views/hall/child/code-navigation/CodeNavigation.vue'),
       },
+      {
+        path: '/hall/takeOrder',
+        component: () => import('@/views/hall/child/take-order/TakeOrder.vue'),
+      },
     ],
   },
   {

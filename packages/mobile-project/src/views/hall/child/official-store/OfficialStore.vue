@@ -34,7 +34,21 @@
 </template>
 
 <script setup lang="ts">
+import { onUnmounted } from 'vue'
+import { useRoute } from 'vue-router'
+import { storeToRefs } from 'pinia'
+import { useSettingStore } from '@/stores'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
+
+// 持久化页面 可抽取为hooks
+const settingStore = useSettingStore()
+const { tabbarData } = storeToRefs(settingStore)
+const route = useRoute()
+const path = route.path
+onUnmounted(() => {
+  settingStore.tabbarData[1].path = path
+  settingStore.hallTabBarIndex = 1
+})
 </script>
 
 <style lang="scss" scoped>

@@ -6,3 +6,4 @@ export default pinia
 
 export * from './modules/home'
 export * from './modules/ourstory'
+export * from './modules/setting'
