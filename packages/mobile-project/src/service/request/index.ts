@@ -15,7 +15,7 @@ class XHRequest {
       (config) => {
         // 获取token
         const { token } = useUserStore()
-        if (token) config.headers.token = token
+        if (token) config.headers.authentication = token
         return config
       },
       (err) => {

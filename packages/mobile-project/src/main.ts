@@ -18,5 +18,11 @@ const app = createApp(App)
 app.use(globalcomponent)
 // 注册路由
 app.use(router)
+
+app.use(pinia)
+
+// 引入路由鉴权代码
+import './permission'
+
 // 注册pinia仓库
-app.use(pinia).mount('#app')
+app.mount('#app')
