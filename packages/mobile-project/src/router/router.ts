@@ -69,6 +69,10 @@ export const constantRoute = [
         component: () =>
           import('@/views/hall/child/code-navigation/CodeNavigation.vue'),
       },
+      {
+        path: '/hall/takeOrder',
+        component: () => import('@/views/hall/child/take-order/TakeOrder.vue'),
+      },
     ],
   },
   {
@@ -127,6 +131,27 @@ export const constantRoute = [
   {
     path: '/postDetail',
     component: () => import('@/views/post-detail/PostDetail.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
+    path: '/coupons',
+    component: () => import('@/views/coupons/Coupons.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
+    path: '/codeOrder',
+    component: () => import('@/views/code-order/CodeOrder.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
+    path: '/xinghaiMoney',
+    component: () => import('@/views/person/purse/XingHaiMoney.vue'),
     meta: {
       hideTabBar: true,
     },

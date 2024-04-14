@@ -16,25 +16,36 @@
         </div>
       </div>
       <div class="content">
-        <van-grid square class="nav-content">
+        <van-grid square class="nav-content" icon-size="50px">
           <van-grid-item
-            v-for="value in 8"
+            v-for="value in columnList"
             :key="value"
-            icon="photo-o"
-            text="阿东"
+            :icon="value.coverUrl"
+            :text="value.name"
           />
         </van-grid>
       </div>
     </div>
     <div class="list">
-      <PostBlock></PostBlock>
-      <PostBlock></PostBlock>
+      <PostBlock
+        v-for="value in postList"
+        :key="value"
+        :postItem="value"
+      ></PostBlock>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia'
+import { useOurStoryStore } from '@/stores'
+
+// 获取数据
+const ourStoryStore = useOurStoryStore()
+ourStoryStore.fetchColumnList()
+ourStoryStore.fetchPostList()
+const { columnList, postList } = storeToRefs(ourStoryStore)
 
 // 路由回退
 const router = useRouter()

@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    CodeWebCard: typeof import('./src/components/code-web-card/CodeWebCard.vue')['default']
     CommodityCardV1: typeof import('./src/components/commodity-card-v1/CommodityCardV1.vue')['default']
     DetailSection: typeof import('./src/components/detail-section/DetailSection.vue')['default']
     GoodPostBlock: typeof import('./src/components/good-post-block/GoodPostBlock.vue')['default']
@@ -20,8 +21,6 @@ declare module 'vue' {
     TopbarHeadV1: typeof import('./src/components/topbar-head-v1/TopbarHeadV1.vue')['default']
     TopBarMain: typeof import('./src/components/top-bar-main/TopBarMain.vue')['default']
     VanButton: typeof import('vant/es')['Button']
-    VanCellGroup: typeof import('vant/es')['CellGroup']
-    VanCheckbox: typeof import('vant/es')['Checkbox']
     VanCircle: typeof import('vant/es')['Circle']
     VanField: typeof import('vant/es')['Field']
     VanForm: typeof import('vant/es')['Form']

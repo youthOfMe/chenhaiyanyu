@@ -31,16 +31,25 @@
 </template>
 
 <script setup lang="ts">
-import tabbarData from '@/assets/data/tabbar'
+// import tabbarData from '@/assets/data/tabbar'
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
+
+const props = defineProps({
+  tabbarData: {
+    type: Array,
+    default: () => [],
+  },
+})
 
 // 监听路由改变时, 找到对应的索引, 设置currentIndex
 const route = useRoute()
 const currentIndex = ref(0)
 watch(route, (newRoute) => {
   // 找不到就返回-1
-  const index = tabbarData.findIndex((item) => item.path === newRoute.path)
+  const index = props.tabbarData.findIndex(
+    (item) => item.path === newRoute.path,
+  )
   if (index === -1) return
   currentIndex.value = index
 })

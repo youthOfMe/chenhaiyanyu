@@ -63,6 +63,7 @@
 import { computed, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getDetailInfos } from '@/api'
+import axios from 'axios'
 import TabBar from './cpns/TabBar.vue'
 import DetailInfos from './cpns/Detail02Infos.vue'
 import DetailFacility from './cpns/Detail03Facility.vue'
@@ -76,10 +77,17 @@ import { getAssetURL } from '@/utils/LoadAssetsImg.js'
 // 发送网络请求获取数据
 const detailInfos = ref({})
 const mainPart = computed(() => detailInfos.value.mainPart)
-getDetailInfos(44173741).then((res) => {
-  detailInfos.value = res.data
-  console.log(res.data, 666)
-})
+axios
+  .request({
+    url: 'http://123.207.32.32:1888/api/detail/infos',
+    params: {
+      houseId: 44173741,
+    },
+  })
+  .then((res) => {
+    detailInfos.value = res.data.data
+    console.log(res.data, 666)
+  })
 </script>
 
 <style lang="scss" scoped>

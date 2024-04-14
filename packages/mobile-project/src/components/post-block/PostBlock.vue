@@ -1,9 +1,9 @@
 <template>
   <div class="post-block" @click="goPostDetail">
     <div class="head">
-      <img src="" alt="" class="head-img" />
+      <img :src="postItem?.avatar" alt="" class="head-img" />
       <div class="info">
-        <div class="name nowrap_ellipsis">我是牛马</div>
+        <div class="name nowrap_ellipsis">{{ postItem?.name }}</div>
         <div class="other nowrap_ellipsis">
           来自辰海烟雨超级牛逼无敌推荐系统推荐的
         </div>
@@ -13,17 +13,17 @@
       </div>
     </div>
     <div class="body">
-      <div class="title">我是标题</div>
+      <div class="title">{{ postItem?.title }}</div>
       <div class="img" v-if="imgCount > 0">
         <div class="one-img" v-if="imgCount == 1">
-          <img :src="getAssetURL('home/home-bg.jpg')" alt="" />
+          <img :src="postItem?.avatar" alt="" />
         </div>
         <div class="list" v-if="imgCount > 1">
           <img
-            :src="getAssetURL('home/home-bg.jpg')"
+            :src="item"
             alt=""
-            v-for="i in imgCount > 2 ? 3 : imgCount"
-            :key="i"
+            v-for="item in imgList?.slice(0, 3)"
+            :key="item"
           />
           <img
             :src="getAssetURL('home/home-bg.jpg')"
@@ -36,20 +36,21 @@
         </div>
       </div>
       <div class="content">
-        简单的说，“ 自动卓 ” 是一个脚本工具，在 App
+        {{ postItem?.content }}
+        <!-- 简单的说，“ 自动卓 ” 是一个脚本工具，在 App
         里定好时间或者设置好通知触发后，就可以让我们的手机自动运行事先录制好的动作。
         像某些 App
-        签到、钉钉自动打卡、支付宝收集绿色能量、领取积分什么的，对它来说都是小意思啦，到点自动运行简直不要太爽。
+        签到、钉钉自动打卡、支付宝收集绿色能量、领取积分什么的，对它来说都是小意思啦，到点自动运行简直不要太爽。 -->
       </div>
     </div>
     <div class="bottom">
       <div class="item thumb">
         <SvgIcon name="postblock-thumb" width="15px" height="15px"></SvgIcon>
-        <span>666</span>
+        <span>{{ postItem?.thumbNumber }}</span>
       </div>
       <div class="item commit">
         <SvgIcon name="postblock-commit" width="15px" height="15px"></SvgIcon>
-        <span>666</span>
+        <span>{{ postItem?.collectionNumber }}</span>
       </div>
       <div class="item share">
         <SvgIcon name="postblock-share" width="15px" height="15px"></SvgIcon>
@@ -60,12 +61,23 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import SvgIcon from '../svg-icon/SvgIcon.vue'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
 
-const imgCount = ref(88)
+const props = defineProps({
+  postItem: {
+    type: Object,
+    default: () => {},
+  },
+})
+// eslint-disable-next-line vue/no-dupe-keys
+const postItem = ref(props?.postItem)
+const imgList = ref([])
+imgList.value.push(postItem.value?.coverUrl)
+imgList.value.push(...(postItem.value?.imgUrlList || []))
+const imgCount = computed(() => imgList.value.length)
 
 // 跳转路由到帖子详情页
 const router = useRouter()

@@ -41,7 +41,7 @@ export default defineConfig(({ command, mode }) => {
           // 是否需要代理服务器跨域
           changeOrigin: true,
           // 路径重写 将匹配到的路径中的/api替换为空串
-          // rewrite: (path) => path.replace(/^\/api/, ''),
+          rewrite: (path) => path.replace(/^\/api/, ''),
         },
       },
     },
