@@ -9,7 +9,11 @@
       @click-right="onClickRight"
     />
     <van-tabs v-model:active="active">
-      <van-tab title="交流中">交流中</van-tab>
+      <van-tab title="交流中">
+        <div class="order-list">
+          <OrderItem></OrderItem>
+        </div>
+      </van-tab>
       <van-tab title="交易中">交易中</van-tab>
       <van-tab title="收货中">收货中</van-tab>
       <van-tab title="已完成">已完成</van-tab>
@@ -19,6 +23,7 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+import OrderItem from './cpns/OrderItem.vue'
 
 // 路由回退
 const router = useRouter()
@@ -27,4 +32,8 @@ const back = () => {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.order-list {
+  padding: 10px 9px;
+}
+</style>
