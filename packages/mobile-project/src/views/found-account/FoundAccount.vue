@@ -2,17 +2,37 @@
   <div class="retrieve-account">
     <div class="topContent">
       <div class="top-back">
-        <svg-icon class="left-icon" name="login-back"></svg-icon>
+        <svg-icon
+          class="left-icon"
+          name="login-back"
+          @click="goBack()"
+        ></svg-icon>
       </div>
       <text>找回账号</text>
     </div>
     <div class="userinfo">
-      <text>手机号/邮箱</text>
-      <input type="text" />
-      <text>验证码</text>
-      <input type="text" />
+      <van-form autocomplete="off" @submit="onSubmit">
+        <text>手机号/邮箱</text>
+        <van-field
+          type="tel"
+          v-model="phonemail"
+          :rules="[
+            { required: true, message: '请输入您的手机号或邮箱' },
+            {
+              pattern:
+                /^\d{11}$/ ||
+                /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/,
+              message: '手机号或邮箱格式错误！',
+            },
+          ]"
+        />
+        <text>验证码</text>
+        <van-field type="text" />
+        <div class="cp-cell">
+          <van-button type="primary" native-type="submit">下一步</van-button>
+        </div>
+      </van-form>
     </div>
-    <button>下一步</button>
     <div class="bottom-style">
       <div class="bottom-round">
         <div class="roundOne"></div>
@@ -33,7 +53,19 @@
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useRouter } from 'vue-router'
+import { ref } from 'vue'
+const phonemail = ref('')
+
+const onSubmit = () => {
+  console.log('ok')
+}
+const router = useRouter()
+let goBack = () => {
+  router.go(-1)
+}
+</script>
 
 <style lang="scss" scoped>
 .retrieve-account {
@@ -64,47 +96,43 @@
 }
 .userinfo {
   display: flex;
-  margin-top: 35vw;
+  margin-top: 15vw;
+  width: 80vw;
   text-align: left;
   flex-direction: column;
   text {
+    margin-left: 1vw;
     font-size: 4vw;
-    color: #888888b4;
-    flex: 1;
+    color: #8888889c;
   }
-
-  /* 鼠标hover */
-  input:hover {
-    border-color: rgb(254 103 15);
-  }
-
-  /* 获得焦点 */
-  input:focus {
-    border-color: rgb(254 103 15);
-  }
-  input {
-    margin: 0 0 5vw;
-    width: 80vw;
-    height: 13vw;
-    font-size: 5vw;
-    border: none;
-    border-bottom: 2px solid #8888887d;
-    color: black;
-    background-color: transparent;
+  p {
+    margin-left: 1vw;
+    font-size: 3vw;
+    color: #888888ab;
   }
 }
-button {
+.van-cell {
+  margin: 0 0 5vw;
+  width: 80vw;
+  font-size: 5vw;
+  border: none;
+  border-bottom: 2px solid #88888860 !important;
+  color: black;
+  background-color: transparent !important;
+}
+.van-button--primary {
   position: absolute;
   top: 175vw;
   display: inline-block;
   align-items: center;
-  width: 65vw;
+  margin-left: 5vw;
+  width: 70vw;
   height: 13vw;
   font-size: 7vw;
   font-weight: 400;
-  border: 1px solid transparent;
+  border: 0;
   color: #ffffff;
-  background-color: rgb(254 103 15);
+  background-color: rgb(254 103 15) !important;
   outline: none;
   cursor: pointer;
 }

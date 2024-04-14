@@ -1,5 +1,5 @@
 <template>
-  <div class="retrieve-account">
+  <div class="register">
     <div class="topContent">
       <div class="top-back">
         <svg-icon
@@ -11,14 +11,32 @@
       <text>欢迎新用户</text>
     </div>
     <div class="userinfo">
-      <text>手机号</text>
-      <input type="text" />
-      <text>密码</text>
-      <input type="password" />
-      <text>确认密码</text>
-      <input type="password" />
+      <van-form autocomplete="off" @submit="onSubmit">
+        <text>用户名</text>
+        <van-field type="tel" v-model="username" :rules="usernameRules" />
+        <text>密码</text>
+        <van-field
+          name="password"
+          v-model="password"
+          type="password"
+          clearable
+          ref="newPasswordInput"
+          :rules="passwordRules"
+        />
+        <text>确认密码</text>
+        <van-field
+          name="confirmPassword"
+          v-model="confirmPassword"
+          type="password"
+          clearable
+          ref="confirmPasswordInput"
+          :rules="passwordRules"
+        />
+        <div class="cp-cell">
+          <van-button type="primary" native-type="submit">注 册</van-button>
+        </div>
+      </van-form>
     </div>
-    <button>注册</button>
     <div class="bottom-style">
       <div class="bottom-round">
         <div class="roundOne"></div>
@@ -36,7 +54,15 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { mobileRules, passwordRules, usernameRules } from '@/utils/Rules.ts'
+const username = ref('')
+const confirmPassword = ref('')
+const password = ref('')
+const onSubmit = () => {
+  console.log('ok')
+}
 const router = useRouter()
 let goBack = () => {
   router.go(-1)
@@ -44,7 +70,7 @@ let goBack = () => {
 </script>
 
 <style lang="scss" scoped>
-.retrieve-account {
+.register {
   display: flex;
   align-items: center;
   width: 100%;
@@ -73,46 +99,41 @@ let goBack = () => {
 .userinfo {
   display: flex;
   margin-top: 15vw;
+  width: 80vw;
   text-align: left;
   flex-direction: column;
   text {
+    margin-left: 1vw;
     font-size: 4vw;
-    color: #88888894;
-    flex: 1;
+    color: #8888889c;
   }
-
-  /* 鼠标hover */
-  input:hover {
-    border-color: rgb(18 205 127 / 97.8%);
-  }
-
-  /* 获得焦点 */
-  input:focus {
-    border-color: rgb(18 205 127 / 97.8%);
-  }
-  input {
-    margin: 0 0 5vw;
-    width: 80vw;
-    height: 13vw;
-    font-size: 5vw;
-    border: none;
-    border-bottom: 2px solid #88888895;
-    color: black;
-    background-color: transparent;
+  p {
+    margin-left: 1vw;
+    font-size: 3vw;
+    color: #888888ab;
   }
 }
-button {
+.van-cell {
+  margin: 0 0 5vw;
+  width: 80vw;
+  font-size: 5vw;
+  border: none;
+  border-bottom: 2px solid #88888860 !important;
+  color: black;
+  background-color: transparent !important;
+}
+.van-button--primary {
   position: absolute;
   top: 175vw;
   display: inline-block;
   align-items: center;
-  width: 65vw;
+  margin-left: 5vw;
+  width: 70vw;
   height: 13vw;
   font-size: 7vw;
   font-weight: 400;
-  border: 1px solid transparent;
   color: #ffffff;
-  background-color: rgb(18 205 127 / 97.8%);
+  background-color: rgb(18 205 127 / 97.8%) !important;
   outline: none;
   cursor: pointer;
 }
@@ -159,7 +180,7 @@ button {
     align-items: center;
     margin: 0 3vw;
     text {
-      margin: 0 1vw;
+      margin: 1vw;
       font-size: 4vw;
       color: #888888f9;
     }
