@@ -23,7 +23,7 @@
         <div class="head">余额(1￥ = 10星海币)</div>
         <div class="money">
           星海币:
-          <span>888</span>
+          <span>{{ userInfo.xinghaibi }}</span>
         </div>
         <van-button plain type="primary" class="recharge" size="small">
           立即充值
@@ -53,12 +53,19 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia'
+import { useUserStore } from '@/stores'
 
 // 路由回退
 const router = useRouter()
 const back = () => {
   router.back()
 }
+
+// 获取星海币
+const userStore = useUserStore()
+userStore.fetchUserInfo()
+const { userInfo } = storeToRefs(userStore)
 </script>
 
 <style lang="scss" scoped>

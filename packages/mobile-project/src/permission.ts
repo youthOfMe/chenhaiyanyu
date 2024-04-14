@@ -13,6 +13,7 @@
 // // 引入系统配置信息
 // // import setting from './setting'
 
+<<<<<<< HEAD
 // // 全局守卫
 // // 全局前置守卫
 // router.beforeEach(async (to: any, from: any, next: any) => {
@@ -56,6 +57,51 @@
 //     )
 //       next()
 //     else next({ path: '/login', query: { redirect: to.path } })
+=======
+// 全局守卫
+// 全局前置守卫
+router.beforeEach(async (to: any, from: any, next: any) => {
+  // document.title = setting.title + '-' + to.meta.title
+  // 加载插件启动
+  // nprogress.start()
+  // 获取token判断用户登录了还是没有登录
+  const token = userStore.token
+  // 获取用户名字
+  const username = userStore.username
+  if (token) {
+    // 用户登录成功
+    if (
+      to.path === '/login' ||
+      to.path === '/login/' ||
+      to.path === '/phoneLogin' ||
+      to.path === '/phoneLogin/'
+    )
+      next({ path: '/' })
+    else {
+      if (username) next()
+      else {
+        try {
+          // 获取用户信息
+          await userStore.fetchUserName()
+          next()
+        } catch (error) {
+          // TOKEN过期 退出登录
+          userStore.userLogout()
+          next({ path: '/login', query: { redirect: to.path } })
+        }
+      }
+    }
+  } else {
+    // 用户未登录判断
+    if (
+      to.path === '/login' ||
+      to.path === '/login/' ||
+      to.path === '/phoneLogin' ||
+      to.path === '/phoneLogin/'
+    )
+      next()
+    else next({ path: '/login', query: { redirect: to.path } })
+>>>>>>> b6cc88ff4ad3982167747d50706056751a40b3e4
 
 //     // 当前我也是会写这种sb代码的
 //     // to.path === '/login'

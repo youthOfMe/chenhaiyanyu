@@ -17,8 +17,16 @@
       </van-swipe>
     </div>
     <van-grid square class="nav-content">
+      <van-grid-item text="商品" @click="goCategory">
+        <SvgIcon
+          name="hallOfficailShop-category"
+          width="50px"
+          height="50px"
+        ></SvgIcon>
+        <div class="grid-text">商品分类</div>
+      </van-grid-item>
       <van-grid-item
-        v-for="value in 4"
+        v-for="value in 3"
         :key="value"
         icon="photo-o"
         text="优惠券"
@@ -35,7 +43,7 @@
 
 <script setup lang="ts">
 import { onUnmounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useSettingStore } from '@/stores'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
@@ -49,6 +57,12 @@ onUnmounted(() => {
   settingStore.tabbarData[1].path = path
   settingStore.hallTabBarIndex = 1
 })
+
+const router = useRouter()
+// 跳转页面到商品分类
+const goCategory = () => {
+  router.push('/chshopCategory')
+}
 </script>
 
 <style lang="scss" scoped>
@@ -69,6 +83,10 @@ onUnmounted(() => {
 .nav-content {
   margin: 0 9px;
   background-color: #ffffff;
+  .grid-text {
+    margin-top: 5px;
+    color: var(--primary-color);
+  }
 }
 .list {
   display: flex;

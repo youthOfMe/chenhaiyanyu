@@ -4,7 +4,7 @@
       <div class="info-title">钱包</div>
       <div class="info-content">
         <div class="item" @click="goXingHai">
-          <div class="data">0</div>
+          <div class="data">{{ userInfo.xinghaibi }}</div>
           <div class="text">星海币</div>
         </div>
         <div class="item" @click="goRenMin">
@@ -30,6 +30,12 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+defineProps({
+  userInfo: {
+    type: Object,
+    default: () => {},
+  },
+})
 
 const router = useRouter()
 // 星海币

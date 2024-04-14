@@ -6,8 +6,10 @@ export const useUserStore = defineStore('user', {
   state: (): any => ({
     token: GET_TOKEN(),
     username: '',
+    userInfo: {},
   }),
   actions: {
+    // 登录
     async fetchLogin(params: any) {
       const res = await login(params)
       if (res.code === 1) {
@@ -16,10 +18,19 @@ export const useUserStore = defineStore('user', {
         return 'ok'
       } else return Promise.reject(new Error(res.data.msg))
     },
-    async fetchUserInfo() {
+    // 获取用户昵称
+    async fetchUserName() {
       const res = await getUserInfo()
       if (res.code === 1) {
         this.username = res.data.name
+        return 'ok'
+      } else return Promise.reject(res.data.msg)
+    },
+    // 获取用户信息
+    async fetchUserInfo() {
+      const res = await getUserInfo()
+      if (res.code === 1) {
+        this.userInfo = res.data
         return 'ok'
       } else return Promise.reject(res.data.msg)
     },
