@@ -97,6 +97,9 @@ export const constantRoute = [
   {
     path: '/privateMsg',
     component: () => import('@/views/message/privateMsg/PrivateMsg.vue'),
+    meta: {
+      hideTabBar: true,
+    },
   },
   {
     name: 'personInfo',

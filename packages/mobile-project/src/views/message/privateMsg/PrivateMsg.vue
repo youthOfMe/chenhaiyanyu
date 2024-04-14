@@ -23,7 +23,6 @@
             alt=""
           />
         </div>
-        <div></div>
         <div class="center-content">
           <div class="name">哈哈哈</div>
           <div style="width: 250px; height: 20px">
@@ -37,7 +36,27 @@
           <div class="msg-prompt"><p>67</p></div>
         </div>
       </div>
-      <hr />
+      <div class="chat-item">
+        <div class="left-content">
+          <img
+            class="avatar"
+            :src="getAssetURL('privateMsg/avatar1.jpg')"
+            alt=""
+          />
+        </div>
+        <div class="center-content">
+          <div class="name">哈哈哈</div>
+          <div style="width: 250px; height: 20px">
+            <p>
+              11111111111111111111111111111111111111111111111111111111111111
+            </p>
+          </div>
+        </div>
+        <div class="right-content">
+          <div class="time">15:49</div>
+          <div class="msg-prompt"><p>67</p></div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -55,6 +74,7 @@ let goBack = () => {
 .privateMsg {
   display: flex;
   flex-direction: column;
+  background-color: rgb(255 255 255);
 }
 .top-info {
   display: flex;
@@ -106,6 +126,9 @@ let goBack = () => {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 3vw;
+    padding-bottom: 3vw;
+    border-bottom: #8f8f8f79 1px solid;
     .left-content {
       display: flex;
       align-items: center;
@@ -180,4 +203,3 @@ hr {
   border-top: 1px solid #cccccc;
 }
 </style>
-@/api/message/privateMsg
