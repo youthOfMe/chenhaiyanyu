@@ -1,13 +1,13 @@
 <template>
   <div class="commodity-card-v2">
-    <img :src="commodity.image" alt="" />
+    <img :src="info?.image || ''" alt="" />
     <div class="info">
       <div class="info-title"></div>
       <div class="info">
-        <div class="name nowrap_ellipsis">{{ commodity.name }}</div>
+        <div class="name nowrap_ellipsis">{{ info?.name }}</div>
         <div class="commit">商品好评率 99%</div>
         <div class="sales">
-          <div class="price">￥{{ commodity.price }}</div>
+          <div class="price">￥{{ info?.price }}</div>
           <div class="sales-info">券后价</div>
           <div class="saled">已售8888</div>
         </div>
@@ -24,6 +24,10 @@ import { getAssetURL } from '@/utils/LoadAssetsImg.js'
 
 defineProps({
   commodity: {
+    type: Object,
+    default: () => {},
+  },
+  info: {
     type: Object,
     default: () => {},
   },

@@ -25,8 +25,16 @@
         ></SvgIcon>
         <div class="grid-text">商品分类</div>
       </van-grid-item>
+      <van-grid-item text="商品" @click="goSetmeal">
+        <SvgIcon
+          name="hallOfficailShop-setmeal"
+          width="50px"
+          height="50px"
+        ></SvgIcon>
+        <div class="grid-text">特惠套餐</div>
+      </van-grid-item>
       <van-grid-item
-        v-for="value in 3"
+        v-for="value in 2"
         :key="value"
         icon="photo-o"
         text="优惠券"
@@ -62,6 +70,10 @@ const router = useRouter()
 // 跳转页面到商品分类
 const goCategory = () => {
   router.push('/chshopCategory')
+}
+// 跳转页面到特惠套餐
+const goSetmeal = () => {
+  router.push('/chshopSetmeal')
 }
 </script>
 

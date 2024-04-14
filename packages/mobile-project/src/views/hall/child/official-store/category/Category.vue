@@ -17,7 +17,7 @@
         <CommodityCardV2
           v-for="item in commodityList"
           :key="item.id"
-          :commodity="item"
+          :info="item"
         ></CommodityCardV2>
       </template>
     </van-tree-select>

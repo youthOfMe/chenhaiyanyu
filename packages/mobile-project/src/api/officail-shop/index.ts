@@ -25,3 +25,11 @@ export function getOfficailShopCommodity(categoryId: number) {
     },
   })
 }
+
+export function getOfficailShopSetmeal(params: any) {
+  return xhRequest.get<any>({
+    headers: new AxiosHeaders(),
+    url: '/user/setmeal/page',
+    params,
+  })
+}

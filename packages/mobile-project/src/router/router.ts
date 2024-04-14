@@ -178,4 +178,12 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+  {
+    path: '/chshopSetmeal',
+    component: () =>
+      import('@/views/hall/child/official-store/setmeal/Setmeal.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
 ]
