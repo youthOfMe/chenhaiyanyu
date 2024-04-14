@@ -78,6 +78,17 @@ export const constantRoute = [
   {
     path: '/community',
     component: () => import('@/views/community/Community.vue'),
+    children: [
+      {
+        path: '/community/recommend',
+        component: () =>
+          import('@/views/community/child/recommend/Recommend.vue'),
+      },
+      {
+        path: '/community/all',
+        component: () => import('@/views/community/child/all/All.vue'),
+      },
+    ],
   },
   {
     path: '/person',

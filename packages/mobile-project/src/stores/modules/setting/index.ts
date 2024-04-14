@@ -19,7 +19,7 @@ export const useSettingStore = defineStore('setting', {
         text: '社区',
         image: 'tabbar-community',
         imageActive: 'tabbar-community-active',
-        path: '/community',
+        path: '/community/all',
       },
       {
         text: '个人',
