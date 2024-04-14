@@ -1,11 +1,11 @@
 <template>
   <div class="commodity-card-v1" @click="goDetail">
-    <img :src="getAssetURL('home/head.jpg')" alt="" class="commodity-img" />
+    <img :src="info.image" alt="" class="commodity-img" />
     <div class="info">
-      <div class="name nowrap_ellipsis">校园毕设 1V1包过指导</div>
+      <div class="name nowrap_ellipsis">{{ info.name }}</div>
       <div class="commit">商品好评率 99%</div>
       <div class="sales">
-        <div class="price">￥1888</div>
+        <div class="price">￥{{ info.price }}</div>
         <div class="sales-info">券后价</div>
         <div class="saled">已售8888</div>
       </div>
@@ -19,6 +19,13 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
+
+defineProps({
+  info: {
+    type: Object,
+    default: () => {},
+  },
+})
 
 const router = useRouter()
 const goDetail = () => {

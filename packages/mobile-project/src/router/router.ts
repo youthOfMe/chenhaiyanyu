@@ -137,7 +137,7 @@ export const constantRoute = [
     },
   },
   {
-    path: '/commodity',
+    path: '/commodity/:id',
     component: () => import('@/views/commodity/Commodity.vue'),
     meta: {
       hideTabBar: true,
@@ -211,6 +211,20 @@ export const constantRoute = [
     path: '/chshopSetmeal',
     component: () =>
       import('@/views/hall/child/official-store/setmeal/Setmeal.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
+    path: '/addressBook',
+    component: () => import('@/views/address-book/AddressBook.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
+    path: '/addAddress',
+    component: () => import('@/views/address-book/add-address/AddAddress.vue'),
     meta: {
       hideTabBar: true,
     },
