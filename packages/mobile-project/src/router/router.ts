@@ -207,4 +207,18 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+  {
+    path: '/addressBook',
+    component: () => import('@/views/address-book/AddressBook.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
+    path: '/addAddress',
+    component: () => import('@/views/address-book/add-address/AddAddress.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
 ]

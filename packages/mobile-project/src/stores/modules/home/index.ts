@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import type { HomeState } from './type'
-import { getHomeCategories, getHomeHotSuggests } from '@/api'
+import { getHomeHotSuggests } from '@/api'
 
 export const useHomeStore = defineStore('home', {
   state: (): HomeState => ({

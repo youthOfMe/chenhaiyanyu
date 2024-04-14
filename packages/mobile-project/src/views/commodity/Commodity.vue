@@ -57,7 +57,7 @@
     <van-action-bar-icon icon="cart-o" text="购物车" />
     <van-action-bar-icon icon="star" text="已收藏" color="#ff5000" />
     <van-action-bar-button type="warning" text="加入购物车" />
-    <van-action-bar-button type="danger" text="立即购买" />
+    <van-action-bar-button type="danger" text="立即购买" @click="buy" />
   </van-action-bar>
 </template>
 
@@ -66,7 +66,7 @@ import { computed, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import axios from 'axios'
-import { useOfficailShopStore } from '@/stores'
+import { useOfficailShopStore, useAddressBookStore } from '@/stores'
 import { getDetailInfos } from '@/api'
 import TabBar from './cpns/TabBar.vue'
 import DetailInfos from './cpns/Detail02Infos.vue'
@@ -98,6 +98,25 @@ const route = useRoute()
 const officialShopStore = useOfficailShopStore()
 officialShopStore.fetchCommodityDetail(route.params.id)
 const { commodity } = storeToRefs(officialShopStore)
+
+// 获取地址数据
+const addressBookStore = useAddressBookStore()
+addressBookStore.fetchAddressBookList()
+const { addressBookList } = storeToRefs(addressBookStore)
+// 下单购买
+const router = useRouter()
+const buy = () => {
+  if (!addressBookList.value.length) {
+    // eslint-disable-next-line no-undef
+    showDialog({
+      title: '地址未填写',
+      message: '您还未进行填写地址, 点击下方按钮完善地址信息',
+    }).then(() => {
+      // on close
+      router.push('/addressBook')
+    })
+  }
+}
 </script>
 
 <style lang="scss" scoped>
