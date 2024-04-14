@@ -37,8 +37,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { getOurStoryColumnList } from '@/api'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useOurStoryStore } from '@/stores'

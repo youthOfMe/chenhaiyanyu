@@ -134,4 +134,11 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+  {
+    path: '/codeOrder',
+    component: () => import('@/views/code-order/CodeOrder.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
 ]
