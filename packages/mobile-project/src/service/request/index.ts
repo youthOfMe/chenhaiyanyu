@@ -1,6 +1,7 @@
 import type { AxiosInstance } from 'axios'
 import type { XHRequestConfig } from './type'
 import axios from 'axios'
+import { useUserStore } from '@/stores'
 
 class XHRequest {
   instance: AxiosInstance
@@ -12,6 +13,9 @@ class XHRequest {
     // 每个instance实例都添加拦截器
     this.instance.interceptors.request.use(
       (config) => {
+        // 获取token
+        const { token } = useUserStore()
+        if (token) config.headers.token = token
         return config
       },
       (err) => {

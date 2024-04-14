@@ -14,11 +14,9 @@ import './styles/index.css'
 
 const app = createApp(App)
 
-// 注册pinia仓库
-app.use(pinia)
 // 注册全局自定义组件
 app.use(globalcomponent)
 // 注册路由
 app.use(router)
-
-app.mount('#app')
+// 注册pinia仓库
+app.use(pinia).mount('#app')

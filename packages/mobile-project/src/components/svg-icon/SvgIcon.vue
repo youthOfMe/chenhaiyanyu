@@ -48,7 +48,7 @@ function setRemUnit() {
 setRemUnit()
 
 // 当屏幕尺寸发生变化时, 实时来修改html的font-size的尺寸
-window.addEventListener('resize', setRemUnit)
+// window.addEventListener('resize', setRemUnit)
 
 let width = props.width
 width =
