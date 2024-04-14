@@ -171,7 +171,6 @@ export const constantRoute = [
     },
   },
   {
-<<<<<<< HEAD
     path: '/renminbi',
     component: () => import('@/views/person/purse/RenMinBi.vue'),
     meta: {
@@ -188,11 +187,14 @@ export const constantRoute = [
   {
     path: '/credMoney',
     component: () => import('@/views/person/purse/CredMoney.vue'),
-=======
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
     path: '/chshopCategory',
     component: () =>
       import('@/views/hall/child/official-store/category/Category.vue'),
->>>>>>> b6cc88ff4ad3982167747d50706056751a40b3e4
     meta: {
       hideTabBar: true,
     },
