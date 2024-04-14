@@ -3,7 +3,7 @@
     <div class="purse-info">
       <div class="info-title">钱包</div>
       <div class="info-content">
-        <div class="item">
+        <div class="item" @click="goXingHai">
           <div class="data">0</div>
           <div class="text">星海币</div>
         </div>
@@ -32,6 +32,11 @@
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+// 星海币
+const goXingHai = () => {
+  router.push('/xinghaiMoney')
+}
+// 优惠券
 const goCoupons = () => {
   router.push('/coupons')
 }

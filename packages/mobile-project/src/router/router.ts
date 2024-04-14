@@ -141,4 +141,11 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+  {
+    path: '/xinghaiMoney',
+    component: () => import('@/views/person/purse/XingHaiMoney.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
 ]
