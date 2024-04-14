@@ -5,8 +5,6 @@
         <svg-icon
           name="message-left"
           color="black"
-          width="28px"
-          height="28px"
           @click="goBack()"
         ></svg-icon>
       </div>
@@ -89,34 +87,33 @@ let goBack = () => {
     width: 100px;
     font-size: 20px;
     font-weight: 700;
-    color: #6b7280;
+    color: black;
   }
   .left-icon {
     display: flex;
     align-items: center;
     padding-left: 15px;
-    width: 35px;
-    height: 35px;
+    width: 5vw;
+    height: 5vw;
   }
   button {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-right: 10px;
+    margin-right: 1vw;
     padding: 0 16px;
-    width: 80px;
+    width: 20vw;
     height: 32px;
     font-size: 12px;
     font-weight: 500;
-    border: none;
     border-radius: 50px;
-    color: white;
-    background-color: #43c9a1;
+    background: transparent;
     outline: 0;
     cursor: pointer;
-    :hover {
-      background-color: #2222221a;
-    }
+    border: none;
+    border-radius: 50px;
+    background-color: #2222220d;
+    color: #222;
   }
 }
 .chat-list {
@@ -143,22 +140,30 @@ let goBack = () => {
       }
     }
     .center-content {
-      justify-content: space-between;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
       padding: 0 10px;
       width: 100%;
       font-size: 20px;
       .name {
+        display: flex;
+        width: 85%;
+        justify-content: flex-start;
         padding-top: 10px;
-        font-size: 23px;
-        font-weight: 500;
+        font-size: 21px;
+        font-weight: 600;
+        color: var(--third-color);
       }
       p {
         overflow: hidden;
         margin: 0;
         text-overflow: ellipsis;
         white-space: nowrap;
-        color: #8f8f8f;
+        margin-top: 5px;
+        font-size: 16px;
+        color: var(--second-color);
       }
     }
     .right-content {
