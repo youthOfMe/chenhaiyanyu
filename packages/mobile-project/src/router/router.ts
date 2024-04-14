@@ -121,6 +121,14 @@ export const constantRoute = [
     },
   },
   {
+    name: 'setting',
+    path: '/setting',
+    component: () => import('@/views/setting/Setting.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
     name: 'editPersonInfo',
     path: '/editPersonInfo',
     component: () => import('@/views/edit-person-info/EditPersonInfo.vue'),
