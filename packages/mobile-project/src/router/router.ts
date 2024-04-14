@@ -103,6 +103,14 @@ export const constantRoute = [
     },
   },
   {
+    name: 'editPersonInfo',
+    path: '/editPersonInfo',
+    component: () => import('@/views/edit-person-info/EditPersonInfo.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
     path: '/commodity',
     component: () => import('@/views/commodity/Commodity.vue'),
     meta: {

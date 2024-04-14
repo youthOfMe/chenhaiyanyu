@@ -9,7 +9,7 @@
         <div class="head">
           <img :src="getAssetURL('home/head.jpg')" alt="" />
         </div>
-        <div class="edit">编辑资料</div>
+        <div class="edit" @click="toeditPersonInfo">编辑资料</div>
         <div class="name">
           <span>点击设置牛马名字</span>
           <SvgIcon
@@ -71,10 +71,16 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
+import { useRouter } from 'vue-router'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
 
 import TopBar from './cpns/top-bar/TopBar.vue'
+
+const router = useRouter()
+const toeditPersonInfo = () => {
+  router.push('/editPersonInfo')
+}
 </script>
 
 <style lang="scss" scoped>

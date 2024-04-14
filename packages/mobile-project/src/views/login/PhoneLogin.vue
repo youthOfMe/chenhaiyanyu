@@ -1,5 +1,5 @@
 <template>
-  <div class="retrieve-account">
+  <div class="login">
     <div class="topContent">
       <div class="top-back">
         <svg-icon
@@ -11,12 +11,16 @@
       <div class="user-avatar"></div>
     </div>
     <div class="userinfo">
-      <text>手机号</text>
-      <input type="text" />
-      <text>密码</text>
-      <input type="password" />
+      <van-form autocomplete="off" @submit="onSubmit">
+        <text>手机号</text>
+        <van-field type="tel" v-model="mobile" :rules="mobileRules" />
+        <text>密码</text>
+        <van-field type="password" v-model="password" :rules="passwordRules" />
+        <div class="cp-cell">
+          <van-button type="primary" native-type="submit">登 录</van-button>
+        </div>
+      </van-form>
     </div>
-    <button>登录</button>
     <div class="bottom-style">
       <div class="bottom-round">
         <div class="roundOne"></div>
@@ -39,6 +43,14 @@
 
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
+import { ref } from 'vue'
+import { mobileRules, passwordRules, usernameRules } from '@/utils/Rules.ts'
+
+const mobile = ref('')
+const password = ref('')
+const onSubmit = () => {
+  console.log('ok')
+}
 const router = useRouter()
 let goBack = () => {
   router.go(-1)
@@ -46,7 +58,7 @@ let goBack = () => {
 </script>
 
 <style lang="scss" scoped>
-.retrieve-account {
+.login {
   display: flex;
   align-items: center;
   width: 100%;
@@ -74,50 +86,42 @@ let goBack = () => {
 }
 .userinfo {
   display: flex;
-  margin-top: 35vw;
+  margin-top: 25vw;
+  width: 80vw;
   text-align: left;
   flex-direction: column;
   text {
+    margin-left: 1vw;
     font-size: 4vw;
     color: #8888889c;
   }
   p {
-    font-size: 4vw;
+    margin-left: 1vw;
+    font-size: 3vw;
     color: #888888ab;
   }
-
-  /* 鼠标hover */
-  input:hover {
-    border-color: rgb(15 98 254);
-  }
-
-  /* 获得焦点 */
-  input:focus {
-    border-color: rgb(15 98 254);
-  }
-  input {
-    margin: 0 0 5vw;
-    width: 80vw;
-    height: 13vw;
-    font-size: 5vw;
-    border: none;
-    border-bottom: 2px solid #88888860;
-    color: black;
-    background-color: transparent;
-  }
 }
-button {
+.van-cell {
+  margin: 0 0 5vw;
+  width: 80vw;
+  font-size: 5vw;
+  border: none;
+  border-bottom: 2px solid #88888860 !important;
+  color: black;
+  background-color: transparent !important;
+}
+.van-button--primary {
   position: absolute;
   top: 175vw;
   display: inline-block;
   align-items: center;
-  width: 65vw;
+  margin-left: 5vw;
+  width: 70vw;
   height: 13vw;
   font-size: 7vw;
   font-weight: 400;
-  border: 1px solid transparent;
   color: #ffffff;
-  background-color: rgb(15 98 254);
+  background-color: rgb(15 98 254) !important;
   outline: none;
   cursor: pointer;
 }
