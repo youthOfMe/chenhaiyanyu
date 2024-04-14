@@ -170,4 +170,25 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+  {
+    path: '/renminbi',
+    component: () => import('@/views/person/purse/RenMinBi.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
+    path: '/clockMoney',
+    component: () => import('@/views/person/purse/ClockMoney.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
+    path: '/credMoney',
+    component: () => import('@/views/person/purse/CredMoney.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
 ]
