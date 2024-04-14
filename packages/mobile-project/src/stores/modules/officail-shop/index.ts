@@ -1,8 +1,10 @@
 import {
   getOfficailShopCategory,
   getOfficailShopCommodity,
+  getOfficailShopPageCommodity,
   getOfficailShopSetmeal,
-} from '@/api/officail-shop'
+  getOfficailShopCommodityDetail,
+} from '@/api'
 import { defineStore } from 'pinia'
 
 export const useOfficailShopStore = defineStore('officailShop', {
@@ -10,6 +12,8 @@ export const useOfficailShopStore = defineStore('officailShop', {
     categoryList: [],
     commodityList: [],
     setmealList: [],
+    commodityPageList: [],
+    commodity: {},
   }),
   actions: {
     async fetchCategoryList() {
@@ -23,6 +27,14 @@ export const useOfficailShopStore = defineStore('officailShop', {
     async fetchSetmealList(params: any) {
       const res = await getOfficailShopSetmeal(params)
       this.setmealList = res.data
+    },
+    async fetchCommodityPageList(params: any) {
+      const res = await getOfficailShopPageCommodity(params)
+      this.commodityPageList = res.data
+    },
+    async fetchCommodityDetail(id: number) {
+      const res = await getOfficailShopCommodityDetail(id)
+      this.commodity = res.data
     },
   },
 })

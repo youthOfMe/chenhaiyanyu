@@ -129,7 +129,7 @@ export const constantRoute = [
     },
   },
   {
-    path: '/commodity',
+    path: '/commodity/:id',
     component: () => import('@/views/commodity/Commodity.vue'),
     meta: {
       hideTabBar: true,

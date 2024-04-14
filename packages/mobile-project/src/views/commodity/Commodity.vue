@@ -1,43 +1,45 @@
 <template>
   <div class="commodity">
     <div class="commodity-bg">
-      <img :src="getAssetURL('home/head-bg.jpg')" alt="" />
+      <img :src="commodity.image" alt="" />
     </div>
     <TabBar></TabBar>
     <div class="content-wrap">
       <div class="content">
         <div class="img-list">
           <SvgIcon name="commodity-left" color="#000000"></SvgIcon>
-          <div class="list"></div>
+          <div class="list">
+            <img :src="commodity.image" alt="" />
+          </div>
           <SvgIcon name="commodity-right" color="#000000"></SvgIcon>
         </div>
       </div>
       <detail-infos
         name="描述"
         :ref="getSectionRef"
-        :top-infos="mainPart?.topModule"
+        :info="commodity"
         v-if="mainPart?.topModule"
       ></detail-infos>
-      <detail-facility
+      <!-- <detail-facility
         name="设施"
         :ref="getSectionRef"
         :house-facility="mainPart.dynamicModule.facilityModule.houseFacility"
-      ></detail-facility>
-      <detail-land-lord
+      ></detail-facility> -->
+      <!-- <detail-land-lord
         name="房东"
         :ref="getSectionRef"
         :landlord="mainPart.dynamicModule.landlordModule"
-      ></detail-land-lord>
+      ></detail-land-lord> -->
       <detail-comment
         name="评论"
         :ref="getSectionRef"
         :comment="mainPart.dynamicModule.commentModule"
       ></detail-comment>
-      <detail-notice
+      <!-- <detail-notice
         name="须知"
         :ref="getSectionRef"
         :order-rules="mainPart.dynamicModule.rulesModule.orderRules"
-      ></detail-notice>
+      ></detail-notice> -->
       <detail-map
         name="周边"
         :ref="getSectionRef"
@@ -62,8 +64,10 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { getDetailInfos } from '@/api'
+import { storeToRefs } from 'pinia'
 import axios from 'axios'
+import { useOfficailShopStore } from '@/stores'
+import { getDetailInfos } from '@/api'
 import TabBar from './cpns/TabBar.vue'
 import DetailInfos from './cpns/Detail02Infos.vue'
 import DetailFacility from './cpns/Detail03Facility.vue'
@@ -88,6 +92,12 @@ axios
     detailInfos.value = res.data.data
     console.log(res.data, 666)
   })
+
+// 获取商品数据
+const route = useRoute()
+const officialShopStore = useOfficailShopStore()
+officialShopStore.fetchCommodityDetail(route.params.id)
+const { commodity } = storeToRefs(officialShopStore)
 </script>
 
 <style lang="scss" scoped>
@@ -111,6 +121,19 @@ axios
   padding: 298px 0 0;
   .content {
     background-color: #ffffff;
+    .img-list {
+      display: flex;
+      align-items: center;
+      padding: 15px 9px 0;
+      .list {
+        flex: 1;
+        padding: 0 9px;
+        img {
+          width: 50px;
+          height: 50px;
+        }
+      }
+    }
   }
 }
 .footer {

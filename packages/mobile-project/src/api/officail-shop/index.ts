@@ -26,10 +26,40 @@ export function getOfficailShopCommodity(categoryId: number) {
   })
 }
 
+/**
+ * 分页获取套餐数据
+ * @param params
+ * @returns
+ */
 export function getOfficailShopSetmeal(params: any) {
   return xhRequest.get<any>({
     headers: new AxiosHeaders(),
     url: '/user/setmeal/page',
     params,
+  })
+}
+
+/**
+ * 分页获取商品数据
+ * @param params
+ * @returns
+ */
+export function getOfficailShopPageCommodity(params: any) {
+  return xhRequest.get<any>({
+    headers: new AxiosHeaders(),
+    url: '/user/commodity/page',
+    params,
+  })
+}
+
+/**
+ * 根据ID查询商品数据
+ * @param id
+ * @returns
+ */
+export function getOfficailShopCommodityDetail(id: number) {
+  return xhRequest.get<any>({
+    headers: new AxiosHeaders(),
+    url: `/user/commodity/` + id,
   })
 }

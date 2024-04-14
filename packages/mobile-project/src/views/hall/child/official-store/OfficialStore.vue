@@ -42,8 +42,12 @@
     </van-grid>
     <ShopInfoCard></ShopInfoCard>
     <div class="list">
-      <CommodityCardV1></CommodityCardV1>
-      <CommodityCardV1></CommodityCardV1>
+      <template v-for="item in commodityPageList.records" :key="item.id">
+        <CommodityCardV1
+          :info="item"
+          @click="goDetail(item.id)"
+        ></CommodityCardV1>
+      </template>
     </div>
     <div class="block"></div>
   </div>
@@ -53,7 +57,7 @@
 import { onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
-import { useSettingStore } from '@/stores'
+import { useSettingStore, useOfficailShopStore } from '@/stores'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
 
 // 持久化页面 可抽取为hooks
@@ -74,6 +78,19 @@ const goCategory = () => {
 // 跳转页面到特惠套餐
 const goSetmeal = () => {
   router.push('/chshopSetmeal')
+}
+
+// 展示商品数据
+const officialShopStore = useOfficailShopStore()
+officialShopStore.fetchCommodityPageList({
+  page: 1,
+  pageSize: 10,
+})
+const { commodityPageList } = storeToRefs(officialShopStore)
+
+// 点击商品卡片
+const goDetail = (id) => {
+  router.push(`/commodity/${id}`)
 }
 </script>
 
@@ -103,6 +120,7 @@ const goSetmeal = () => {
 .list {
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
   margin: 14px 9px 0;
   background-color: #ffffff;
 }

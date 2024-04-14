@@ -1,7 +1,7 @@
 <template>
   <div class="infos">
-    <div class="name">{{ topInfos.houseName }}</div>
-    <div class="tags">
+    <div class="name">{{ info.name }}</div>
+    <!-- <div class="tags">
       <template v-for="(item, index) in topInfos.houseTags" :key="index">
         <span
           class="item"
@@ -14,24 +14,22 @@
           {{ item.tagText.text }}
         </span>
       </template>
-    </div>
+    </div> -->
     <div class="comment extra">
       <div class="left">
-        <span class="score">{{ topInfos?.commentBrief?.overall }}</span>
-        <span class="title">{{ topInfos?.commentBrief?.scoreTitle }}</span>
-        <span class="brief">{{ topInfos?.commentBrief?.commentBrief }}</span>
+        <span class="score">5.0</span>
+        <span class="title">超赞</span>
+        <span class="brief">官方认证一流服务</span>
       </div>
       <div class="right">
         <div class="count">
-          {{ topInfos?.commentBrief?.totalCount }}条评论
+          888条评论
           <van-icon name="arrow"></van-icon>
         </div>
       </div>
     </div>
     <div class="position extra">
-      <div class="left address">
-        {{ topInfos?.nearByPosition?.address }}
-      </div>
+      <div class="left address">济宁市曲阜市 辰海烟雨科技公司</div>
       <div class="right">地图·周边 ></div>
     </div>
   </div>
@@ -39,7 +37,7 @@
 
 <script setup>
 defineProps({
-  topInfos: {
+  info: {
     type: Object,
     default: () => ({}),
   },
