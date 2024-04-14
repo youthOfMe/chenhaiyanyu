@@ -1,7 +1,7 @@
 <template>
   <div class="person">
     <TabBar></TabBar>
-    <PersonInfo></PersonInfo>
+    <PersonInfo :userInfo="userInfo"></PersonInfo>
     <div class="grade-info">
       <div class="info-title">等级信息</div>
       <div class="info-content">
@@ -41,7 +41,7 @@
       </div>
     </div>
 
-    <PurseInfo></PurseInfo>
+    <PurseInfo :userInfo="userInfo"></PurseInfo>
 
     <OrderInfo></OrderInfo>
     <div class="trade-info">
@@ -97,6 +97,8 @@
 </template>
 
 <script setup>
+import { storeToRefs } from 'pinia'
+import { useUserStore } from '@/stores'
 import TabBar from './cpns/TabBar.vue'
 import PersonInfo from './cpns/PersonInfo.vue'
 import PurseInfo from './cpns/PurseInfo.vue'
@@ -107,6 +109,11 @@ const gradientColor = {
   '0%': '#3fecff',
   '100%': '#6149f6',
 }
+
+// 获取用户信息数据
+const userStore = useUserStore()
+userStore.fetchUserInfo()
+const { userInfo } = storeToRefs(userStore)
 </script>
 
 <style lang="scss" scoped>

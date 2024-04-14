@@ -1,16 +1,12 @@
 <template>
   <div class="person-info">
     <div class="base-info">
-      <img
-        :src="getAssetURL('home/home-bg.jpg')"
-        @click="toPersonInfo"
-        alt=""
-      />
+      <img :src="userInfo.avatar" @click="toPersonInfo" alt="" />
       <div class="info">
         <div class="name-title">
-          <span class="name">我是牛马你记住</span>
+          <span class="name">{{ userInfo.name }}</span>
         </div>
-        <div class="signature">爱已随风起, 风止意难平</div>
+        <div class="signature">{{ userInfo.signature }}</div>
       </div>
     </div>
     <div class="grade">
@@ -45,6 +41,13 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
+
+defineProps({
+  userInfo: {
+    type: Object,
+    default: () => {},
+  },
+})
 
 const router = useRouter()
 const toPersonInfo = () => {

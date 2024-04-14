@@ -56,12 +56,13 @@ let goBack = () => {
 
 // 手机号登录
 const userStore = useUserStore()
-const onSubmit = () => {
-  userStore.fetchLogin({
+const onSubmit = async () => {
+  await userStore.fetchLogin({
     phone: mobile.value,
     password: password.value,
     type: 2,
   })
+  router.replace('/')
 }
 </script>
 

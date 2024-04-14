@@ -170,4 +170,12 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+  {
+    path: '/chshopCategory',
+    component: () =>
+      import('@/views/hall/child/official-store/category/Category.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
 ]
