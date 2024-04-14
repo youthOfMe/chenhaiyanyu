@@ -7,15 +7,15 @@
           <div class="data">{{ userInfo.xinghaibi }}</div>
           <div class="text">星海币</div>
         </div>
-        <div class="item">
+        <div class="item" @click="goRenMin">
           <div class="data">0</div>
           <div class="text">人民币</div>
         </div>
-        <div class="item">
+        <div class="item" @click="goClock">
           <div class="data">0</div>
           <div class="text">签到币</div>
         </div>
-        <div class="item">
+        <div class="item" @click="goCred">
           <div class="data">0</div>
           <div class="text">信誉币</div>
         </div>
@@ -41,6 +41,18 @@ const router = useRouter()
 // 星海币
 const goXingHai = () => {
   router.push('/xinghaiMoney')
+}
+// 人民币
+const goRenMin = () => {
+  router.push('/renminbi')
+}
+// 签到币
+const goClock = () => {
+  router.push('/clockMoney')
+}
+// 信誉币
+const goCred = () => {
+  router.push('/credMoney')
 }
 // 优惠券
 const goCoupons = () => {

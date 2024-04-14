@@ -171,6 +171,27 @@ export const constantRoute = [
     },
   },
   {
+    path: '/renminbi',
+    component: () => import('@/views/person/purse/RenMinBi.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
+    path: '/clockMoney',
+    component: () => import('@/views/person/purse/ClockMoney.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
+    path: '/credMoney',
+    component: () => import('@/views/person/purse/CredMoney.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
     path: '/chshopCategory',
     component: () =>
       import('@/views/hall/child/official-store/category/Category.vue'),
