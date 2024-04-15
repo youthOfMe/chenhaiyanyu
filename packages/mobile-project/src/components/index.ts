@@ -9,6 +9,7 @@ import OurStoryCard from './our-story-card/OurStoryCard.vue'
 import TopbarHeadV1 from './topbar-head-v1/TopbarHeadV1.vue'
 import CodeWebCard from './code-web-card/CodeWebCard.vue'
 import CommodityCardV2 from './commodity-card-v2/CommodityCardV2.vue'
+import CpPaySheet from './cp-pay-sheet/CpPaySheet.vue'
 import type { allGlobalComponentType } from '@/types'
 
 // 全局对象
@@ -24,6 +25,7 @@ const allGlobalComponent: allGlobalComponentType = {
   topbarHeadV1: TopbarHeadV1,
   codeWebCard: CodeWebCard,
   commodityCardV2: CommodityCardV2,
+  cpPaySheet: CpPaySheet,
 }
 
 // 对外暴露插件对象

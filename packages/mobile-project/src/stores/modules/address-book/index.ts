@@ -1,10 +1,11 @@
-import { addAddress, getAddressBookList } from '@/api'
+import { getAddressBookList, getDefaultAddress } from '@/api'
 import { defineStore } from 'pinia'
 
 export const useAddressBookStore = defineStore('addressBook', {
   state: (): any => ({
     addressBookList: [],
     // addressInfo: {},
+    addressDefaultInfo: {},
   }),
   actions: {
     async fetchAddressBookList() {
@@ -15,5 +16,9 @@ export const useAddressBookStore = defineStore('addressBook', {
     //   const res = await addAddress(data)
     //   this.addressInfo = res.data
     // },
+    async fetchDefaultAddress() {
+      const res = await getDefaultAddress()
+      this.addressDefaultInfo = res.data
+    },
   },
 })
