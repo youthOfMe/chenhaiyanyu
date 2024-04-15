@@ -14,8 +14,8 @@
       <van-form autocomplete="off" @submit="onSubmit">
         <text>手机号</text>
         <van-field type="tel" v-model="mobile" :rules="mobileRules" />
-        <text>密码</text>
-        <van-field type="password" v-model="password" :rules="passwordRules" />
+        <text>验证码</text>
+        <van-field type="password" />
         <div class="cp-cell">
           <van-button type="primary" native-type="submit">登 录</van-button>
         </div>

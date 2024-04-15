@@ -14,24 +14,8 @@
       <van-form autocomplete="off" @submit="onSubmit">
         <text>用户名</text>
         <van-field type="tel" v-model="username" :rules="usernameRules" />
-        <text>密码</text>
-        <van-field
-          name="password"
-          v-model="password"
-          type="password"
-          clearable
-          ref="newPasswordInput"
-          :rules="passwordRules"
-        />
-        <text>确认密码</text>
-        <van-field
-          name="confirmPassword"
-          v-model="confirmPassword"
-          type="password"
-          clearable
-          ref="confirmPasswordInput"
-          :rules="passwordRules"
-        />
+        <text>验证码</text>
+        <van-field type="tel" />
         <div class="cp-cell">
           <van-button type="primary" native-type="submit">注 册</van-button>
         </div>
@@ -98,7 +82,7 @@ let goBack = () => {
 }
 .userinfo {
   display: flex;
-  margin-top: 15vw;
+  margin-top: 30vw;
   width: 80vw;
   text-align: left;
   flex-direction: column;
