@@ -6,9 +6,30 @@
     <TopBar></TopBar>
     <div class="content">
       <div class="base-info">
-        <div class="head">
+        <div class="head" @click="showList = true">
           <img :src="getAssetURL('home/head.jpg')" alt="" />
         </div>
+        <van-popup
+          v-model:show="showList"
+          round
+          position="bottom"
+          style="padding-top: 4px; height: 40%"
+        >
+          <van-cell-group :columns="columns">
+            <van-cell
+              style="font-size: 14px; color: rgba(0, 0, 0, 0.5) !important"
+              title="设置你的头像"
+            />
+            <van-cell title="从微信导入" />
+            <van-cell title="从QQ导入" />
+            <van-cell title="从手机相册中选择" />
+            <van-cell
+              style="position: absolute; margin-top: 30px"
+              title="取消"
+              @click="onCancel"
+            />
+          </van-cell-group>
+        </van-popup>
         <div class="edit" @click="toeditPersonInfo">编辑资料</div>
         <div class="name">
           <span>点击设置牛马名字</span>
@@ -71,7 +92,8 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
 
@@ -80,6 +102,21 @@ import TopBar from './cpns/top-bar/TopBar.vue'
 const router = useRouter()
 const toeditPersonInfo = () => {
   router.push('/editPersonInfo')
+}
+
+const column = [
+  { text: '从微信导入', value: 'weixin' },
+  { text: '从QQ导入', value: 'qq' },
+  { text: '从手机相册选择', value: 'photoAlbum' },
+]
+const columns = ref([column])
+const showList = ref(false)
+
+const onConfirm = (index) => {
+  showList.value = false
+}
+const onCancel = (index) => {
+  showList.value = false
 }
 </script>
 
@@ -171,12 +208,22 @@ const toeditPersonInfo = () => {
       margin-right: 5px;
       padding: 5px;
       font-size: 10px;
-      color: #aaaaaa;
+      color: #aaaaaab6;
       background-color: #eeeeee;
     }
   }
   .tab {
     margin-top: 15px;
   }
+}
+.van-cell {
+  width: 100%;
+  height: 15vw;
+  text-align: center;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: black !important;
 }
 </style>
