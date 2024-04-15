@@ -48,15 +48,24 @@
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import { mobileRules, passwordRules, usernameRules } from '@/utils/Rules.ts'
+import { useUserStore } from '@/stores'
 
 const username = ref('')
 const password = ref('')
-const onSubmit = () => {
-  console.log('ok')
-}
 const router = useRouter()
 let goBack = () => {
   router.go(-1)
+}
+
+// 手机号登录
+const userStore = useUserStore()
+const onSubmit = async () => {
+  await userStore.fetchLogin({
+    account: username.value,
+    password: password.value,
+    type: 1,
+  })
+  router.replace('/')
 }
 </script>
 

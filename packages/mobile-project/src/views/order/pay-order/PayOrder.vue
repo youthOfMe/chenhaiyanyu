@@ -10,6 +10,8 @@
     <div class="content">
       <div class="pay-info">
         <van-count-down :time="time" @finish="finish" />
+        <div class="pay-money">￥188</div>
+        <div class="order-id">辰海烟雨-1008611</div>
       </div>
     </div>
   </div>
@@ -19,6 +21,7 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { showDialog } from 'vant'
+import 'vant/es/dialog/style'
 
 // 路由回退
 const router = useRouter()

@@ -65,6 +65,14 @@ onMounted(() => {})
               <van-checkbox :checked="paymentMethod === 1" />
             </template>
           </van-cell>
+          <van-cell title="星海币支付" @click="paymentMethod = 2">
+            <template #icon>
+              <SvgIcon width="18px" height="18px" name="order-alipay" />
+            </template>
+            <template #extra>
+              <van-checkbox :checked="paymentMethod === 1" />
+            </template>
+          </van-cell>
         </van-cell-group>
         <div class="btn">
           <van-button type="primary" round block @click="pay()">

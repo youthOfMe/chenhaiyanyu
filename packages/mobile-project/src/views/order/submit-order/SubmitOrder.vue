@@ -58,6 +58,7 @@
     :order-id="'123456'"
     :actual-payment="payMoney"
     :on-close="onClose"
+    :pay-callback="'/payOrder'"
   ></CpPaySheet>
   <van-submit-bar
     :price="payMoney * 100"
@@ -132,10 +133,18 @@ function sleep(ms: number) {
 const onSubmit = async () => {
   // 提交订单
   loading.value = true
-  orderStore.fetchSubmitOrder()
-  // 获取订单ID
-  const { orderData } = orderStore
-  orderId.value = orderData.id
+  const orderSubmitData = {
+    addressBookId: addressDefaultInfo.value.id,
+    payMethod: 2,
+    remark: '默认备注',
+    estimatedDeliveryTime: '2024-04-15 23:42:00',
+    deliveryStatus: 1,
+    packAmount: freight,
+    amount: allMoney.value,
+    tablewareNumber: 0,
+    tablewareStatus: 0,
+  }
+  orderStore.fetchSubmitOrder(orderSubmitData)
   loading.value = false
   // 展示橱窗
   show.value = true
@@ -155,11 +164,20 @@ const onClose = () => {
     })
     .catch(() => {
       // orderId.value = ''
-      // router.push('/home')
+      router.replace('/order')
+      orderStore.orderData = {}
       show.value = false
       return true
     })
 }
+
+// 判断用户是否执行了刷新
+// if (sessionStorage.getItem('isReload')) {
+//   console.log('页面被刷新')
+// } else {
+//   console.log('首次被加载')
+//   sessionStorage.setItem('isReload', true)
+// }
 </script>
 
 <style lang="scss" scoped>
