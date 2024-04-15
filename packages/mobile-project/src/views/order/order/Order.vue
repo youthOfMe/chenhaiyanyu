@@ -11,7 +11,11 @@
     <van-tabs v-model:active="active">
       <van-tab title="全部">
         <div class="order-list">
-          <OrderItem></OrderItem>
+          <OrderItem
+            v-for="orderInfo in historyOrderDataList"
+            :orderInfo="orderInfo"
+            :key="orderInfo.id"
+          ></OrderItem>
         </div>
       </van-tab>
       <van-tab title="待付款">交易中</van-tab>

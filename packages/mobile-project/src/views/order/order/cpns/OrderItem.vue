@@ -12,7 +12,11 @@
       <div class="status">等待牛马付款</div>
     </div>
     <div class="content">
-      <OrderCardV1></OrderCardV1>
+      <OrderCardV1
+        v-for="item in orderInfo?.orderDetailList"
+        :key="item.id"
+        :item="item"
+      ></OrderCardV1>
       <div class="other-info">
         <div class="other-pay-info">付款后,48小时内发货</div>
         <van-tag plain type="primary">7天无理由退货</van-tag>
@@ -39,6 +43,13 @@
 
 <script setup lang="ts">
 import OrderCardV1 from '@/views/order/cpns/order-card-v1/OrderCardV1.vue'
+
+defineProps({
+  orderInfo: {
+    type: Object,
+    default: () => {},
+  },
+})
 </script>
 
 <style lang="scss" scoped>
