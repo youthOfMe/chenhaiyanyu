@@ -229,4 +229,25 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+  {
+    path: '/submitOrder',
+    component: () => import('@/views/order/submit-order/SubmitOrder.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
+    path: '/payOrder',
+    component: () => import('@/views/order/pay-order/PayOrder.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
+    path: '/order',
+    component: () => import('@/views/order/order/Order.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
 ]

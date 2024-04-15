@@ -6,7 +6,7 @@ import { AxiosHeaders } from 'axios'
  * @returns
  */
 export function getAddressBookList() {
-  return xhRequest.get({
+  return xhRequest.get<any>({
     headers: new AxiosHeaders(),
     url: '/user/addressBook/list',
   })
@@ -18,9 +18,20 @@ export function getAddressBookList() {
  * @returns
  */
 export function addAddress(data: any) {
-  return xhRequest.post({
+  return xhRequest.post<any>({
     headers: new AxiosHeaders(),
     url: '/user/addressBook',
     data,
+  })
+}
+
+/**
+ * 获取默认地址数据
+ * @returns
+ */
+export function getDefaultAddress() {
+  return xhRequest.get<any>({
+    headers: new AxiosHeaders(),
+    url: '/user/addressBook/default',
   })
 }

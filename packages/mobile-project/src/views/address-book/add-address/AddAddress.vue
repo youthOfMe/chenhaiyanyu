@@ -25,7 +25,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useAddressBookStore, useUserStore } from '@/stores'
+import { useUserStore } from '@/stores'
 import { addAddress } from '@/api'
 import { areaList } from '@vant/area-data'
 

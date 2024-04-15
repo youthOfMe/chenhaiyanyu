@@ -66,8 +66,12 @@ import { computed, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import axios from 'axios'
-import { useOfficailShopStore, useAddressBookStore } from '@/stores'
-import { getDetailInfos } from '@/api'
+import {
+  useOfficailShopStore,
+  useAddressBookStore,
+  useUserStore,
+} from '@/stores'
+import { getDetailInfos, addCommodityToCart } from '@/api'
 import TabBar from './cpns/TabBar.vue'
 import DetailInfos from './cpns/Detail02Infos.vue'
 import DetailFacility from './cpns/Detail03Facility.vue'
@@ -105,17 +109,33 @@ addressBookStore.fetchAddressBookList()
 const { addressBookList } = storeToRefs(addressBookStore)
 // 下单购买
 const router = useRouter()
-const buy = () => {
+const userStore = useUserStore()
+const buy = async () => {
   if (!addressBookList.value.length) {
     // eslint-disable-next-line no-undef
     showDialog({
       title: '地址未填写',
       message: '您还未进行填写地址, 点击下方按钮完善地址信息',
-    }).then(() => {
+    }).then(async () => {
       // on close
+
       router.push('/addressBook')
     })
   }
+
+  // 下单数据加入到购物车中
+  const shoppingCartDTO = {}
+  shoppingCartDTO.dishId = route.params.id
+  shoppingCartDTO.userId = userStore.userInfo.id
+  const res = await addCommodityToCart(shoppingCartDTO)
+  console.log(res.code)
+
+  if (!res.code) {
+    // eslint-disable-next-line no-undef
+    showToast(res.msg)
+  }
+  // 进入订单界面
+  router.push('/submitOrder')
 }
 </script>
 
