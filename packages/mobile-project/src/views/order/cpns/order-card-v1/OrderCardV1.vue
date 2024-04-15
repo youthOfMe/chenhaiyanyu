@@ -1,14 +1,14 @@
 <template>
   <div class="order-card-v1">
-    <img :src="item.image" alt="" />
+    <img :src="item?.image" alt="" />
     <div class="info">
       <div class="name-specification">
-        <div class="name nowrap_ellipsis">{{ item.name }}</div>
-        <div class="specification">{{ item.dishFavor || '规格' }}</div>
+        <div class="name nowrap_ellipsis">{{ item?.name || '辰海烟雨' }}</div>
+        <div class="specification">{{ item?.dishFavor || '规格' }}</div>
       </div>
       <div class="price-number">
-        <div class="price">￥{{ item.amount }}</div>
-        <div class="number">X{{ item.number }}</div>
+        <div class="price">￥{{ item?.amount || 88 }}</div>
+        <div class="number">X{{ item?.number || 88 }}</div>
       </div>
     </div>
   </div>

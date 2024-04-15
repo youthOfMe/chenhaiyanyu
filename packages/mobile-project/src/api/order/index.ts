@@ -13,3 +13,26 @@ export function submitOrder(orderSubmitData: any) {
     data: orderSubmitData,
   })
 }
+
+/**
+ * 用户端分页查询历史订单
+ * @param pageNumber
+ * @param pageSize
+ * @param status
+ * @returns
+ */
+export function getOrderListPage(
+  page: number,
+  pageSize: number,
+  status?: number,
+) {
+  return xhRequest.get<any>({
+    headers: new AxiosHeaders(),
+    url: '/user/order/historyOrders',
+    params: {
+      page,
+      pageSize,
+      status,
+    },
+  })
+}
