@@ -4,7 +4,7 @@
     <div class="info">
       <div class="info-title"></div>
       <div class="info">
-        <div class="name nowrap_ellipsis">{{ info?.name }}</div>
+        <div class="name nowrap_ellipsis">{{ info?.name || '' }}</div>
         <div class="commit">商品好评率 99%</div>
         <div class="sales">
           <div class="price">￥{{ info?.price }}</div>
