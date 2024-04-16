@@ -1,8 +1,9 @@
 <script setup lang="ts">
 // import { getConsultOrderPayUrl } from '@/service/consult'
-import { showLoadingToast, showToast } from 'vant'
+import { showLoadingToast, showToast, closeToast } from 'vant'
 import { onMounted } from 'vue'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import SvgIcon from '../svg-icon/SvgIcon.vue'
 
 const props = defineProps<{
@@ -17,15 +18,18 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: 'update:show', show: boolean): void
 }>()
-const paymentMethod = ref<0 | 1 | 2 | 3>()
+const paymentMethod = ref<1 | 2 | 3>()
 
 // 支付逻辑
+const router = useRouter()
 const pay = async () => {
   if (paymentMethod.value === undefined) return showToast('请选择支付方式')
   if (paymentMethod.value === 1) return showToast('暂不支持')
   if (paymentMethod.value === 2) return showToast('暂不支持')
   // 默认只能进行使用星海币进行支付
-  showLoadingToast({ message: '跳转支付', duration: 0 })
+  // showLoadingToast({ message: '跳转支付', duration: 0 })
+  // closeToast()
+  router.push(props.payCallback!)
   // const res = await getConsultOrderPayUrl({
   //   orderId: props.orderId,
   //   paymentMethod: paymentMethod.value,
@@ -49,28 +53,28 @@ onMounted(() => {})
       <div class="pay-type">
         <p class="amount">￥{{ props.actualPayment.toFixed(2) }}</p>
         <van-cell-group>
-          <van-cell title="微信支付" @click="paymentMethod = 0">
+          <van-cell title="微信支付" @click="paymentMethod = 1">
             <template #icon>
               <SvgIcon width="18px" height="18px" name="order-wechat" />
             </template>
             <template #extra>
-              <van-checkbox :checked="paymentMethod === 0" />
+              <van-checkbox :checked="paymentMethod === 1" />
             </template>
           </van-cell>
-          <van-cell title="支付宝支付" @click="paymentMethod = 1">
+          <van-cell title="支付宝支付" @click="paymentMethod = 2">
             <template #icon>
               <SvgIcon width="18px" height="18px" name="order-alipay" />
             </template>
             <template #extra>
-              <van-checkbox :checked="paymentMethod === 1" />
+              <van-checkbox :checked="paymentMethod === 2" />
             </template>
           </van-cell>
-          <van-cell title="星海币支付" @click="paymentMethod = 2">
+          <van-cell title="星海币支付" @click="paymentMethod = 3">
             <template #icon>
               <SvgIcon width="18px" height="18px" name="order-alipay" />
             </template>
             <template #extra>
-              <van-checkbox :checked="paymentMethod === 1" />
+              <van-checkbox :checked="paymentMethod === 3" />
             </template>
           </van-cell>
         </van-cell-group>

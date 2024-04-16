@@ -9,7 +9,12 @@
           <SvgIcon name="common-right"></SvgIcon>
         </div>
       </div>
-      <div class="status">等待牛马付款</div>
+      <div class="status" v-if="orderInfo.status === 1">等待付款</div>
+      <div class="status" v-if="orderInfo.status === 2">等待商家处理</div>
+      <div class="status" v-if="orderInfo.status === 3">商家处理中</div>
+      <div class="status" v-if="orderInfo.status === 4">商家已发货</div>
+      <div class="status" v-if="orderInfo.status === 5">订单已完成</div>
+      <div class="status" v-if="orderInfo.status === 6">订单已取消</div>
     </div>
     <div class="content">
       <OrderCardV1
@@ -26,7 +31,7 @@
         <div class="text">订单即将关闭, 建议尽快付款</div>
       </div>
       <div class="pay-money">
-        <div class="money">需付款￥888</div>
+        <div class="money">需付款￥{{ orderInfo.amount }}</div>
         <div class="other-info">含运费服务</div>
       </div>
     </div>

@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia'
 import { submitOrder, getOrderListPage } from '@/api'
+import { GET_ORDER_INFO, SET_ORDER_INFO } from '@/utils/order'
 
 export const useOrderStore = defineStore('order', {
   state: (): any => ({
-    orderData: {},
+    orderData: GET_ORDER_INFO() || {},
     historyOrderDataList: [],
   }),
   actions: {
@@ -11,6 +12,10 @@ export const useOrderStore = defineStore('order', {
     async fetchSubmitOrder(orderSubmitData: any) {
       const res = await submitOrder(orderSubmitData)
       this.orderData = res.data
+      SET_ORDER_INFO({
+        payMethod: orderSubmitData.payMethod,
+        ...this.orderData,
+      })
     },
     // 获取历史订单
     async fetchHistoryOrderDataList(

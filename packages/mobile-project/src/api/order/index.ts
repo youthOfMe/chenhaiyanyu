@@ -36,3 +36,26 @@ export function getOrderListPage(
     },
   })
 }
+
+/**
+ * 用户支付订单
+ * @param orderNumber
+ * @param payMehod
+ * @param amount
+ * @returns
+ */
+export function payOrder(
+  orderNumber: string,
+  payMehod: number,
+  amount: number,
+) {
+  return xhRequest.put<any>({
+    headers: new AxiosHeaders(),
+    url: '/user/order/payment',
+    data: {
+      orderNumber,
+      payMehod,
+      amount,
+    },
+  })
+}

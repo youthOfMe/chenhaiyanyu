@@ -135,7 +135,7 @@ const onSubmit = async () => {
   loading.value = true
   const orderSubmitData = {
     addressBookId: addressDefaultInfo.value.id,
-    payMethod: 2,
+    payMethod: 3,
     remark: '默认备注',
     estimatedDeliveryTime: '2024-04-15 23:42:00',
     deliveryStatus: 1,
