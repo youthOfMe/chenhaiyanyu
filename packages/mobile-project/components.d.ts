@@ -13,6 +13,7 @@ declare module 'vue' {
     CpPaySheet: typeof import('./src/components/cp-pay-sheet/CpPaySheet.vue')['default']
     DetailSection: typeof import('./src/components/detail-section/DetailSection.vue')['default']
     GoodPostBlock: typeof import('./src/components/good-post-block/GoodPostBlock.vue')['default']
+    Loading: typeof import('./src/components/loading/Loading.vue')['default']
     OurStoryCard: typeof import('./src/components/our-story-card/OurStoryCard.vue')['default']
     PostBlock: typeof import('./src/components/post-block/PostBlock.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

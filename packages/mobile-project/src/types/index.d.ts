@@ -10,6 +10,7 @@ import CodeWebCard from '@/components/code-web-card/CodeWebCard.vue'
 import CommodityCardV2 from '@/components/commodity-card-v2/GoodsCardV1.vue'
 import CpPaySheet from '@/components/cp-pay-sheet/CpPaySheet.vue'
 import TabControl from '@/components/tab-control/TabControl.vue'
+import Loading from '@/components/loading/Loading.vue'
 
 // 定义全局自动注册对象的类型
 type allGlobalComponentType = {
@@ -25,6 +26,7 @@ type allGlobalComponentType = {
   [commodityCardV2: string]: typeof CommodityCardV2
   [cpPaySheet: string]: typeof CpPaySheet
   [tabControl: string]: typeof TabControl
+  [loading: string]: typeof Loading
 }
 
 export { allGlobalComponentType }

@@ -7,6 +7,7 @@
       v-if="!route.meta.hideTabBar"
       :tabbarData="tabbarData"
     ></tab-bar>
+    <Loading></Loading>
   </div>
 </template>
 

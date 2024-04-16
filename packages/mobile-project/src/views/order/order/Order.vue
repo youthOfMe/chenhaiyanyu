@@ -14,6 +14,8 @@
         :orderInfo="orderInfo"
         :key="orderInfo.id"
       ></OrderItem>
+      <div class="notify" v-if="isAllLoad">已经到底了~</div>
+      <div class="notify" v-if="!isAllLoad">正在加载中...</div>
     </div>
   </div>
 </template>
@@ -25,6 +27,7 @@ import { storeToRefs } from 'pinia'
 import { useOrderStore } from '@/stores'
 import OrderItem from './cpns/OrderItem.vue'
 import useScroll from '@/hooks/useScroll.js'
+import { useCommonStore } from '@/stores'
 
 // tab-control显示的数据
 const names = ['全部', '待付款', '待发货', '待收货', '退款/售后', '已完成']
@@ -43,6 +46,8 @@ const orderStore = useOrderStore()
 orderStore.fetchHistoryOrderDataList()
 const { page, pageSize, historyOrderDataList } = storeToRefs(orderStore)
 
+// 加载特效
+const commonStore = useCommonStore()
 // 监听滚动
 const isAllLoad = ref(false)
 const orderListRef = ref()
@@ -52,11 +57,12 @@ watch(isReachBottom, (newValue) => {
     if (isAllLoad.value) {
       return
     }
+    commonStore.isLoading = true
     orderStore.page++
     orderStore.fetchHistoryOrderDataList().then((res) => {
       isReachBottom.value = false
-
-      if (!res.data.records.length) {
+      commonStore.isLoading = false
+      if (res.data.records.length < 5) {
         isAllLoad.value = true
       }
     })
@@ -68,7 +74,13 @@ watch(isReachBottom, (newValue) => {
 .order-list {
   position: relative;
   overflow-y: auto;
-  padding: 10px 9px 20px;
+  padding: 10px 9px 0;
   height: calc(100vh - 60px - 45px);
+  .notify {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+  }
 }
 </style>
