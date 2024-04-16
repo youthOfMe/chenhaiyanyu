@@ -8,7 +8,7 @@
       @click-left="back"
     />
     <TabControl :titles="names"></TabControl>
-    <div class="order-list">
+    <div class="order-list" ref="orderListRef">
       <OrderItem
         v-for="orderInfo in historyOrderDataList"
         :orderInfo="orderInfo"
@@ -19,11 +19,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useOrderStore } from '@/stores'
 import OrderItem from './cpns/OrderItem.vue'
+import useScroll from '@/hooks/useScroll.js'
 
 // tab-control显示的数据
 const names = ['全部', '待付款', '待发货', '待收货', '退款/售后', '已完成']
@@ -38,30 +39,29 @@ const back = () => {
 const active = ref(0)
 
 // 获取全部历史订单
-const page = ref(1)
-const pageSize = ref(5)
 const orderStore = useOrderStore()
-orderStore.fetchHistoryOrderDataList(page.value, pageSize.value)
-const { historyOrderDataList } = storeToRefs(orderStore)
+orderStore.fetchHistoryOrderDataList()
+const { page, pageSize, historyOrderDataList } = storeToRefs(orderStore)
 
-// 下拉刷新
-// const refreshing = ref(false)
-// const onRefresh = () => {
-//   refreshing.value = false
-// }
-// // 触底加载
-// const loading = ref(false)
-// const onLoad = () => {
-//   orderStore
-//     .fetchHistoryOrderDataList(page.value++, pageSize.value)
-//     .then((res) => {
-//       if (!res.data.records.length) {
-//         finished.value = true
-//       }
-//       loading.value = false
-//     })
-// }
-const finished = ref(false)
+// 监听滚动
+const isAllLoad = ref(false)
+const orderListRef = ref()
+const { isReachBottom, scrollTop } = useScroll(orderListRef)
+watch(isReachBottom, (newValue) => {
+  if (newValue) {
+    if (isAllLoad.value) {
+      return
+    }
+    orderStore.page++
+    orderStore.fetchHistoryOrderDataList().then((res) => {
+      isReachBottom.value = false
+
+      if (!res.data.records.length) {
+        isAllLoad.value = true
+      }
+    })
+  }
+})
 </script>
 
 <style lang="scss" scoped>
