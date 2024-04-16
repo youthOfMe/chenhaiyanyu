@@ -1,12 +1,13 @@
 <template>
   <div class="chat-list">
     <van-nav-bar
-      title="消息界面"
+      title="社交界面"
       left-text="返回"
-      right-text="联系人"
+      right-text="标为已读"
       left-arrow
       @click-left="back"
     />
+    <TabControl :titles="names" @tab-item-click="tabSwitchClick"></TabControl>
     <van-search v-model="value" placeholder="请输入搜索关键词" shape="round" />
     <Nav></Nav>
     <div class="line"></div>
@@ -21,7 +22,7 @@
             <div class="time">昨天 21:35</div>
           </div>
           <div class="info-number">
-            <div class="info">我爱你, 但是我更爱YZY</div>
+            <div class="info">我是付方亮, 喜欢痛扁赵宇轩</div>
             <van-badge :content="5" class="number"></van-badge>
           </div>
         </div>
@@ -34,6 +35,9 @@
 import { useRouter } from 'vue-router'
 import Nav from './cpns/Nav.vue'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
+
+// tab-control显示的数据
+const names = ['消息', '联系人', '群聊', '粉丝', '关注', '黑名单']
 
 // 路由回退
 const router = useRouter()

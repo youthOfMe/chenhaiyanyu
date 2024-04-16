@@ -53,7 +53,7 @@ export default {
   }
   .tab-control-item {
     flex-shrink: 0;
-    width: 60px;
+    width: 80px;
   }
 }
 .tab-control-item.active {
