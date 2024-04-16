@@ -1,13 +1,13 @@
 <template>
   <div class="person-info">
     <div class="person-bg">
-      <img :src="getAssetURL('home/head-bg.jpg')" alt="" />
+      <img :src="userInfo.backgroundUrl" alt="" />
     </div>
     <TopBar></TopBar>
     <div class="content">
       <div class="base-info">
         <div class="head" @click="showList = true">
-          <img :src="getAssetURL('home/head.jpg')" alt="" />
+          <img :src="userInfo.avatar" alt="" />
         </div>
         <van-popup
           v-model:show="showList"
@@ -17,7 +17,7 @@
         >
           <van-cell-group :columns="columns">
             <van-cell
-              style="font-size: 14px; color: rgba(0, 0, 0, 0.5) !important"
+              style="font-size: 14px; color: rgb(0 0 0 / 50%) !important"
               title="设置你的头像"
             />
             <van-cell title="从微信导入" />
@@ -32,24 +32,27 @@
         </van-popup>
         <div class="edit" @click="toeditPersonInfo">编辑资料</div>
         <div class="name">
-          <span>点击设置牛马名字</span>
+          <span>{{ userInfo.name }}</span>
           <SvgIcon
             name="personinfo-edit"
             width="25px"
             height="25px"
             class="icon"
+            @click="showResetBlock"
           ></SvgIcon>
           <SvgIcon
             name="personinfo-boy"
             width="20px"
             height="20px"
             class="icon"
+            v-if="userInfo.sex"
           ></SvgIcon>
           <SvgIcon
             name="personinfo-girl"
             width="20px"
             height="20px"
             class="icon"
+            v-if="!userInfo.sex"
           ></SvgIcon>
         </div>
         <div class="data-info">
@@ -70,7 +73,7 @@
             <div class="text">动态</div>
           </div>
         </div>
-        <div class="signature">爱已随风起, 风止意难平</div>
+        <div class="signature">{{ userInfo.signature }}</div>
         <div class="ip-time">
           <div class="ip item">IP属地: 山东省</div>
           <div class="time item">加入辰海烟雨520天</div>
@@ -89,21 +92,62 @@
         <van-tab title="私密">内容 4</van-tab>
       </van-tabs>
     </div>
+    <van-dialog
+      v-model:show="showResetName"
+      title="标题"
+      show-cancel-button
+      @confirm="submitResetUserName"
+    >
+      <van-cell-group inset>
+        <van-field
+          v-model="nameInput"
+          label="昵称"
+          label-width="10vw"
+          placeholder="请输入昵称"
+          label-class="user-name"
+        />
+      </van-cell-group>
+    </van-dialog>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia'
+import { useUserStore } from '@/stores'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
-
 import TopBar from './cpns/top-bar/TopBar.vue'
+// vant提示框样式问题处理
+import 'vant/es/dialog/style'
+import 'vant/es/toast/style'
+import { showFailToast } from 'vant'
 
 const router = useRouter()
 const toeditPersonInfo = () => {
   router.push('/editPersonInfo')
 }
 
+// 获取用户数据
+const userStore = useUserStore()
+const { userInfo } = storeToRefs(userStore)
+
+// 设置用户昵称
+const showResetName = ref(false)
+const nameInput = ref(userInfo.value.name)
+const showResetBlock = () => {
+  showResetName.value = true
+}
+const submitResetUserName = () => {
+  if (!nameInput.value) {
+    showFailToast('用户昵称不可为空')
+    return
+  }
+  userStore.fetchResetUserInfo({ name: nameInput.value })
+  showResetName.value = false
+}
+
+// 设置用户头像
 const column = [
   { text: '从微信导入', value: 'weixin' },
   { text: '从QQ导入', value: 'qq' },
@@ -217,13 +261,19 @@ const onCancel = (index) => {
   }
 }
 .van-cell {
+  position: relative;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 15vw;
-  text-align: center;
-  position: relative;
-  align-items: center;
-  justify-content: center;
   font-size: 20px;
+  text-align: center;
   color: black !important;
+}
+.user-name {
+  font-size: 12px !important;
+}
+#van-field-7-label {
+  font-size: 12px !important;
 }
 </style>

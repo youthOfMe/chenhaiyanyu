@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-view></router-view>
-    <van-floating-bubble icon="chat" class="popo" />
+    <van-floating-bubble icon="chat" class="popo" @click="goChatList" />
     <tab-bar
       class="bottom"
       v-if="!route.meta.hideTabBar"
@@ -13,6 +13,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useSettingStore } from '@/stores'
 import { useRoute } from 'vue-router'
@@ -22,12 +23,20 @@ const route = useRoute()
 // 持久化tab-bar状态
 const settingStore = useSettingStore()
 const { tabbarData } = storeToRefs(settingStore)
-const offset = ref({ x: 325, y: 700 })
+// const offset = ref({ x: 300, y: 700 })
+
+// 跳转到聊天页面
+const router = useRouter()
+const goChatList = () => {
+  router.push('/chatList')
+}
 </script>
 
 <style lang="scss" scoped>
 body {
   --van-floating-bubble-initial-gap: 50px;
+
+  position: relative;
 }
 .bottom {
   height: 50px;
