@@ -171,6 +171,32 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+
+  {
+    path: '/userData',
+    component: () => import('@/views/person/cpns/UserData.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+    children: [
+      {
+        path: '/userData/likeFavorite',
+        component: () => import('@/views/person/userData/LikeFavorite.vue'),
+      },
+      {
+        path: '/userData/fans',
+        component: () => import('@/views/person/userData/Fans.vue'),
+      },
+      {
+        path: '/userData/follow',
+        component: () => import('@/views/person/userData/Follow.vue'),
+      },
+      {
+        path: '/userData/dynamic',
+        component: () => import('@/views/person/userData/Dynamic.vue'),
+      },
+    ],
+  },
   {
     path: '/xinghaiMoney',
     component: () => import('@/views/person/purse/XingHaiMoney.vue'),

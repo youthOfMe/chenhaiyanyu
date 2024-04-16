@@ -23,8 +23,8 @@
             <svg-icon
               name="message-arrow"
               color="black"
-              width="30px"
-              height="30px"
+              width="30vw"
+              height="30vw"
             ></svg-icon>
           </div>
         </div>
@@ -151,18 +151,10 @@ let goBack = () => {
     color: #000000be;
   }
   .left-icon {
-    margin-left: 5vw;
+    margin-left: 2vw;
     width: 8vw;
     height: 5vw;
   }
-}
-img {
-  margin-right: 5vw;
-  width: 15vw;
-  height: 15vw;
-  border-radius: 20vw;
-  background: no-repeat center;
-  background-size: 60px;
 }
 hr {
   border: none;
@@ -172,11 +164,12 @@ hr {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 10px;
-  height: 10vw;
+  padding-top: 4vw;
+  padding-bottom: 4vw;
+  height: auto;
   &:active {
-    color: white;
-    background-color: #cccccc;
+    color: black;
+    background-color: #cccccc2a;
   }
 }
 .arrow-icon {
@@ -198,10 +191,18 @@ hr {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding-top: 14px;
   padding-right: 5px;
   font-size: 15px;
   flex-direction: row;
+  height: auto;
+  img {
+    margin-right: 5vw;
+    width: 15vw;
+    height: auto;
+    border-radius: 20vw;
+    background: no-repeat center;
+    background-size: 60px;
+  }
   text {
     margin-right: 2vw;
     width: auto;
