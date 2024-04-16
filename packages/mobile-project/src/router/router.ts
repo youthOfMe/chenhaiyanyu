@@ -250,4 +250,11 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+  {
+    path: '/chatList',
+    component: () => import('@/views/chat/chat-list/ChatList.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
 ]

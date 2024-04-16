@@ -22,12 +22,14 @@ const route = useRoute()
 // 持久化tab-bar状态
 const settingStore = useSettingStore()
 const { tabbarData } = storeToRefs(settingStore)
-const offset = ref({ x: 325, y: 700 })
+// const offset = ref({ x: 300, y: 700 })
 </script>
 
 <style lang="scss" scoped>
 body {
   --van-floating-bubble-initial-gap: 50px;
+
+  position: relative;
 }
 .bottom {
   height: 50px;
