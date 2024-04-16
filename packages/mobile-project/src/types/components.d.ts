@@ -12,6 +12,7 @@ import CommodityCardV2 from '@/components/commodity-card-v2/GoodsCardV1.vue'
 import CpPaySheet from '@/components/cp-pay-sheet/CpPaySheet.vue'
 import TabControl from '@/components/tab-control/TabControl.vue'
 import Loading from '@/components/loading/Loading.vue'
+import SocailCardV1 from '@/components/socail-card-v1/SocailCardV1.vue'
 
 declare module 'vue' {
   interface GlobalComponents {
@@ -29,5 +30,6 @@ declare module 'vue' {
     CpPaySheet: typeof CpPaySheet
     TabControl: typeof TabControl
     Loading: typeof Loading
+    SocailCardV1: typeof SocailCardV1
   }
 }

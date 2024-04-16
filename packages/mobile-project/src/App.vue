@@ -28,7 +28,7 @@ const { tabbarData } = storeToRefs(settingStore)
 // 跳转到聊天页面
 const router = useRouter()
 const goChatList = () => {
-  router.push('/chatList')
+  router.push('/socail')
 }
 </script>
 

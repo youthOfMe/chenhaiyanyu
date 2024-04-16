@@ -1,10 +1,17 @@
-import { getUserInfo, login, resetUserInfo } from '@/api'
-import { GET_TOKEN, REMOVE_TOKEN, SET_TOKEN } from '@/utils/token'
+import { getUserInfo, login, resetUserInfo, getFriendList } from '@/api'
+import {
+  GET_IM_TOKEN,
+  GET_TOKEN,
+  REMOVE_IM_TOKEN,
+  REMOVE_TOKEN,
+  SET_TOKEN,
+} from '@/utils/token'
 import { defineStore } from 'pinia'
 
 export const useUserStore = defineStore('user', {
   state: (): any => ({
     token: GET_TOKEN(),
+    token_im: GET_IM_TOKEN(),
     username: '',
     userInfo: {},
   }),
@@ -42,12 +49,20 @@ export const useUserStore = defineStore('user', {
         return 'ok'
       } else return Promise.reject(res.msg)
     },
+    // 获取联系人信息
+    async fetchFrientList(cursor?: string, pageSize?: number) {
+      const res = await getFriendList()
+      if (!res.errCode) {
+        console.log(res)
+      }
+    },
     // 退出登录
     userLogout() {
       this.token = ''
       this.username = ''
       this.avatar = ''
       REMOVE_TOKEN()
+      REMOVE_IM_TOKEN()
     },
   },
 })

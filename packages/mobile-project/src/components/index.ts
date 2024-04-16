@@ -12,6 +12,7 @@ import CommodityCardV2 from './commodity-card-v2/CommodityCardV2.vue'
 import CpPaySheet from './cp-pay-sheet/CpPaySheet.vue'
 import TabControl from './tab-control/TabControl.vue'
 import Loading from './loading/Loading.vue'
+import SocailCardV1 from './socail-card-v1/SocailCardV1.vue'
 import type { allGlobalComponentType } from '@/types'
 
 // 全局对象
@@ -30,6 +31,7 @@ const allGlobalComponent: allGlobalComponentType = {
   cpPaySheet: CpPaySheet,
   tabControl: TabControl,
   loading: Loading,
+  socailCardV1: SocailCardV1,
 }
 
 // 对外暴露插件对象

@@ -29,8 +29,6 @@ export default {
   methods: {
     itemClick(index) {
       this.currentIndex = index
-      console.log(index)
-
       this.$emit('tabItemClick', index)
     },
     setCurrentIndex(index) {

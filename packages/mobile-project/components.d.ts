@@ -19,6 +19,7 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     ShopInfoCard: typeof import('./src/components/shop-info-card/ShopInfoCard.vue')['default']
+    SocailCardV1: typeof import('./src/components/socail-card-v1/SocailCardV1.vue')['default']
     SvgIcon: typeof import('./src/components/svg-icon/SvgIcon.vue')['default']
     TabBar: typeof import('./src/components/tab-bar/TabBar.vue')['default']
     TabControl: typeof import('./src/components/tab-control/TabControl.vue')['default']

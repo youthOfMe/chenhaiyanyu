@@ -3,11 +3,7 @@
     <img :src="getAssetURL('home/head.jpg')" alt="" class="big-img" />
     <div class="content">
       <div class="base-info">
-        <img
-          :src="getAssetURL('home/home-bg.jpg')"
-          @click="toPersonInfo"
-          alt=""
-        />
+        <img :src="getAssetURL('home/home-bg.jpg')" alt="" />
         <div class="info">
           <div class="name-title">
             <span class="name nowrap_ellipsis">我是牛马你记住</span>

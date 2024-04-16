@@ -251,8 +251,8 @@ export const constantRoute = [
     },
   },
   {
-    path: '/chatList',
-    component: () => import('@/views/chat/chat-list/ChatList.vue'),
+    path: '/socail',
+    component: () => import('@/views/socail/Socail.vue'),
     meta: {
       hideTabBar: true,
     },

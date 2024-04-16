@@ -43,6 +43,14 @@ export default defineConfig(({ command, mode }) => {
           // 路径重写 将匹配到的路径中的/api替换为空串
           rewrite: (path) => path.replace(/^\/api/, ''),
         },
+        [env.VITE_APP_BASE_URL_IM]: {
+          // 获取数据的服务器地址设置
+          target: env.VITE_SERVER_IM,
+          // 是否需要代理服务器跨域
+          changeOrigin: true,
+          // 路径重写 将匹配到的路径中的/api替换为空串
+          // rewrite: (path) => path.replace(/^\/api/, ''),
+        },
       },
     },
   }

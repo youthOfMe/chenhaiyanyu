@@ -2,25 +2,41 @@
   <div class="nav">
     <div class="item">
       <div class="icon fan-icon">
-        <SvgIcon name="chat-nav-fan" width="35px" height="35px"></SvgIcon>
+        <SvgIcon
+          name="socail-chat-nav-fan"
+          width="35px"
+          height="35px"
+        ></SvgIcon>
       </div>
       <div class="text">粉丝</div>
     </div>
     <div class="item">
       <div class="icon commit-icon">
-        <SvgIcon name="chat-nav-commit" width="35px" height="35px"></SvgIcon>
+        <SvgIcon
+          name="socail-chat-nav-commit"
+          width="35px"
+          height="35px"
+        ></SvgIcon>
       </div>
       <div class="text">评论</div>
     </div>
     <div class="item">
       <div class="icon aite-icon">
-        <SvgIcon name="chat-nav-aite" width="35px" height="35px"></SvgIcon>
+        <SvgIcon
+          name="socail-chat-nav-aite"
+          width="35px"
+          height="35px"
+        ></SvgIcon>
       </div>
       <div class="text">@我</div>
     </div>
     <div class="item">
       <div class="icon notify-icon">
-        <SvgIcon name="chat-nav-notify" width="35px" height="35px"></SvgIcon>
+        <SvgIcon
+          name="socail-chat-nav-notify"
+          width="35px"
+          height="35px"
+        ></SvgIcon>
       </div>
       <div class="text">通知</div>
     </div>
