@@ -22,7 +22,7 @@
         <div class="data">0</div>
         <div class="text">获赞和收藏</div>
       </div>
-      <div class="item">
+      <div class="item" @click="goFans">
         <div class="data">0</div>
         <div class="text">粉丝</div>
       </div>
@@ -52,6 +52,10 @@ defineProps({
 const router = useRouter()
 const toPersonInfo = () => {
   router.push('/personInfo')
+}
+// 粉丝
+const goFans = () => {
+  router.push('/userData/fans')
 }
 </script>
 

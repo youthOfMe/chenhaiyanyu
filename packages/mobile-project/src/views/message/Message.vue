@@ -146,6 +146,7 @@ let goBack = () => {
 .message {
   display: flex;
   flex-direction: column;
+  background-color: rgb(255 255 255);
 }
 .top-info {
   display: flex;

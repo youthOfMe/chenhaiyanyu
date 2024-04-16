@@ -27,7 +27,16 @@
           ]"
         />
         <text>验证码</text>
-        <van-field type="text" />
+        <div class="verCode">
+          <van-field style="width: 63%" v-model="verCode" type="tel" />
+          <van-button style="margin-left: 25px" @click="getVerCode">
+            获取验证码
+          </van-button>
+          <van-notify v-model:show="show" type="warning">
+            <van-icon name="warning-o" style="margin-right: 4px" />
+            <span>请先填写手机号或邮箱号</span>
+          </van-notify>
+        </div>
         <div class="cp-cell">
           <van-button type="primary" native-type="submit">下一步</van-button>
         </div>
@@ -56,11 +65,35 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
-const phonemail = ref('')
+import { useUserStore } from '@/stores'
 
-const onSubmit = () => {
-  console.log('ok')
+const phonemail = ref('')
+const verCode = ref('')
+//消息提示
+const show = ref(false)
+// 手机号登录
+const userStore = useUserStore()
+const getVerCode = () => {
+  if (phonemail.value === '') {
+    console.log('输入不能为空')
+    show.value = true
+    setTimeout(() => {
+      show.value = false
+    }, 2000)
+  } else {
+    console.log('输入有效')
+  }
 }
+
+const onSubmit = async () => {
+  await userStore.fetchLogin({
+    phonemail: phonemail.value,
+    verCode: verCode.value,
+    type: 2,
+  })
+  router.replace('/')
+}
+
 const router = useRouter()
 let goBack = () => {
   router.go(-1)
@@ -96,7 +129,7 @@ let goBack = () => {
 }
 .userinfo {
   display: flex;
-  margin-top: 15vw;
+  margin-top: 30vw;
   width: 80vw;
   text-align: left;
   flex-direction: column;
@@ -110,6 +143,10 @@ let goBack = () => {
     font-size: 3vw;
     color: #888888ab;
   }
+}
+.verCode {
+  display: flex;
+  flex-direction: row;
 }
 .van-cell {
   margin: 0 0 5vw;

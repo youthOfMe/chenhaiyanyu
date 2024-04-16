@@ -242,8 +242,8 @@ let goBack = () => {
   height: 12vw;
   border-bottom: solid 1px #cccccc89;
   &:active {
-    color: white;
-    background-color: #cccccc;
+    color: black;
+    background-color: #cccccc2a;
   }
 }
 .arrow-icon {

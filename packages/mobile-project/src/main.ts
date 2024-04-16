@@ -20,7 +20,7 @@ app.use(globalcomponent)
 app.use(router)
 
 // 引入路由鉴权代码
-import './permission'
+// import './permission'
 
 // 注册pinia仓库
 app.use(pinia).mount('#app')

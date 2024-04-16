@@ -12,10 +12,19 @@
     </div>
     <div class="userinfo">
       <van-form autocomplete="off" @submit="onSubmit">
-        <text>用户名</text>
-        <van-field type="tel" v-model="username" :rules="usernameRules" />
+        <text>手机号</text>
+        <van-field type="tel" v-model="mobile" :rules="mobileRules" />
         <text>验证码</text>
-        <van-field type="tel" />
+        <div class="verCode">
+          <van-field style="width: 63%" v-model="verCode" type="tel" />
+          <van-button style="margin-left: 25px" @click="getVerCode">
+            获取验证码
+          </van-button>
+          <van-notify v-model:show="show" type="warning">
+            <van-icon name="warning-o" style="margin-right: 4px" />
+            <span>请先填写手机号</span>
+          </van-notify>
+        </div>
         <div class="cp-cell">
           <van-button type="primary" native-type="submit">注 册</van-button>
         </div>
@@ -38,18 +47,41 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { mobileRules, passwordRules, usernameRules } from '@/utils/Rules.ts'
-const username = ref('')
-const confirmPassword = ref('')
-const password = ref('')
-const onSubmit = () => {
-  console.log('ok')
-}
+import { ref } from 'vue'
+import { mobileRules, usernameRules } from '@/utils/Rules.ts'
+import { useUserStore } from '@/stores'
+
+const mobile = ref('')
+const verCode = ref('')
+//消息提示
+const show = ref(false)
 const router = useRouter()
 let goBack = () => {
   router.go(-1)
+}
+
+// 手机号登录
+const userStore = useUserStore()
+const getVerCode = () => {
+  if (mobile.value === '') {
+    console.log('输入不能为空')
+    show.value = true
+    setTimeout(() => {
+      show.value = false
+    }, 2000)
+  } else {
+    console.log('输入有效')
+  }
+}
+
+const onSubmit = async () => {
+  await userStore.fetchLogin({
+    phone: mobile.value,
+    verCode: verCode.value,
+    type: 2,
+  })
+  router.replace('/')
 }
 </script>
 
@@ -96,6 +128,10 @@ let goBack = () => {
     font-size: 3vw;
     color: #888888ab;
   }
+}
+.verCode {
+  display: flex;
+  flex-direction: row;
 }
 .van-cell {
   margin: 0 0 5vw;
