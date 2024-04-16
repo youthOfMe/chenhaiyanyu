@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   props: {
     titles: {
@@ -29,6 +29,8 @@ export default {
   methods: {
     itemClick(index) {
       this.currentIndex = index
+      console.log(index)
+
       this.$emit('tabItemClick', index)
     },
     setCurrentIndex(index) {
@@ -38,26 +40,28 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .tab-control {
   display: flex;
+  overflow-x: auto;
   height: 44px;
   line-height: 44px;
   text-align: center;
-  background-color: #fff;
+  background-color: #ffffff;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  .tab-control-item {
+    flex-shrink: 0;
+    width: 60px;
+  }
 }
-
-.tab-control-item {
-  flex: 1;
-}
-
 .tab-control-item.active {
-  color: var(--primary-color);
   font-weight: 700;
+  color: var(--primary-color);
 }
-
 .tab-control-item.active span {
-  border-bottom: 3px solid var(--primary-color);
   padding: 8px;
+  border-bottom: 3px solid var(--primary-color);
 }
 </style>

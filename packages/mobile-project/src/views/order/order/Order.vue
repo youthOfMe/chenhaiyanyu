@@ -7,7 +7,7 @@
       left-arrow
       @click-left="back"
     />
-    <TabControl :titles="names"></TabControl>
+    <TabControl :titles="names" @tab-item-click="tabSwitchClick"></TabControl>
     <div class="order-list" ref="orderListRef">
       <OrderItem
         v-for="orderInfo in historyOrderDataList"
@@ -30,7 +30,16 @@ import useScroll from '@/hooks/useScroll.js'
 import { useCommonStore } from '@/stores'
 
 // tab-control显示的数据
-const names = ['全部', '待付款', '待发货', '待收货', '退款/售后', '已完成']
+const names = [
+  '全部',
+  '待付款',
+  '待处理',
+  '已处理',
+  '待收货',
+  '已完成',
+  '已取消',
+  '退款',
+]
 
 // 路由回退
 const router = useRouter()
@@ -44,7 +53,7 @@ const active = ref(0)
 // 获取全部历史订单
 const orderStore = useOrderStore()
 orderStore.fetchHistoryOrderDataList()
-const { page, pageSize, historyOrderDataList } = storeToRefs(orderStore)
+let { historyOrderDataList } = storeToRefs(orderStore)
 
 // 加载特效
 const commonStore = useCommonStore()
@@ -68,6 +77,20 @@ watch(isReachBottom, (newValue) => {
     })
   }
 })
+
+// 监听tab-item点击
+const tabSwitchClick = (index) => {
+  orderStore.historyOrderDataList = []
+  orderStore.page = 1
+  if (index === 0) {
+    orderStore.status = null
+    // historyOrderDataList.value = orderStore.historyOrderDataList
+  } else {
+    orderStore.status = index
+    // historyOrderDataList.value = orderStore.historyOrderDataList
+  }
+  orderStore.fetchHistoryOrderDataList()
+}
 </script>
 
 <style lang="scss" scoped>
