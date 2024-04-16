@@ -7,6 +7,7 @@ export const useOrderStore = defineStore('order', {
     orderData: GET_ORDER_INFO() || {},
     page: 1,
     pageSize: 5,
+    status: null,
     historyOrderDataList: [],
   }),
   actions: {
@@ -25,7 +26,7 @@ export const useOrderStore = defineStore('order', {
       pageSize: number,
       status?: number,
     ) {
-      const res = await getOrderListPage(this.page, this.pageSize, status)
+      const res = await getOrderListPage(this.page, this.pageSize, this.status)
       this.historyOrderDataList.push(...res.data.records)
       return res
     },
