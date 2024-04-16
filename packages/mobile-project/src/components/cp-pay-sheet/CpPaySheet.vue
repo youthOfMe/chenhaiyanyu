@@ -29,7 +29,7 @@ const pay = async () => {
   // 默认只能进行使用星海币进行支付
   // showLoadingToast({ message: '跳转支付', duration: 0 })
   // closeToast()
-  router.push(props.payCallback!)
+  router.replace(props.payCallback!)
   // const res = await getConsultOrderPayUrl({
   //   orderId: props.orderId,
   //   paymentMethod: paymentMethod.value,

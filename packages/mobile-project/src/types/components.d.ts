@@ -10,6 +10,7 @@ import TopbarHeadV1 from '@/components/topbar-head-v1/TopbarHeadV1.vue'
 import CodeWebCard from '@/components/code-web-card/CodeWebCard.vue'
 import CommodityCardV2 from '@/components/commodity-card-v2/GoodsCardV1.vue'
 import CpPaySheet from '@/components/cp-pay-sheet/CpPaySheet.vue'
+import TabControl from '@/components/tab-control/TabControl.vue'
 
 declare module 'vue' {
   interface GlobalComponents {
@@ -25,5 +26,6 @@ declare module 'vue' {
     CodeWebCard: typeof CardWebCard
     CommodityCardV2: typeof CommodityCardV2
     CpPaySheet: typeof CpPaySheet
+    TabControl: typeof TabControl
   }
 }
