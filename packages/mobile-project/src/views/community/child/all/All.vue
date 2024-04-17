@@ -2,11 +2,7 @@
   <div class="all">
     <van-tree-select v-model:main-active-index="activeIndex" :items="items">
       <template #content>
-        <BlockList v-if="activeIndex === 0"></BlockList>
-        <van-image
-          v-if="activeIndex === 1"
-          src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-2.jpeg"
-        />
+        <BlockList :categoryList="categoryList"></BlockList>
       </template>
     </van-tree-select>
   </div>
@@ -30,6 +26,17 @@ watch(parentList, (newValue) => {
     item.text = item.name
     return item
   })
+})
+
+// 获取板块数据
+communityStore.fetchCategoryList(undefined, 1)
+const { categoryList } = storeToRefs(communityStore)
+watch(activeIndex, (newValue) => {
+  if (newValue > 0) {
+    communityStore.fetchCategoryList(parentList.value[newValue].id, undefined)
+  } else {
+    communityStore.fetchCategoryList(undefined, 1)
+  }
 })
 </script>
 
