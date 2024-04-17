@@ -14,9 +14,23 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useCommunityStore } from '@/stores'
 import BlockList from './cpns/BlockList.vue'
+import { watch } from 'vue'
 const activeIndex = ref(0)
-const items = [{ text: '分组 1' }, { text: '分组 2' }]
+
+// 获取一级分类数据
+const items = ref([{ text: '分组 1' }, { text: '分组 2' }])
+const communityStore = useCommunityStore()
+communityStore.fetchParentList()
+const { parentList } = storeToRefs(communityStore)
+watch(parentList, (newValue) => {
+  items.value = newValue.map((item: any) => {
+    item.text = item.name
+    return item
+  })
+})
 </script>
 
 <style lang="scss" scoped>
