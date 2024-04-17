@@ -1,0 +1,64 @@
+<template>
+  <div class="community-main">
+    <van-nav-bar
+      title="社区主页"
+      left-text="返回"
+      right-text="消息"
+      left-arrow
+      @click-left="back"
+    />
+    <TabControl :titles="names"></TabControl>
+    <van-dropdown-menu>
+      <van-dropdown-item v-model="value1" :options="option1" />
+      <van-dropdown-item v-model="value2" :options="option2" />
+    </van-dropdown-menu>
+    <div class="content">
+      <ForumNav></ForumNav>
+      <div class="announcement-list">
+        <AnnouncementCardV1 v-for="i in 3" :key="i"></AnnouncementCardV1>
+      </div>
+      <div class="post-list">
+        <PostBlock v-for="i in 3" :key="i"></PostBlock>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import ForumNav from './cpns/ForumNav.vue'
+
+// tab-control显示的数据
+const names = ['论坛', '综合', '官方', '专栏', '资源', '阿东']
+
+// 路由回退
+const router = useRouter()
+const back = () => {
+  router.back()
+}
+
+// 展示选项
+const value1 = ref(0)
+const value2 = ref('a')
+const option1 = [
+  { text: '单列', value: 0 },
+  { text: '双列', value: 1 },
+]
+const option2 = [
+  { text: '默认排序', value: 'a' },
+  { text: '好评排序', value: 'b' },
+  { text: '销量排序', value: 'c' },
+]
+</script>
+
+<style lang="scss" scoped>
+.content {
+  overflow-x: auto;
+  height: calc(100vh - 138px);
+  .announcement-list {
+    padding: 10px 15px;
+    background-color: #ffffff;
+  }
+}
+</style>

@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AnnouncementCardV1: typeof import('./src/components/announcement-card-v1/AnnouncementCardV1.vue')['default']
     CodeWebCard: typeof import('./src/components/code-web-card/CodeWebCard.vue')['default']
     CommodityCardV1: typeof import('./src/components/commodity-card-v1/CommodityCardV1.vue')['default']
     CommodityCardV2: typeof import('./src/components/commodity-card-v2/CommodityCardV2.vue')['default']
@@ -35,6 +36,8 @@ declare module 'vue' {
     VanCircle: typeof import('vant/es')['Circle']
     VanCol: typeof import('vant/es')['Col']
     VanDialog: typeof import('vant/es')['Dialog']
+    VanDropdownItem: typeof import('vant/es')['DropdownItem']
+    VanDropdownMenu: typeof import('vant/es')['DropdownMenu']
     VanField: typeof import('vant/es')['Field']
     VanFloatingBubble: typeof import('vant/es')['FloatingBubble']
     VanForm: typeof import('vant/es')['Form']

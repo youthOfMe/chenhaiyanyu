@@ -283,4 +283,12 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+  {
+    path: '/communityMain',
+    component: () =>
+      import('@/views/community/community-main/CommunityMain.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
 ]
