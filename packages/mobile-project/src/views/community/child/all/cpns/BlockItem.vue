@@ -1,5 +1,5 @@
 <template>
-  <div class="block-item">
+  <div class="block-item" @click="goCommunityMain">
     <img :src="item?.coverUrl || getAssetURL('home/head-bg.jpg')" alt="" />
     <div class="info">
       <div class="info-title">{{ item?.name }}</div>
@@ -9,6 +9,7 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
 import { getAssetURL } from '@/utils/LoadAssetsImg'
 
 defineProps({
@@ -17,6 +18,12 @@ defineProps({
     default: () => {},
   },
 })
+
+// 路由跳转
+const router = useRouter()
+const goCommunityMain = () => {
+  router.push('/communityMain')
+}
 </script>
 
 <style lang="scss" scoped>
