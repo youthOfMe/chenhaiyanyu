@@ -33,10 +33,6 @@
       </div>
     </div>
     <van-search v-model="value" placeholder="搜索用户备注或名字" />
-    <text>
-      我的粉丝
-      <span>(734人)</span>
-    </text>
   </div>
 </template>
 
@@ -91,6 +87,7 @@ const messagePR = props.isHeadImgDisplay ? '0px' : '6px'
   flex-direction: row;
   margin: 25px 0 10px;
   width: 100%;
+  border-bottom: 1px rgba(128, 128, 128, 0.218) solid;
   .left-icon {
     display: flex;
     flex-direction: row;
@@ -106,9 +103,5 @@ const messagePR = props.isHeadImgDisplay ? '0px' : '6px'
     height: 10vw;
     margin-right: 2vw;
   }
-}
-text {
-  color: #6e737c;
-  margin-left: 3vw;
 }
 </style>
