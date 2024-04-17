@@ -28,3 +28,18 @@ export function getCategoryList(parentId?: number, recommended?: number) {
     },
   })
 }
+
+/**
+ * 根据板块ID获取帖子数据
+ * @param categoryId
+ * @returns
+ */
+export function getPostListById(categoryId: number) {
+  return xhRequest.get({
+    headers: new AxiosHeaders(),
+    url: '/user/community/post/list',
+    params: {
+      categoryId,
+    },
+  })
+}

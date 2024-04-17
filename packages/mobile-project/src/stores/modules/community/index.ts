@@ -1,10 +1,13 @@
-import { getCategoryList, getParentCategoryList } from '@/api'
+import { getCategoryList, getParentCategoryList, getPostListById } from '@/api'
 import { defineStore } from 'pinia'
 
 export const useCommunityStore = defineStore('community', {
   state: (): any => ({
     parentList: [],
     categoryList: [],
+    postList: [],
+    // 维护点击状态 维护到本地
+    categoryId: [],
   }),
   actions: {
     // 获取一级目录
@@ -24,6 +27,15 @@ export const useCommunityStore = defineStore('community', {
       const res = await getCategoryList(parentId, recommended)
       if (res.code === 1) {
         this.categoryList = res.data
+        return
+      }
+      return Promise.reject(res.msg)
+    },
+    // 根据板块ID获取帖子列表
+    async fetchPostListById(categoryId: number) {
+      const res = await getPostListById(categoryId)
+      if (res.code === 1) {
+        this.postList = res.data
         return
       }
       return Promise.reject(res.msg)
