@@ -1,5 +1,9 @@
 <template>
   <div class="fans">
+    <text>
+      我的粉丝
+      <span>(734人)</span>
+    </text>
     <div class="user-list">
       <div class="user-item">
         <div class="left-content">
@@ -106,5 +110,11 @@ let goBack = () => {
       width: 28%;
     }
   }
+}
+text {
+  color: #6e737c;
+  margin-left: 3vw;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
 }
 </style>

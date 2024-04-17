@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="data-info">
-      <div class="item">
+      <div class="item" @click="goLikeFavorite">
         <div class="data">0</div>
         <div class="text">获赞和收藏</div>
       </div>
@@ -26,11 +26,11 @@
         <div class="data">0</div>
         <div class="text">粉丝</div>
       </div>
-      <div class="item">
+      <div class="item" @click="goFollow">
         <div class="data">0</div>
         <div class="text">关注</div>
       </div>
-      <div class="item">
+      <div class="item" @click="goDynamic">
         <div class="data">0</div>
         <div class="text">动态</div>
       </div>
@@ -53,9 +53,21 @@ const router = useRouter()
 const toPersonInfo = () => {
   router.push('/personInfo')
 }
+// 获赞和收藏
+const goLikeFavorite = () => {
+  router.push('/userData/likeFavorite')
+}
 // 粉丝
 const goFans = () => {
   router.push('/userData/fans')
+}
+// 关注
+const goFollow = () => {
+  router.push('/userData/follow')
+}
+// 动态
+const goDynamic = () => {
+  router.push('/userData/dynamic')
 }
 </script>
 
