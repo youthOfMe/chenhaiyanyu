@@ -8,23 +8,19 @@
     ></SvgIcon>
     <div class="block">
       <div class="base-info">
-        <img
-          :src="getAssetURL('home/home-bg.jpg')"
-          @click="toPersonInfo"
-          alt=""
-        />
+        <img :src="postDetail.avatarUrl" @click="toPersonInfo" alt="" />
         <div class="info">
           <div class="name-title">
-            <span class="name nowrap_ellipsis">我是牛马你记住</span>
+            <span class="name nowrap_ellipsis">{{ postDetail.name }}</span>
           </div>
           <div class="signature">
-            <span>在线</span>
+            <span>{{ postDetail.activeStatus ? '在线' : '离线' }}</span>
             <span class="text nowrap_ellipsis">爱已随风起, 风止意难平</span>
           </div>
         </div>
       </div>
       <van-button icon="plus" type="primary" size="small" round>
-        按钮
+        关注
       </van-button>
     </div>
     <SvgIcon name="community-post-more" width="25px" height="25px"></SvgIcon>
@@ -34,12 +30,19 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia'
+import { useCommunityStore } from '@/stores'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
 
+// 路由回退
 const router = useRouter()
 const back = () => {
   router.back()
 }
+
+// 信息获取
+const communityStore = useCommunityStore()
+const { postDetail } = storeToRefs(communityStore)
 </script>
 
 <style lang="scss" scoped>

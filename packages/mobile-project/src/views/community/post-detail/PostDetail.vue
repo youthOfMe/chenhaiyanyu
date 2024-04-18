@@ -10,14 +10,19 @@
       <div class="text" v-html="postDetail.content"></div>
       <div class="img" v-if="imgCount > 0">
         <div class="one-img" v-if="imgCount == 1">
-          <img :src="getAssetURL('home/home-bg.jpg')" alt="" />
+          <img
+            :src="postDetail?.coverUrl || imgList[0]"
+            alt=""
+            @click="showImage"
+          />
         </div>
         <div class="list" v-if="imgCount > 1">
           <img
-            :src="getAssetURL('home/home-bg.jpg')"
+            :src="item"
             alt=""
-            v-for="i in imgCount > 6 ? 6 : imgCount"
-            :key="i"
+            v-for="item in imgList.slice(0, 6)"
+            :key="item"
+            @click="showImage"
           />
           <img
             :src="getAssetURL('home/home-bg.jpg')"
@@ -39,18 +44,31 @@ export default {
 }
 </script>
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useCommunityStore } from '@/stores'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
-// import { GET_POST_ID } from '@/utils/community'
-
-const imgCount = ref(88)
+import { showImagePreview } from 'vant'
+// 确认框样式问题
+import 'vant/es/image-preview/style'
 
 // 发送请求获取详情
 const communityStore = useCommunityStore()
-communityStore.fetchPostDetailById(communityStore.postId)
 const { postDetail } = storeToRefs(communityStore)
+communityStore.fetchPostDetailById(communityStore.postId)
+
+const imgList = ref([])
+const imgCount = ref(0)
+watch(postDetail, (newValue) => {
+  imgList.value.push(newValue?.coverUrl)
+  imgList.value.push(...(newValue?.imgUrlList || []))
+  imgCount.value = imgList.value.length
+})
+
+// 预览图片
+const showImage = () => {
+  showImagePreview(imgList.value)
+}
 </script>
 
 <style lang="scss" scoped>

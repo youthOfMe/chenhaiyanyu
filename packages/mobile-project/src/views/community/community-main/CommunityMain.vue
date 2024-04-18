@@ -89,7 +89,6 @@ const switchPostShow = () => {
 // 记录页面滚动状态
 const contentRef = ref()
 const { isReachBottom, scrollTop } = useScroll(contentRef)
-const commonStore = useCommonStore()
 onActivated(() => {
   contentRef.value?.scrollTo({
     top: scrollTop.value,

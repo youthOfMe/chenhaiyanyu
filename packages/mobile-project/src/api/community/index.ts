@@ -62,7 +62,7 @@ export function publishPost(publishPostData: any) {
  * @param id
  * @returns
  */
-export function getPostDetail(id: number) {
+export function getPostDetail(id: string) {
   return xhRequest.get({
     headers: new AxiosHeaders(),
     url: '/user/community/post/post',

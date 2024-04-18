@@ -50,7 +50,7 @@ export const useCommunityStore = defineStore('community', {
       return Promise.reject(res.msg)
     },
     // 根据帖子ID获取帖子详情
-    async fetchPostDetailById(id: number) {
+    async fetchPostDetailById(id: string) {
       const res = await getPostDetail(id)
       if (res.code === 1) {
         this.postDetail = res.data
