@@ -43,3 +43,16 @@ export function getPostListById(categoryId: number) {
     },
   })
 }
+
+/**
+ * 用户发布帖子
+ * @param publishPostData
+ * @returns
+ */
+export function publishPost(publishPostData: any) {
+  return xhRequest.post({
+    headers: new AxiosHeaders(),
+    url: '/user/community/post/publishPost',
+    data: publishPostData,
+  })
+}

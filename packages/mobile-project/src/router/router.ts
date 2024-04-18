@@ -291,4 +291,12 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+  {
+    // 发布帖子
+    path: '/publishPost',
+    component: () => import('@/views/community/publish-post/PublishPost.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
 ]

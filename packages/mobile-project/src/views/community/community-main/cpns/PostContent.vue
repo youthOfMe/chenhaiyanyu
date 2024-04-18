@@ -1,7 +1,7 @@
 <template>
   <div class="post-content">
     <div class="nav">
-      <div class="item">
+      <div class="item" @click="goPulishPost">
         <div class="icon fan-icon">
           <SvgIcon
             name="community-main-nav-signIn"
@@ -55,7 +55,15 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useRouter } from 'vue-router'
+
+// 路由跳转
+const router = useRouter()
+const goPulishPost = () => {
+  router.push('/publishPost')
+}
+</script>
 
 <style lang="scss" scoped>
 .post-content {
