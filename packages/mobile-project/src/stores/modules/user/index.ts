@@ -52,9 +52,6 @@ export const useUserStore = defineStore('user', {
     // 获取联系人信息
     async fetchFrientList(cursor?: string, pageSize?: number) {
       const res = await getFriendList()
-      if (!res.errCode) {
-        console.log(res)
-      }
     },
     // 退出登录
     userLogout() {

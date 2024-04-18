@@ -15,3 +15,19 @@ export const GET_CATEGORY_ID = () => {
 export const REMOVE_CATEGORY_ID = () => {
   localStorage.removeItem('CATEGORY_ID')
 }
+
+// 2. 维护帖子ID
+// 存储数据
+export const SET_POST_ID = (postId: number) => {
+  localStorage.setItem('POST_ID', String(postId))
+}
+
+// 本地获取数据
+export const GET_POST_ID = () => {
+  return Number(localStorage.getItem('POST_ID'))
+}
+
+// 本地存储删除数据的方法
+export const REMOVE_POST_ID = () => {
+  localStorage.removeItem('POST_ID')
+}

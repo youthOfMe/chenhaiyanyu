@@ -1,5 +1,5 @@
 <template>
-  <div class="post-block" @click="goPostDetail">
+  <div class="post-block">
     <div class="head">
       <img
         :src="postItem?.avatar || postItem?.avatarUrl"
@@ -16,7 +16,7 @@
         <SvgIcon name="postblock-down"></SvgIcon>
       </div>
     </div>
-    <div class="body">
+    <div class="body" @click="goPostDetail">
       <div class="title">{{ postItem?.title }}</div>
       <div class="img" v-if="imgCount > 0">
         <div class="one-img" v-if="imgCount == 1">
@@ -68,7 +68,9 @@
 import { ref, watch, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import SvgIcon from '../svg-icon/SvgIcon.vue'
+import { useCommunityStore } from '@/stores'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
+import { SET_POST_ID } from '@/utils/community'
 
 const props = defineProps({
   postItem: {
@@ -85,7 +87,10 @@ const imgCount = computed(() => imgList.value.length)
 
 // 跳转路由到帖子详情页
 const router = useRouter()
+const communityStore = useCommunityStore()
 const goPostDetail = () => {
+  SET_POST_ID(props.postItem.postId)
+  communityStore.postId = props.postItem.postId
   router.push('/postDetail')
 }
 </script>

@@ -52,7 +52,22 @@ export function getPostListById(categoryId: number) {
 export function publishPost(publishPostData: any) {
   return xhRequest.post({
     headers: new AxiosHeaders(),
-    url: '/user/community/post/publishPost',
+    url: '/user/community/post/post',
     data: publishPostData,
+  })
+}
+
+/**
+ * 根据ID获取帖子详情
+ * @param id
+ * @returns
+ */
+export function getPostDetail(id: number) {
+  return xhRequest.get({
+    headers: new AxiosHeaders(),
+    url: '/user/community/post/post',
+    params: {
+      id,
+    },
   })
 }

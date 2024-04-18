@@ -28,6 +28,9 @@ import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore, useCommunityStore } from '@/stores'
 import { publishPost } from '@/api'
+// 确认框样式问题
+import 'vant/es/toast/style'
+import { showSuccessToast, showFailToast } from 'vant'
 
 // 路由回退
 const router = useRouter()
@@ -49,10 +52,15 @@ const publishPostDTO = ref({
   name: userStore.userInfo.name,
   avatarUrl: userStore.userInfo.avatar,
 })
-const comfirmPublishPost = () => {
+const comfirmPublishPost = async () => {
   publishPostDTO.value.title = title.value
   publishPostDTO.value.content = content.value
-  publishPost(publishPostDTO.value)
+  const res = await publishPost(publishPostDTO.value)
+  if (res.code) {
+    showSuccessToast('发帖成功！经验+5')
+  } else {
+    showFailToast('发帖失败！')
+  }
 }
 </script>
 

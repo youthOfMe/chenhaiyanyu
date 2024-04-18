@@ -1,6 +1,11 @@
 import { defineStore } from 'pinia'
-import { getCategoryList, getParentCategoryList, getPostListById } from '@/api'
-import { GET_CATEGORY_ID } from '@/utils/community'
+import {
+  getCategoryList,
+  getParentCategoryList,
+  getPostDetail,
+  getPostListById,
+} from '@/api'
+import { GET_CATEGORY_ID, GET_POST_ID } from '@/utils/community'
 
 export const useCommunityStore = defineStore('community', {
   state: (): any => ({
@@ -9,6 +14,9 @@ export const useCommunityStore = defineStore('community', {
     postList: [],
     // 维护点击状态 维护到本地
     categoryId: GET_CATEGORY_ID() || 0,
+    // 维护帖子ID 维护到本地
+    postId: GET_POST_ID() || 0,
+    postDetail: {},
   }),
   actions: {
     // 获取一级目录
@@ -37,6 +45,19 @@ export const useCommunityStore = defineStore('community', {
       const res = await getPostListById(categoryId)
       if (res.code === 1) {
         this.postList = res.data
+        return
+      }
+      return Promise.reject(res.msg)
+    },
+    // 根据帖子ID获取帖子详情
+    async fetchPostDetailById(id: number) {
+      const res = await getPostDetail(id)
+      if (res.code === 1) {
+        this.postDetail = res.data
+        this.postDetail.content = this.postDetail.content.replace(
+          /\n|\r\n/g,
+          '<br>',
+        )
         return
       }
       return Promise.reject(res.msg)
