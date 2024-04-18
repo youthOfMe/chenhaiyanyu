@@ -17,7 +17,12 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts">
+export default {
+  name: 'home',
+}
+</script>
+<script setup lang="ts">
 import { ref } from 'vue'
 import { useHomeStore } from '@/stores'
 import { storeToRefs } from 'pinia'

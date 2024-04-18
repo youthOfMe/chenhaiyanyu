@@ -33,6 +33,11 @@
   </div>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'postDetail',
+}
+</script>
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'

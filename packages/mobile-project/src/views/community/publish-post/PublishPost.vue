@@ -15,11 +15,21 @@
         rows="2"
         autosize
         type="textarea"
-        maxlength="50"
+        maxlength="5000"
         placeholder="写点什么"
         show-word-limit
       />
     </van-cell-group>
+    <div class="upload-image">
+      <div class="label">上传封面</div>
+      <van-uploader
+        :after-read="uploadCoverImg"
+        v-model="coverImgList"
+        :max-count="1"
+      />
+      <div class="label">上传图片</div>
+      <van-uploader :after-read="uploadEssayImg" v-model="essayImgList" />
+    </div>
   </div>
 </template>
 
@@ -27,7 +37,7 @@
 import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore, useCommunityStore } from '@/stores'
-import { publishPost } from '@/api'
+import { publishPost, userUpload } from '@/api'
 // 确认框样式问题
 import 'vant/es/toast/style'
 import { showSuccessToast, showFailToast } from 'vant'
@@ -36,6 +46,34 @@ import { showSuccessToast, showFailToast } from 'vant'
 const router = useRouter()
 const back = () => {
   router.back()
+}
+
+// 文件上传
+// 1. 文章封面
+const coverImgList = ref([])
+// 上传文件封面
+const uploadCoverImg = async (file) => {
+  file.status = 'uploading'
+  file.message = '上传中...'
+
+  const res = await userUpload(file, 'community/post/cover_img/')
+  coverImgList.value[0].objectUrl = res.data
+
+  file.status = 'done'
+  file.message = '上传成功'
+}
+// 2. 文章图片
+const essayImgList = ref([])
+// 上传文章图片
+const uploadEssayImg = async (file) => {
+  file.status = 'uploading'
+  file.message = '上传中...'
+
+  const res = await userUpload(file, 'community/post/essay_img/')
+  essayImgList.value[essayImgList.value.length - 1].objectUrl = res.data
+
+  file.status = 'done'
+  file.message = '上传成功'
 }
 
 // 发布帖子
@@ -55,6 +93,10 @@ const publishPostDTO = ref({
 const comfirmPublishPost = async () => {
   publishPostDTO.value.title = title.value
   publishPostDTO.value.content = content.value
+  publishPostDTO.value.coverUrl = coverImgList.value[0].objectUrl
+  publishPostDTO.value.imageUrlsD = essayImgList.value.map((item) => {
+    return item.objectUrl
+  })
   const res = await publishPost(publishPostDTO.value)
   if (res.code) {
     showSuccessToast('发帖成功！经验+5')
@@ -64,4 +106,15 @@ const comfirmPublishPost = async () => {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.upload-image {
+  padding-left: 10px;
+  min-height: 200px;
+  background-color: #ffffff;
+  .label {
+    line-height: 50px;
+    font-size: 16px;
+    font-weight: 530;
+  }
+}
+</style>

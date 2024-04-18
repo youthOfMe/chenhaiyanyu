@@ -1,6 +1,10 @@
 <template>
   <div>
-    <router-view></router-view>
+    <router-view v-slot="props">
+      <keep-alive include="home,communityMain">
+        <component :is="props.Component"></component>
+      </keep-alive>
+    </router-view>
     <van-floating-bubble icon="chat" class="popo" @click="goChatList" />
     <tab-bar
       class="bottom"

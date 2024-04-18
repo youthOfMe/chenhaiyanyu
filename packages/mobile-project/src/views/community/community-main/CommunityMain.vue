@@ -13,7 +13,7 @@
       <van-dropdown-item v-model="value1" :options="option1" />
       <van-dropdown-item v-model="value2" :options="option2" />
     </van-dropdown-menu>
-    <div class="content">
+    <div class="content" ref="contentRef">
       <ForumNav></ForumNav>
       <div class="announcement-list">
         <AnnouncementCardV1 v-for="i in 3" :key="i"></AnnouncementCardV1>
@@ -32,11 +32,24 @@
   </van-action-sheet>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'communityMain',
+}
+</script>
 <script setup lang="ts">
-import { ref } from 'vue'
+import {
+  ref,
+  onDeactivated,
+  onActivated,
+  onUnmounted,
+  watch,
+  onBeforeUnmount,
+} from 'vue'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useCommunityStore } from '@/stores'
+import useScroll from '@/hooks/useScroll.js'
 import ForumNav from './cpns/ForumNav.vue'
 import PostContent from './cpns/PostContent.vue'
 
@@ -72,11 +85,21 @@ const postShow = ref(false)
 const switchPostShow = () => {
   postShow.value = true
 }
+
+// 记录页面滚动状态
+const contentRef = ref()
+const { isReachBottom, scrollTop } = useScroll(contentRef)
+const commonStore = useCommonStore()
+onActivated(() => {
+  contentRef.value?.scrollTo({
+    top: scrollTop.value,
+  })
+})
 </script>
 
 <style lang="scss" scoped>
 .content {
-  overflow-x: auto;
+  overflow-y: auto;
   height: calc(100vh - 138px);
   .announcement-list {
     padding: 10px 15px;

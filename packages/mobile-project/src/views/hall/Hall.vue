@@ -10,6 +10,11 @@
   </div>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'hall',
+}
+</script>
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { useSettingStore } from '@/stores'

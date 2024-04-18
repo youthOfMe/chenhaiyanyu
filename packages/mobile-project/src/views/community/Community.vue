@@ -9,6 +9,11 @@
   </div>
 </template>
 
+<script lang="ts">
+export default {
+  name: 'community',
+}
+</script>
 <script lang="ts" setup>
 const tabBarData = [
   {
