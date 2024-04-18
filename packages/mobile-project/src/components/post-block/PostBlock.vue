@@ -1,7 +1,11 @@
 <template>
   <div class="post-block" @click="goPostDetail">
     <div class="head">
-      <img :src="postItem?.avatar" alt="" class="head-img" />
+      <img
+        :src="postItem?.avatar || postItem?.avatarUrl"
+        alt=""
+        class="head-img"
+      />
       <div class="info">
         <div class="name nowrap_ellipsis">{{ postItem?.name }}</div>
         <div class="other nowrap_ellipsis">
@@ -16,7 +20,7 @@
       <div class="title">{{ postItem?.title }}</div>
       <div class="img" v-if="imgCount > 0">
         <div class="one-img" v-if="imgCount == 1">
-          <img :src="postItem?.avatar" alt="" />
+          <img :src="imgList[0]" alt="" />
         </div>
         <div class="list" v-if="imgCount > 1">
           <img
@@ -46,15 +50,15 @@
     <div class="bottom">
       <div class="item thumb">
         <SvgIcon name="postblock-thumb" width="15px" height="15px"></SvgIcon>
-        <span>{{ postItem?.thumbNumber }}</span>
+        <span>{{ postItem?.thumbNumber || postItem?.thumb }}</span>
       </div>
       <div class="item commit">
         <SvgIcon name="postblock-commit" width="15px" height="15px"></SvgIcon>
-        <span>{{ postItem?.collectionNumber }}</span>
+        <span>{{ postItem?.collectionNumber || postItem?.commit }}</span>
       </div>
       <div class="item share">
         <SvgIcon name="postblock-share" width="15px" height="15px"></SvgIcon>
-        <span>666</span>
+        <span>{{ postItem?.share || 999 }}</span>
       </div>
     </div>
   </div>

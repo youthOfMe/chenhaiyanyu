@@ -3,9 +3,10 @@
     <van-nav-bar
       title="社区主页"
       left-text="返回"
-      right-text="消息"
+      right-text="发帖"
       left-arrow
       @click-left="back"
+      @click-right="switchPostShow"
     />
     <TabControl :titles="names"></TabControl>
     <van-dropdown-menu>
@@ -18,16 +19,26 @@
         <AnnouncementCardV1 v-for="i in 3" :key="i"></AnnouncementCardV1>
       </div>
       <div class="post-list">
-        <PostBlock v-for="i in 3" :key="i"></PostBlock>
+        <PostBlock
+          v-for="item in postList"
+          :key="item"
+          :postItem="item"
+        ></PostBlock>
       </div>
     </div>
   </div>
+  <van-action-sheet v-model:show="postShow" title="发帖">
+    <PostContent></PostContent>
+  </van-action-sheet>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia'
+import { useCommunityStore } from '@/stores'
 import ForumNav from './cpns/ForumNav.vue'
+import PostContent from './cpns/PostContent.vue'
 
 // tab-control显示的数据
 const names = ['论坛', '综合', '官方', '专栏', '资源', '阿东']
@@ -50,6 +61,17 @@ const option2 = [
   { text: '好评排序', value: 'b' },
   { text: '销量排序', value: 'c' },
 ]
+
+// 获取帖子数据
+const communityStore = useCommunityStore()
+const { categoryId, postList } = storeToRefs(communityStore)
+communityStore.fetchPostListById(categoryId.value)
+
+// 发帖逻辑
+const postShow = ref(false)
+const switchPostShow = () => {
+  postShow.value = true
+}
 </script>
 
 <style lang="scss" scoped>

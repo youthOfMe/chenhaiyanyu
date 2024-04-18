@@ -1,5 +1,6 @@
-import { getCategoryList, getParentCategoryList, getPostListById } from '@/api'
 import { defineStore } from 'pinia'
+import { getCategoryList, getParentCategoryList, getPostListById } from '@/api'
+import { GET_CATEGORY_ID } from '@/utils/community'
 
 export const useCommunityStore = defineStore('community', {
   state: (): any => ({
@@ -7,7 +8,7 @@ export const useCommunityStore = defineStore('community', {
     categoryList: [],
     postList: [],
     // 维护点击状态 维护到本地
-    categoryId: [],
+    categoryId: GET_CATEGORY_ID() || 0,
   }),
   actions: {
     // 获取一级目录

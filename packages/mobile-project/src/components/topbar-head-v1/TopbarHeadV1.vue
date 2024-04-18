@@ -1,7 +1,7 @@
 <template>
   <div class="topbar-head-v1">
     <SvgIcon
-      name="personinfo-back"
+      name="community-post-back"
       width="20px"
       height="20px"
       @click="back"
@@ -23,9 +23,13 @@
           </div>
         </div>
       </div>
+      <van-button icon="plus" type="primary" size="small" round>
+        按钮
+      </van-button>
     </div>
-    <SvgIcon name="personinfo-more" width="25px" height="25px"></SvgIcon>
+    <SvgIcon name="community-post-more" width="25px" height="25px"></SvgIcon>
   </div>
+  <div class="line"></div>
 </template>
 
 <script setup lang="ts">
@@ -43,12 +47,15 @@ const back = () => {
   display: flex;
   align-items: center;
   padding: 0 9px;
-  background-color: var(--primary-color);
+  background-color: #ffffff;
   .block {
+    display: flex;
+    align-items: center;
     padding: 15px 9px;
     flex: 1;
     .base-info {
       display: flex;
+      flex: 1;
       img {
         width: 50px;
         height: 50px;
@@ -61,14 +68,14 @@ const back = () => {
           .name {
             font-size: 18px;
             font-weight: 600;
-            color: #ffffff;
+            color: #000000;
           }
         }
         .signature {
           margin-top: 5px;
           font-size: 12px;
           font-weight: normal;
-          color: #ffffff;
+          color: var(--fourth-color);
           .text {
             padding-left: 5px;
           }
@@ -76,5 +83,9 @@ const back = () => {
       }
     }
   }
+}
+.line {
+  height: 1px;
+  background-color: #dddddd;
 }
 </style>

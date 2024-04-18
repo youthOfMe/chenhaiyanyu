@@ -10,18 +10,23 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+import { useCommunityStore } from '@/stores'
 import { getAssetURL } from '@/utils/LoadAssetsImg'
+import { SET_CATEGORY_ID } from '@/utils/community'
 
-defineProps({
+const props = defineProps({
   item: {
     type: Object,
     default: () => {},
   },
 })
 
-// 路由跳转
+// 路由跳转并存储数据
 const router = useRouter()
+const communityStore = useCommunityStore()
 const goCommunityMain = () => {
+  SET_CATEGORY_ID(props.item.id)
+  communityStore.categoryId = props.item.id
   router.push('/communityMain')
 }
 </script>

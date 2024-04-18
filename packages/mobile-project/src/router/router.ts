@@ -152,7 +152,7 @@ export const constantRoute = [
   },
   {
     path: '/postDetail',
-    component: () => import('@/views/post-detail/PostDetail.vue'),
+    component: () => import('@/views/community/post-detail/PostDetail.vue'),
     meta: {
       hideTabBar: true,
     },
