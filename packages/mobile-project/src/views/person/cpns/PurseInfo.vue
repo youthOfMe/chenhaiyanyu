@@ -5,7 +5,6 @@
       <div class="info-content">
         <div class="item" @click="goXingHai">
           <div class="data">{{ userInfo.xinghaibi }}</div>
-          <div class="data">0</div>
           <div class="text">星海币</div>
         </div>
         <div class="item" @click="goRenMin">

@@ -34,6 +34,31 @@
           </div>
         </div>
       </div>
+      <div class="bottom">
+        <div class="item thumb">
+          <SvgIcon
+            name="postblock-thumb"
+            width="20px"
+            height="20px"
+            v-if="!isThumbValue"
+          ></SvgIcon>
+          <SvgIcon
+            name="postblock-thumb_active"
+            width="20px"
+            height="20px"
+            v-if="isThumbValue"
+          ></SvgIcon>
+          <span>{{ postDetail?.thumb }}</span>
+        </div>
+        <div class="item commit">
+          <SvgIcon name="postblock-commit" width="20px" height="20px"></SvgIcon>
+          <span>{{ postDetail?.commit }}</span>
+        </div>
+        <div class="item share">
+          <SvgIcon name="postblock-share" width="20px" height="20px"></SvgIcon>
+          <span>{{ postDetail?.share || 999 }}</span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -45,6 +70,7 @@ export default {
 </script>
 <script setup lang="ts">
 import { ref, watch, computed } from 'vue'
+import { isThumb } from '@/api'
 import { storeToRefs } from 'pinia'
 import { useCommunityStore } from '@/stores'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
@@ -69,11 +95,17 @@ watch(postDetail, (newValue) => {
 const showImage = () => {
   showImagePreview(imgList.value)
 }
+
+// 判断用户是否进行点赞了
+const isThumbValue = ref(false)
+const getIsThumb = () => {
+  isThumbValue.value = isThumb(postDetail.id)
+}
 </script>
 
 <style lang="scss" scoped>
 .content {
-  padding: 15px 9px;
+  padding: 15px 9px 5px;
   background-color: #ffffff;
   .content-title {
     font-size: 22px;
@@ -115,6 +147,22 @@ const showImage = () => {
         text-align: center;
         color: #ffffff;
         background-color: rgb(0 0 0 / 50%);
+      }
+    }
+  }
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    .item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 33.3%;
+      height: 40px;
+      span {
+        position: relative;
+        left: 3px;
+        color: var(--second-color);
       }
     }
   }

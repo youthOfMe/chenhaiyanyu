@@ -71,3 +71,34 @@ export function getPostDetail(id: string) {
     },
   })
 }
+
+/**
+ * 点赞/取消点赞
+ * @param type
+ * @param postId
+ */
+export function thumb(type: number, postId: string) {
+  return xhRequest.post({
+    headers: new AxiosHeaders(),
+    url: '/user/community/post/thumb',
+    params: {
+      type,
+      postId,
+    },
+  })
+}
+
+/**
+ * 判断用户是否对帖子进行点赞了
+ * @param postId
+ * @returns
+ */
+export function isThumb(postId: string) {
+  return xhRequest.get({
+    headers: new AxiosHeaders(),
+    url: '/user/community/post/isThumb',
+    params: {
+      postId,
+    },
+  })
+}

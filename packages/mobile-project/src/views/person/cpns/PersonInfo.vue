@@ -10,16 +10,19 @@
       </div>
     </div>
     <div class="grade">
-      <van-progress :percentage="50" class="progress" />
+      <van-progress
+        :percentage="((userInfo.experience / 10800) * 100).toFixed(2)"
+        class="progress"
+      />
       <div class="text">
-        <span>Lv.4</span>
+        <span>Lv.{{ userInfo.lv }}</span>
         <span>&nbsp;/&nbsp;</span>
-        <span>Lv.5</span>
+        <span>Lv.{{ userInfo.lv + 1 }}</span>
       </div>
     </div>
     <div class="data-info">
       <div class="item" @click="goLikeFavorite">
-        <div class="data">0</div>
+        <div class="data">{{ userInfo.thumb }}</div>
         <div class="text">获赞和收藏</div>
       </div>
       <div class="item" @click="goFans">
