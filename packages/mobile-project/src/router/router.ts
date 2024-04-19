@@ -299,4 +299,12 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+  {
+    // 购物车
+    path: '/shoppingCart',
+    component: () => import('@/views/shoppingCart/ShoppingCart.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
 ]

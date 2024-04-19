@@ -38,6 +38,7 @@ declare module 'vue' {
     VanCheckbox: typeof import('vant/es')['Checkbox']
     VanCircle: typeof import('vant/es')['Circle']
     VanCol: typeof import('vant/es')['Col']
+    VanCountDown: typeof import('vant/es')['CountDown']
     VanCouponCell: typeof import('vant/es')['CouponCell']
     VanCouponList: typeof import('vant/es')['CouponList']
     VanDialog: typeof import('vant/es')['Dialog']

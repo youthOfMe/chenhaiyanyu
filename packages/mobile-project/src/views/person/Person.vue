@@ -5,7 +5,7 @@
     <div class="grade-info">
       <div class="info-title">更多功能</div>
       <div class="info-content">
-        <div class="item">
+        <div class="item" @click="goShoppingCart">
           <van-circle
             v-model:current-rate="currentRate"
             :rate="30"
@@ -103,6 +103,7 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useUserStore, useCommunityStore } from '@/stores'
 import TabBar from './cpns/TabBar.vue'
@@ -125,6 +126,12 @@ const { userInfo } = storeToRefs(userStore)
 const communityStore = useCommunityStore()
 const { postList } = storeToRefs(communityStore)
 communityStore.fetchPostListById(undefined, undefined, userInfo.id)
+
+// 路由跳转到购物车
+const router = useRouter()
+const goShoppingCart = () => {
+  router.push('/shoppingCart')
+}
 </script>
 
 <style lang="scss" scoped>

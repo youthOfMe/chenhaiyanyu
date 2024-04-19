@@ -56,11 +56,15 @@
     <van-action-bar-icon icon="chat-o" text="客服" color="#ee0a24" />
     <van-action-bar-icon icon="cart-o" text="购物车" />
     <van-action-bar-icon icon="star" text="已收藏" color="#ff5000" />
-    <van-action-bar-button type="warning" text="加入购物车" />
+    <van-action-bar-button
+      type="warning"
+      text="加入购物车"
+      @click="chooseNumber(0)"
+    />
     <van-action-bar-button
       type="danger"
       text="立即购买"
-      @click="chooseNumber"
+      @click="chooseNumber(1)"
     />
   </van-action-bar>
 
@@ -68,7 +72,7 @@
     v-model:show="showBuyNumber"
     title="请选择购买数量"
     show-cancel-button
-    @confirm="buy"
+    @confirm="clickBuyOrAdd"
     @cancel="cancelBuy"
   >
     <div class="choose-content">
@@ -99,6 +103,9 @@ import DetailNotice from './cpns/Detail06Notice.vue'
 import DetailMap from './cpns/Detail07Map.vue'
 import DetailIntro from './cpns/Detail08Intro.vue'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
+import { showToast, showSuccessToast } from 'vant'
+// 确认框样式问题
+import 'vant/es/toast/style'
 
 // 发送网络请求获取数据
 const detailInfos = ref({})
@@ -128,12 +135,23 @@ const { addressBookList } = storeToRefs(addressBookStore)
 // 选择购买数量
 const buyNumber = ref(1)
 const showBuyNumber = ref(false)
-const chooseNumber = () => {
+const chooseNumber = (type: number) => {
+  if (type) buyOrAdd.value = 1
+  else buyOrAdd.value = 0
   showBuyNumber.value = true
 }
 // 取消选择数量
 const cancelBuy = () => {
   buyNumber.value = 1
+}
+// 购买/加入购物车
+const buyOrAdd = ref(0)
+const clickBuyOrAdd = () => {
+  if (buyOrAdd.value) {
+    buy()
+  } else {
+    addShoppingCart()
+  }
 }
 // 下单购买
 const router = useRouter()
@@ -157,7 +175,6 @@ const buy = async () => {
   shoppingCartDTO.userId = userStore.userInfo.id
   shoppingCartDTO.number = buyNumber.value
   const res = await addCommodityToCart(shoppingCartDTO)
-  console.log(res.code)
 
   if (!res.code) {
     // eslint-disable-next-line no-undef
@@ -165,6 +182,24 @@ const buy = async () => {
   }
   // 进入订单界面
   router.push('/submitOrder')
+}
+
+// 将商品加入到购物车
+const addShoppingCart = async () => {
+  // 下单数据加入到购物车中
+  const shoppingCartDTO = {}
+  shoppingCartDTO.dishId = route.params.id
+  shoppingCartDTO.userId = userStore.userInfo.id
+  shoppingCartDTO.number = buyNumber.value
+
+  const res = await addCommodityToCart(shoppingCartDTO)
+
+  if (!res.code) {
+    // eslint-disable-next-line no-undef
+    showToast(res.msg)
+  }
+
+  showSuccessToast('加入购物车成功')
 }
 </script>
 
