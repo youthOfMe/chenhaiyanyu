@@ -2,34 +2,61 @@
   <div class="recommend">
     <div class="carousel">
       <van-swipe class="swipe" :autoplay="3000" indicator-color="white">
-        <van-swipe-item>
-          <img :src="getAssetURL('home/head-bg.jpg')" alt="" />
-        </van-swipe-item>
-        <van-swipe-item>
-          <img :src="getAssetURL('home/head-bg.jpg')" alt="" />
-        </van-swipe-item>
-        <van-swipe-item>
-          <img :src="getAssetURL('home/head-bg.jpg')" alt="" />
-        </van-swipe-item>
-        <van-swipe-item>
-          <img src="@/assets/img/home/home-bg.jpg" alt="" />
+        <van-swipe-item v-for="item in appImgList" :key="item.id">
+          <img :src="item.imageUrl" alt="" />
         </van-swipe-item>
       </van-swipe>
     </div>
     <van-grid square class="nav-content">
       <van-grid-item
-        v-for="value in 8"
-        :key="value"
+        text="低代码平台"
+        icon="shrink"
+        icon-color="var(--primary-color)"
+      ></van-grid-item>
+      <van-grid-item
+        text="编程学习"
+        icon="apps-o"
+        icon-color="var(--primary-color)"
+      ></van-grid-item>
+      <van-grid-item
+        text="云控中心"
+        icon="cluster-o"
+        icon-color="var(--primary-color)"
+      ></van-grid-item>
+      <van-grid-item
+        text="智能BI"
+        icon="bar-chart-o"
+        icon-color="var(--primary-color)"
+      ></van-grid-item>
+      <van-grid-item
+        text="匹配组队"
+        icon="friends-o"
+        icon-color="var(--primary-color)"
+      ></van-grid-item>
+      <van-grid-item
+        text="代码生成"
+        icon="passed"
+        icon-color="var(--primary-color)"
+      ></van-grid-item>
+      <van-grid-item
+        text="图片识别"
         icon="photo-o"
-        text="文字"
-      />
+        icon-color="var(--primary-color)"
+      ></van-grid-item>
+      <van-grid-item
+        text="AI聊天"
+        icon="manager-o"
+        icon-color="var(--primary-color)"
+      ></van-grid-item>
     </van-grid>
     <div class="good-post">
       <div class="content-title">优质帖子</div>
       <div class="content">
-        <GoodPostBlock></GoodPostBlock>
-        <GoodPostBlock></GoodPostBlock>
-        <GoodPostBlock></GoodPostBlock>
+        <GoodPostBlock
+          v-for="item in postList"
+          :key="item.id"
+          :item="item"
+        ></GoodPostBlock>
       </div>
     </div>
     <div class="good-seller">
@@ -41,8 +68,11 @@
       </div>
     </div>
     <div class="list">
-      <PostBlock></PostBlock>
-      <PostBlock></PostBlock>
+      <PostBlock
+        v-for="item in postList"
+        :key="item.id"
+        :postItem="item"
+      ></PostBlock>
     </div>
     <div class="block"></div>
   </div>
@@ -52,7 +82,7 @@
 import { onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { storeToRefs } from 'pinia'
-import { useSettingStore } from '@/stores'
+import { useSettingStore, useAppStore, useCommunityStore } from '@/stores'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
 
 // 持久化页面 可抽取为hooks
@@ -64,6 +94,16 @@ onUnmounted(() => {
   settingStore.tabbarData[1].path = path
   settingStore.hallTabBarIndex = 0
 })
+
+// 获取轮播图数据
+const appStore = useAppStore()
+const { appImgList } = storeToRefs(appStore)
+appStore.fetchAppImgListByType(1)
+
+// 获取推荐帖子列表
+const communityStore = useCommunityStore()
+const { postList } = storeToRefs(communityStore)
+communityStore.fetchPostListById(undefined, 1)
 </script>
 
 <style lang="scss" scoped>
@@ -82,6 +122,13 @@ onUnmounted(() => {
   }
 }
 .nav-content {
+  --van-text-color: var(--primary-color) !important;
+  .van-grid-item__text {
+    --van-text-color: var(--primary-color) !important;
+
+    color: var(--primary-color) !important;
+  }
+
   margin: 0 9px;
   background-color: #ffffff;
 }

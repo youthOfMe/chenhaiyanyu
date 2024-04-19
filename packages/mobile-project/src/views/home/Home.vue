@@ -1,8 +1,9 @@
 <template>
   <div class="home">
-    <div class="home-bg"></div>
-    <TopBarMain @click="showCehua"></TopBarMain>
-    <HomeNavCard></HomeNavCard>
+    <div class="home-bg" :style="{ background: backgroundImgUrl }"></div>
+    <!-- background: url('@/assets/img/home/home-bg.jpg') no-repeat center center; -->
+    <TopBarMain @click="showCehua" :userInfo="userInfo"></TopBarMain>
+    <HomeNavCard :imgList="appImgList" @switch-img="swtichImg"></HomeNavCard>
     <div class="nav-content"></div>
     <!-- <div class="nav-scroll"></div> -->
     <!-- 板块列表 -->
@@ -26,8 +27,13 @@ export default {
 }
 </script>
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useHomeStore, useCommunityStore } from '@/stores'
+import { ref, watch } from 'vue'
+import {
+  useHomeStore,
+  useCommunityStore,
+  useUserStore,
+  useAppStore,
+} from '@/stores'
 import { storeToRefs } from 'pinia'
 import HomeNavCard from './cpns/HomeNavCard.vue'
 
@@ -47,6 +53,24 @@ const showCehua = () => {
 const communityStore = useCommunityStore()
 const { postList } = storeToRefs(communityStore)
 communityStore.fetchPostListById(undefined, 1)
+
+// 获取用户数据
+const userStore = useUserStore()
+const { userInfo } = storeToRefs(userStore)
+
+// 获取轮播图数据
+const appStore = useAppStore()
+const { appImgList } = storeToRefs(appStore)
+appStore.fetchAppImgListByType(1)
+
+// 轮播图切换逻辑
+const backgroundImgUrl = ref('')
+watch(appImgList, (newValue) => {
+  backgroundImgUrl.value = `url(${newValue[0].imageUrl}) no-repeat center center`
+})
+const swtichImg = (index: number) => {
+  backgroundImgUrl.value = `url(${appImgList.value[index].imageUrl}) no-repeat center center`
+}
 </script>
 
 <style lang="scss" scoped>
@@ -61,7 +85,6 @@ communityStore.fetchPostListById(undefined, 1)
   z-index: -1;
   width: 100%;
   height: 259px;
-  background: url('@/assets/img/home/home-bg.jpg') no-repeat center center;
   filter: blur(10px);
 }
 .nav-content,

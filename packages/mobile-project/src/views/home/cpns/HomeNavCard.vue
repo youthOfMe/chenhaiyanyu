@@ -1,18 +1,14 @@
 <template>
   <div class="nav-card">
     <div class="carousel">
-      <van-swipe class="swipe" :autoplay="3000" indicator-color="white">
-        <van-swipe-item>
-          <img src="@/assets/img/home/home-bg.jpg" alt="" />
-        </van-swipe-item>
-        <van-swipe-item>
-          <img src="@/assets/img/home/home-bg.jpg" alt="" />
-        </van-swipe-item>
-        <van-swipe-item>
-          <img src="@/assets/img/home/home-bg.jpg" alt="" />
-        </van-swipe-item>
-        <van-swipe-item>
-          <img src="@/assets/img/home/home-bg.jpg" alt="" />
+      <van-swipe
+        class="swipe"
+        :autoplay="3000"
+        indicator-color="white"
+        @change="swtichImgCard"
+      >
+        <van-swipe-item v-for="item in imgList" :key="item.id">
+          <img :src="item.imageUrl" alt="" />
         </van-swipe-item>
       </van-swipe>
     </div>
@@ -36,7 +32,20 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup lang="ts">
+defineProps({
+  imgList: {
+    type: Array,
+    default: () => [],
+  },
+})
+
+// 图片切换后提交时间
+const emits = defineEmits(['swicth-img'])
+const swtichImgCard = (index) => {
+  emits('switch-img', index)
+}
+</script>
 
 <style lang="scss" scoped>
 .nav-card {

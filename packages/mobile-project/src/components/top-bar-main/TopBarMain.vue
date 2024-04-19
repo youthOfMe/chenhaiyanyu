@@ -1,7 +1,9 @@
 <template>
   <div class="top-bar">
     <div class="head-img-wrapper">
-      <div class="head-img" v-if="isHeadImgDisplay"></div>
+      <div class="head-img" v-if="isHeadImgDisplay">
+        <img :src="userInfo.avatar" alt="" />
+      </div>
     </div>
     <div class="search-bar">
       <van-search left-icon="">
@@ -16,7 +18,7 @@
         </template>
       </van-search>
     </div>
-    <div class="message">
+    <div class="message" @click="goPost">
       <router-link to="/message">
         <svg-icon
           class="message-icon"
@@ -52,6 +54,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 const props = defineProps({
   themeColor: {
     type: String,
@@ -64,11 +67,15 @@ const props = defineProps({
   tabBarData: {
     type: Array,
     // eslint-disable-next-line vue/require-valid-default-prop
-    default: [],
+    default: () => [],
   },
   hallTabBarIndex: {
     type: Number,
     default: 0,
+  },
+  userInfo: {
+    type: Object,
+    default: () => {},
   },
 })
 
@@ -78,6 +85,12 @@ const tabActive = ref(props.hallTabBarIndex)
 const color = props.themeColor
 const searchBarPLR = props.isHeadImgDisplay ? '0px' : '11px'
 const messagePR = props.isHeadImgDisplay ? '0px' : '6px'
+
+// 跳转路由
+const router = useRouter()
+const goPost = () => {
+  router.push('/publishPost')
+}
 </script>
 
 <style lang="scss" scoped>
@@ -91,6 +104,11 @@ const messagePR = props.isHeadImgDisplay ? '0px' : '6px'
     height: 40px;
     border-radius: 50%;
     background-color: rgb(245 245 245 / 100%);
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
   }
   .search-bar {
     --van-search-padding: 0;

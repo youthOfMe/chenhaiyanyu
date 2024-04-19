@@ -3,14 +3,15 @@
     <TabBar></TabBar>
     <PersonInfo :userInfo="userInfo"></PersonInfo>
     <div class="grade-info">
-      <div class="info-title">等级信息</div>
+      <div class="info-title">更多功能</div>
       <div class="info-content">
         <div class="item">
           <van-circle
             v-model:current-rate="currentRate"
             :rate="30"
             :speed="100"
-            text="会员等级"
+            text="购物车"
+            :color="gradientColor"
           />
         </div>
         <div class="item">
@@ -28,6 +29,7 @@
             :rate="30"
             :speed="100"
             text="交易等级"
+            :color="gradientColor"
           />
         </div>
         <div class="item">
@@ -36,6 +38,7 @@
             :rate="30"
             :speed="100"
             text="学习等级"
+            :color="gradientColor"
           />
         </div>
       </div>
@@ -98,13 +101,13 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useUserStore } from '@/stores'
+import { useUserStore, useCommunityStore } from '@/stores'
 import TabBar from './cpns/TabBar.vue'
 import PersonInfo from './cpns/PersonInfo.vue'
 import PurseInfo from './cpns/PurseInfo.vue'
 import OrderInfo from './cpns/OrderInfo.vue'
 
-const currentRate = 70
+const currentRate = 100
 const gradientColor = {
   '0%': '#3fecff',
   '100%': '#6149f6',
@@ -114,6 +117,11 @@ const gradientColor = {
 const userStore = useUserStore()
 userStore.fetchUserInfo()
 const { userInfo } = storeToRefs(userStore)
+
+// 获取推荐帖子列表
+const communityStore = useCommunityStore()
+const { postList } = storeToRefs(communityStore)
+communityStore.fetchPostListById(undefined, 1)
 </script>
 
 <style lang="scss" scoped>
