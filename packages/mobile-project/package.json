@@ -19,8 +19,10 @@
   },
   "dependencies": {
     "@vant/area-data": "^1.5.1",
+    "dayjs": "^1.11.10",
     "mockjs": "^1.1.0",
     "pinia": "^2.1.7",
+    "socket.io-client": "^4.7.5",
     "underscore": "^1.13.6",
     "vant": "^4.8.8",
     "vue": "^3.4.21",

@@ -307,4 +307,12 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+  {
+    // 聊天室
+    path: '/chatRoom',
+    component: () => import('@/views/socail/chat/Room/index.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
 ]

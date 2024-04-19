@@ -1,0 +1,218 @@
+.msg {
+  display: flex;
+  padding: 15px;
+  /* stylelint-disable-next-line no-invalid-double-slash-comments */
+  // 医生消息+图片
+  &-from {
+    .content {
+      min-width: 52px;
+      max-width: 240px;
+      .time {
+        margin-bottom: 5px;
+        color: var(--cp-tip);
+      }
+      .pao {
+        position: relative;
+        padding: 15px;
+        font-size: 15px;
+        border-radius: 8px;
+        color: var(--cp-text3);
+        background-color: #ffffff;
+        &::before {
+          position: absolute;
+          top: 10px;
+          left: -13px;
+          width: 13px;
+          height: 16px;
+          background: #ffffff;
+          content: '';
+          border-top-left-radius: 13px 3px;
+        }
+        &::after {
+          position: absolute;
+          top: 13px;
+          left: -13px;
+          width: 13px;
+          height: 13px;
+          background: var(--cp-bg);
+          content: '';
+          border-top-right-radius: 13px 13px;
+        }
+      }
+      .van-image {
+        overflow: hidden;
+        max-width: 160px;
+        max-height: 160px;
+        border: 1px solid var(--cp-line);
+        border-radius: 8px;
+      }
+    }
+    > .van-image {
+      overflow: hidden;
+      margin-right: 13px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+    }
+  }
+  /* stylelint-disable-next-line no-invalid-double-slash-comments */
+  // 患者消息+图片
+  &-to {
+    justify-content: flex-end;
+    .content {
+      min-width: 52px;
+      max-width: 240px;
+      .time {
+        margin-bottom: 5px;
+        text-align: right;
+        color: var(--cp-tip);
+      }
+      .pao {
+        position: relative;
+        padding: 15px;
+        font-size: 15px;
+        border-radius: 8px;
+        color: #ffffff;
+        background-color: var(--cp-primary);
+        &::before {
+          position: absolute;
+          top: 10px;
+          right: -13px;
+          width: 13px;
+          height: 16px;
+          background: var(--cp-primary);
+          content: '';
+          border-top-right-radius: 13px 3px;
+        }
+        &::after {
+          position: absolute;
+          top: 13px;
+          right: -13px;
+          width: 13px;
+          height: 13px;
+          background: var(--cp-bg);
+          content: '';
+          border-top-left-radius: 13px 13px;
+        }
+      }
+      .van-image {
+        overflow: hidden;
+        max-width: 160px;
+        max-height: 160px;
+        border: 1px solid var(--cp-line);
+        border-radius: 8px;
+      }
+    }
+    > .van-image {
+      overflow: hidden;
+      margin-left: 13px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+    }
+  }
+  &-tip {
+    justify-content: center;
+    font-size: 12px;
+    .content {
+      padding: 0 16px;
+      max-width: 100%;
+      height: 34px;
+      font-size: 12px;
+      border-radius: 17px;
+      color: var(--cp-tip);
+      background-color: #ffffff;
+      line-height: 34px;
+      .green {
+        color: var(--cp-primary);
+      }
+    }
+    &-cancel {
+      .content {
+        background-color: #ededed;
+      }
+    }
+  }
+  &-illness {
+    display: block;
+    margin: 15px;
+    font-size: 12px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    .patient {
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      > p {
+        &:first-child {
+          font-size: 16px;
+        }
+        &:last-child {
+          margin-top: 5px;
+          color: var(--cp-tip);
+        }
+      }
+    }
+    .van-col {
+      &:nth-child(-n + 2) {
+        margin-bottom: 5px;
+      }
+      &:nth-child(2n) {
+        color: var(--cp-tip);
+      }
+    }
+  }
+  &-recipe {
+    padding: 15px;
+    .content {
+      font-size: 12px;
+      border-radius: 8px;
+      color: var(--cp-tip);
+      background-color: #ffffff;
+      flex: 1;
+      .head {
+        padding: 15px;
+        .head-tit {
+          display: flex;
+          justify-content: space-between;
+          > h3 {
+            font-size: 16px;
+            font-weight: normal;
+            color: var(--cp-text1);
+          }
+        }
+        p {
+          margin-top: 5px;
+        }
+      }
+      .body {
+        padding: 15px 15px 0;
+        &-item {
+          display: flex;
+          margin-bottom: 15px;
+          .durg {
+            flex: 1;
+            > p {
+              &:first-child {
+                margin-bottom: 5px;
+                font-size: 14px;
+                color: var(--cp-text1);
+              }
+            }
+          }
+          .num {
+            color: var(--cp-text1);
+          }
+        }
+      }
+      .foot {
+        height: 42px;
+        font-size: 16px;
+        text-align: center;
+        color: var(--cp-primary);
+        background-color: var(--cp-plain);
+        line-height: 42px;
+      }
+    }
+  }
+}
+  
