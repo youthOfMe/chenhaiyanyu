@@ -109,7 +109,7 @@ const { shoppingCart } = storeToRefs(shoppingCartStore)
 const allMoney = ref(0)
 watch(shoppingCart, (newValue) => {
   allMoney.value = newValue.reduce((prev: any, cur: any) => {
-    return cur.amount + prev
+    return cur.amount * cur.number + prev
   }, 0)
 })
 // 运费

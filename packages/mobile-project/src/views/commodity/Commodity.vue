@@ -57,8 +57,26 @@
     <van-action-bar-icon icon="cart-o" text="购物车" />
     <van-action-bar-icon icon="star" text="已收藏" color="#ff5000" />
     <van-action-bar-button type="warning" text="加入购物车" />
-    <van-action-bar-button type="danger" text="立即购买" @click="buy" />
+    <van-action-bar-button
+      type="danger"
+      text="立即购买"
+      @click="chooseNumber"
+    />
   </van-action-bar>
+
+  <van-dialog
+    v-model:show="showBuyNumber"
+    title="请选择购买数量"
+    show-cancel-button
+    @confirm="buy"
+    @cancel="cancelBuy"
+  >
+    <div class="choose-content">
+      <van-cell-group inset>
+        <van-stepper v-model="buyNumber" />
+      </van-cell-group>
+    </div>
+  </van-dialog>
 </template>
 
 <script setup lang="ts">
@@ -107,6 +125,16 @@ const { commodity } = storeToRefs(officialShopStore)
 const addressBookStore = useAddressBookStore()
 addressBookStore.fetchAddressBookList()
 const { addressBookList } = storeToRefs(addressBookStore)
+// 选择购买数量
+const buyNumber = ref(1)
+const showBuyNumber = ref(false)
+const chooseNumber = () => {
+  showBuyNumber.value = true
+}
+// 取消选择数量
+const cancelBuy = () => {
+  buyNumber.value = 1
+}
 // 下单购买
 const router = useRouter()
 const userStore = useUserStore()
@@ -127,6 +155,7 @@ const buy = async () => {
   const shoppingCartDTO = {}
   shoppingCartDTO.dishId = route.params.id
   shoppingCartDTO.userId = userStore.userInfo.id
+  shoppingCartDTO.number = buyNumber.value
   const res = await addCommodityToCart(shoppingCartDTO)
   console.log(res.code)
 
@@ -189,5 +218,11 @@ const buy = async () => {
     font-size: 12px;
     color: #7688a7;
   }
+}
+.choose-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
 }
 </style>
