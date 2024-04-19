@@ -92,8 +92,11 @@
     </div>
 
     <div class="list">
-      <PostBlock></PostBlock>
-      <PostBlock></PostBlock>
+      <PostBlock
+        v-for="item in postList"
+        :key="item.id"
+        :postItem="item"
+      ></PostBlock>
     </div>
     <div class="block"></div>
   </div>
@@ -121,7 +124,7 @@ const { userInfo } = storeToRefs(userStore)
 // 获取推荐帖子列表
 const communityStore = useCommunityStore()
 const { postList } = storeToRefs(communityStore)
-communityStore.fetchPostListById(undefined, 1)
+communityStore.fetchPostListById(undefined, undefined, userInfo.id)
 </script>
 
 <style lang="scss" scoped>

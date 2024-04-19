@@ -43,7 +43,8 @@ export const useCommunityStore = defineStore('community', {
     // 根据板块ID获取帖子列表
     async fetchPostListById(
       categoryId: number | undefined,
-      recommended?: number,
+      recommended?: number | undefined,
+      userId?: number | undefined,
     ) {
       const res = await getPostListById(categoryId, recommended)
       if (res.code === 1) {

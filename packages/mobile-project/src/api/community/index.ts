@@ -18,13 +18,18 @@ export function getParentCategoryList() {
  * @param recommended
  * @returns
  */
-export function getCategoryList(parentId?: number, recommended?: number) {
+export function getCategoryList(
+  parentId?: number,
+  recommended?: number,
+  userId?: number,
+) {
   return xhRequest.get({
     headers: new AxiosHeaders(),
     url: '/user/community/category/list',
     params: {
       parentId,
       recommended,
+      userId,
     },
   })
 }

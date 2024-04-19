@@ -18,11 +18,11 @@
     </div>
     <div class="body" @click="goPostDetail">
       <div class="title">{{ postItem?.title }}</div>
-      <div class="img" v-if="imgCount > 0">
-        <div class="one-img" v-if="imgCount == 1">
+      <div class="img" v-if="imgList.length > 0 && imgList[0] != null">
+        <div class="one-img" v-if="imgList.length == 1">
           <img :src="imgList[0]" alt="" />
         </div>
-        <div class="list" v-if="imgCount > 1">
+        <div class="list" v-if="imgList.length > 1">
           <img
             :src="item"
             alt=""
@@ -32,10 +32,10 @@
           <img
             :src="getAssetURL('home/home-bg.jpg')"
             alt=""
-            v-if="imgCount === 2"
+            v-if="imgList.length === 2"
           />
           <div class="img-count">
-            {{ imgCount > 9 ? 9 + '+' : imgCount }}
+            {{ imgList.length > 9 ? 9 + '+' : imgList.length }}
           </div>
         </div>
       </div>
@@ -81,6 +81,10 @@ const props = defineProps({
 // eslint-disable-next-line vue/no-dupe-keys
 const postItem = ref(props?.postItem)
 const imgList = ref([])
+watch(postItem, (newValue) => {
+  imgList.value.push(postItem.value?.coverUrl)
+  imgList.value.push(...(postItem.value?.imgUrlList || []))
+})
 imgList.value.push(postItem.value?.coverUrl)
 imgList.value.push(...(postItem.value?.imgUrlList || []))
 const imgCount = computed(() => imgList.value.length)
