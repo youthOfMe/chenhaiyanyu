@@ -1,5 +1,5 @@
 <template>
-  <div class="order-item">
+  <div class="order-item" @click="goProcess">
     <div class="head">
       <div class="head-title nowrap_ellipsis">订单名称</div>
       <div class="order-status">订单状态</div>
@@ -34,7 +34,14 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
+
+// 跳转到流程页面
+const router = useRouter()
+const goProcess = () => {
+  router.push('/codeProcess')
+}
 </script>
 
 <style lang="scss" scoped>

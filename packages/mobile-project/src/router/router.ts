@@ -315,4 +315,12 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+  {
+    // 接单流程监控
+    path: '/codeProcess',
+    component: () => import('@/views/code-order/process/Process.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
 ]
