@@ -82,8 +82,11 @@
       <van-tabs v-model:active="active" class="tab">
         <van-tab title="动态">
           <div class="list">
-            <PostBlock></PostBlock>
-            <PostBlock></PostBlock>
+            <PostBlock
+              v-for="item in postList"
+              :key="item.id"
+              :postItem="item"
+            ></PostBlock>
           </div>
         </van-tab>
         <van-tab title="视频">内容 2</van-tab>
@@ -115,7 +118,7 @@
 import { ref, computed, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
-import { useUserStore } from '@/stores'
+import { useUserStore, useCommunityStore } from '@/stores'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
 import TopBar from './cpns/top-bar/TopBar.vue'
 // vant提示框样式问题处理
@@ -162,6 +165,11 @@ const onConfirm = (index) => {
 const onCancel = (index) => {
   showList.value = false
 }
+
+// 获取个人帖子列表
+const communityStore = useCommunityStore()
+const { postList } = storeToRefs(communityStore)
+communityStore.fetchPostListById(undefined, undefined, userInfo.id)
 </script>
 
 <style lang="scss" scoped>
@@ -185,7 +193,7 @@ const onCancel = (index) => {
   position: relative;
   margin-top: 160px;
   padding: 70px 15px 0;
-  height: calc(100vh - 270px);
+  min-height: calc(100vh - 270px);
   border-radius: 15px 15px 0 0;
   background-color: #ffffff;
   .base-info {

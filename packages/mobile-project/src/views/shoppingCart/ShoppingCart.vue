@@ -111,7 +111,7 @@ const show = ref(false)
 const onClose = () => {
   return showConfirmDialog({
     title: '牛马提示',
-    message: '取消支付将无法得到医生的回复，医生接诊名额有限，是否确认取消呢',
+    message: '是否确认取消呢',
     cancelButtonText: '狠心离开',
     confirmButtonText: '狠心支付',
   })
