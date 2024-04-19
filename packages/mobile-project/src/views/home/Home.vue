@@ -7,8 +7,11 @@
     <!-- <div class="nav-scroll"></div> -->
     <!-- 板块列表 -->
     <div class="list">
-      <PostBlock></PostBlock>
-      <PostBlock></PostBlock>
+      <PostBlock
+        v-for="item in postList"
+        :key="item.id"
+        :postItem="item"
+      ></PostBlock>
     </div>
     <div class="block"></div>
     <van-popup v-model:show="show" position="left" :style="{ padding: '64px' }">
@@ -24,7 +27,7 @@ export default {
 </script>
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHomeStore } from '@/stores'
+import { useHomeStore, useCommunityStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 import HomeNavCard from './cpns/HomeNavCard.vue'
 
@@ -39,6 +42,11 @@ const show = ref(false)
 const showCehua = () => {
   show.value = true
 }
+
+// 获取推荐帖子列表
+const communityStore = useCommunityStore()
+const { postList } = storeToRefs(communityStore)
+communityStore.fetchPostListById(undefined, 1)
 </script>
 
 <style lang="scss" scoped>

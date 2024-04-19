@@ -41,8 +41,11 @@ export const useCommunityStore = defineStore('community', {
       return Promise.reject(res.msg)
     },
     // 根据板块ID获取帖子列表
-    async fetchPostListById(categoryId: number) {
-      const res = await getPostListById(categoryId)
+    async fetchPostListById(
+      categoryId: number | undefined,
+      recommended?: number,
+    ) {
+      const res = await getPostListById(categoryId, recommended)
       if (res.code === 1) {
         this.postList = res.data
         return

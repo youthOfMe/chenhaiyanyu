@@ -41,14 +41,16 @@
             width="20px"
             height="20px"
             v-if="!isThumbValue"
+            @click="getThumb(1)"
           ></SvgIcon>
           <SvgIcon
             name="postblock-thumb_active"
             width="20px"
             height="20px"
             v-if="isThumbValue"
+            @click="getThumb(0)"
           ></SvgIcon>
-          <span>{{ postDetail?.thumb }}</span>
+          <span>{{ thumbNumber }}</span>
         </div>
         <div class="item commit">
           <SvgIcon name="postblock-commit" width="20px" height="20px"></SvgIcon>
@@ -57,6 +59,16 @@
         <div class="item share">
           <SvgIcon name="postblock-share" width="20px" height="20px"></SvgIcon>
           <span>{{ postDetail?.share || 999 }}</span>
+        </div>
+      </div>
+      <div class="commit-bar">
+        <div class="van-bar-wrap">
+          <van-tabs v-model:active="commitBarIndex" swipeable>
+            <van-tab title="评论">
+              <Commit></Commit>
+            </van-tab>
+            <van-tab title="相关">111</van-tab>
+          </van-tabs>
         </div>
       </div>
     </div>
@@ -69,14 +81,22 @@ export default {
 }
 </script>
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue'
-import { isThumb } from '@/api'
+import { ref, watch, computed, onMounted } from 'vue'
+import { isThumb, thumb } from '@/api'
 import { storeToRefs } from 'pinia'
 import { useCommunityStore } from '@/stores'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
 import { showImagePreview } from 'vant'
+import Commit from './cpns/commit/Commit.vue'
 // 确认框样式问题
 import 'vant/es/image-preview/style'
+
+// 判断用户是否进行点赞了
+// 记录页面点赞状态
+// 每次进行页面的时候进行获取点赞状态
+const isThumbValue = ref(false)
+// 记录点赞量
+const thumbNumber = ref(0)
 
 // 发送请求获取详情
 const communityStore = useCommunityStore()
@@ -85,10 +105,13 @@ communityStore.fetchPostDetailById(communityStore.postId)
 
 const imgList = ref([])
 const imgCount = ref(0)
-watch(postDetail, (newValue) => {
+watch(postDetail, async (newValue) => {
   imgList.value.push(newValue?.coverUrl)
   imgList.value.push(...(newValue?.imgUrlList || []))
   imgCount.value = imgList.value.length
+  thumbNumber.value = newValue.thumb
+  const res = await isThumb(newValue.postId)
+  isThumbValue.value = res.data
 })
 
 // 预览图片
@@ -96,11 +119,23 @@ const showImage = () => {
   showImagePreview(imgList.value)
 }
 
-// 判断用户是否进行点赞了
-const isThumbValue = ref(false)
-const getIsThumb = () => {
-  isThumbValue.value = isThumb(postDetail.id)
+// 用户点赞
+const isOperationThumb = ref(true)
+const getThumb = async (type: number) => {
+  if (!isOperationThumb.value) return
+  isOperationThumb.value = false
+  thumbNumber.value = type ? thumbNumber.value + 1 : thumbNumber.value - 1
+  // 进行立即更新状态
+  isThumbValue.value = !isThumbValue.value
+  thumb(type, postDetail.value.postId)
+  const res = await isThumb(postDetail.value.postId)
+  isOperationThumb.value = true
 }
+
+// 评论bar的逻辑
+const commitBarIndex = ref(0)
+// 是否只看作者的评论
+const onlySeeAuthor = ref('')
 </script>
 
 <style lang="scss" scoped>

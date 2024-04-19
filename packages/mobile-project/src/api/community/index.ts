@@ -34,12 +34,16 @@ export function getCategoryList(parentId?: number, recommended?: number) {
  * @param categoryId
  * @returns
  */
-export function getPostListById(categoryId: number) {
+export function getPostListById(
+  categoryId: number | undefined,
+  recommended?: number | undefined,
+) {
   return xhRequest.get({
     headers: new AxiosHeaders(),
     url: '/user/community/post/list',
     params: {
       categoryId,
+      recommended,
     },
   })
 }
