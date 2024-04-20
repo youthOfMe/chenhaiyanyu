@@ -337,4 +337,15 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+  {
+    // 匹配搭子页面
+    path: '/match/friend',
+    component: () =>
+      import(
+        '@/views/hall/child/metch-hall/child/match-friend/MatchFriend.vue'
+      ),
+    meta: {
+      hideTabBar: true,
+    },
+  },
 ]

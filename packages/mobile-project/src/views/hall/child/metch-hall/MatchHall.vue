@@ -12,6 +12,7 @@
         text="匹配搭子"
         icon="shrink"
         icon-color="var(--primary-color)"
+        @click="goMatchFriend"
       ></van-grid-item>
       <van-grid-item
         text="编程学习"
@@ -33,8 +34,17 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useAppStore } from '@/stores'
+
+// 跳转路由
+const router = useRouter()
+// 跳转到匹配搭子页面
+const goMatchFriend = () => {
+  router.push('/match/friend')
+}
+
 // 获取轮播图数据
 const appStore = useAppStore()
 const { appImgList } = storeToRefs(appStore)
