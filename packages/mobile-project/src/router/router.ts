@@ -323,4 +323,13 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+  {
+    // 官方程序详情页面
+    path: '/officail/codeDetail',
+    component: () =>
+      import('@/views/code-order/officail-code-detail/OfficailCodeDetail.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
 ]

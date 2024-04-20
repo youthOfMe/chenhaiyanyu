@@ -13,6 +13,7 @@ import TabControl from '@/components/tab-control/TabControl.vue'
 import Loading from '@/components/loading/Loading.vue'
 import SocailCardV1 from '@/components/socail-card-v1/SocailCardV1.vue'
 import AnnouncementCardV1 from '@/components/announcement-card-v1/AnnouncementCardV1.vue'
+import CodeOrderCardV1 from '@/components/code-order/code-order-card-v1/CodeOrderCardV1.vue'
 
 // 定义全局自动注册对象的类型
 type allGlobalComponentType = {
@@ -31,6 +32,7 @@ type allGlobalComponentType = {
   [loading: string]: typeof Loading
   [socailCardV1: string]: typeof SocailCardV1
   [announcementCardV1: string]: typeof AnnouncementCardV1
+  [codeOrderCardV1: string]: typeof CodeOrderCardV1
 }
 
 export { allGlobalComponentType }

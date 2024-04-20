@@ -30,7 +30,9 @@
           <van-icon name="more-o" />
           官方接单
         </template>
-        内容 {{ index }}
+        <div class="official-list">
+          <CodeOrderCardV1 v-for="i in 3" :key="i"></CodeOrderCardV1>
+        </div>
       </van-tab>
       <van-tab>
         <template #title>
@@ -82,5 +84,9 @@ onUnmounted(() => {
 }
 .tabs {
   margin: 10px 9px 0;
+  background-color: #ffffff;
+  .officail-list {
+    padding-top: 5px;
+  }
 }
 </style>

@@ -8,11 +8,11 @@
           <div class="text">星海币</div>
         </div>
         <div class="item" @click="goRenMin">
-          <div class="data">0</div>
+          <div class="data">{{ userInfo.rmb }}</div>
           <div class="text">人民币</div>
         </div>
         <div class="item" @click="goClock">
-          <div class="data">0</div>
+          <div class="data">{{ userInfo.signIcon }}</div>
           <div class="text">签到币</div>
         </div>
         <div class="item" @click="goCred">

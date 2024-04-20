@@ -14,6 +14,7 @@ import TabControl from '@/components/tab-control/TabControl.vue'
 import Loading from '@/components/loading/Loading.vue'
 import SocailCardV1 from '@/components/socail-card-v1/SocailCardV1.vue'
 import AnnouncementCardV1 from '@/components/announcement-card-v1/AnnouncementCardV1.vue'
+import CodeOrderCardV1 from '@/components/code-order/code-order-card-v1/CodeOrderCardV1.vue'
 
 declare module 'vue' {
   interface GlobalComponents {
@@ -33,5 +34,6 @@ declare module 'vue' {
     Loading: typeof Loading
     SocailCardV1: typeof SocailCardV1
     AnnouncementCardV1: typeof AnnouncementCardV1
+    CodeOrderCardV1: typeof CodeOrderCardV1
   }
 }
