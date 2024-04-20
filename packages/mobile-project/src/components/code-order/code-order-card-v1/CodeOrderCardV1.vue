@@ -1,5 +1,5 @@
 <template>
-  <div class="code-order-card-v1">
+  <div class="code-order-card-v1" @click="goDetail">
     <div class="head">
       <img :src="getAssetURL('code-order/card-v1/front.png')" alt="" />
     </div>
@@ -11,7 +11,14 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
+
+// 路由跳转
+const router = useRouter()
+const goDetail = () => {
+  router.push('/officail/codeDetail')
+}
 </script>
 
 <style lang="scss" scoped>
