@@ -37,7 +37,7 @@ const tabBarData = [
   },
   {
     title: '匹配大厅',
-    path: '/hall/navigation',
+    path: '/hall/matchHall',
   },
 ]
 

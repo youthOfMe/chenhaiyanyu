@@ -73,6 +73,11 @@ export const constantRoute = [
         path: '/hall/takeOrder',
         component: () => import('@/views/hall/child/take-order/TakeOrder.vue'),
       },
+      {
+        // 匹配大厅
+        path: '/hall/matchHall',
+        component: () => import('@/views/hall/child/metch-hall/MatchHall.vue'),
+      },
     ],
   },
   {

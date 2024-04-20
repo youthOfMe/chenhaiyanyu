@@ -17,6 +17,7 @@ declare module 'vue' {
     DetailSection: typeof import('./src/components/detail-section/DetailSection.vue')['default']
     GoodPostBlock: typeof import('./src/components/good-post-block/GoodPostBlock.vue')['default']
     Loading: typeof import('./src/components/loading/Loading.vue')['default']
+    MatchCardV1: typeof import('./src/components/match/match-card-v1/MatchCardV1.vue')['default']
     OurStoryCard: typeof import('./src/components/our-story-card/OurStoryCard.vue')['default']
     PostBlock: typeof import('./src/components/post-block/PostBlock.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
