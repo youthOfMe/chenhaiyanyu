@@ -1,4 +1,10 @@
-import { getUserInfo, login, resetUserInfo, getFriendList } from '@/api'
+import {
+  getUserInfo,
+  login,
+  resetUserInfo,
+  getFriendList,
+  pageQueryUserList,
+} from '@/api'
 import {
   GET_IM_TOKEN,
   GET_TOKEN,
@@ -14,6 +20,7 @@ export const useUserStore = defineStore('user', {
     token_im: GET_IM_TOKEN(),
     username: '',
     userInfo: {},
+    userList: [],
   }),
   actions: {
     // 登录
@@ -52,6 +59,11 @@ export const useUserStore = defineStore('user', {
     // 获取联系人信息
     async fetchFrientList(cursor?: string, pageSize?: number) {
       const res = await getFriendList()
+    },
+    // 分页获取用户数据(推荐搭子)
+    async fetchPageUserList(pageQueryDTO: any) {
+      const res = await pageQueryUserList(pageQueryDTO)
+      this.userList = res.data.records
     },
     // 退出登录
     userLogout() {

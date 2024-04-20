@@ -17,7 +17,11 @@
       </template>
     </van-cell>
     <div class="content">
-      <MatchCardV1></MatchCardV1>
+      <MatchCardV1
+        v-for="item in userList"
+        :key="item.id"
+        :item="item"
+      ></MatchCardV1>
     </div>
   </div>
 </template>
@@ -25,12 +29,24 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia'
+import { useUserStore } from '@/stores'
 
 // 路由回退
 const router = useRouter()
 const back = () => {
   router.back()
 }
+
+// 准备分页查询数据
+const pageQueryDTO = ref({
+  page: 1,
+  pageSize: 10,
+})
+// 获取推荐搭子数据
+const userStore = useUserStore()
+const { userList } = storeToRefs(userStore)
+userStore.fetchPageUserList(pageQueryDTO.value)
 
 // 心动模式
 const isMatchMode = ref(false)
@@ -40,6 +56,6 @@ const isMatchMode = ref(false)
 .content {
   overflow-y: auto;
   padding-top: 5px;
-  height: calc(100vh - 48px - 46px);
+  height: calc(100vh - 48px - 46px - 5px);
 }
 </style>

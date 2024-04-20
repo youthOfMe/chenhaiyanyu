@@ -45,3 +45,16 @@ export function sign() {
     url: '/user/user/sign',
   })
 }
+
+/**
+ * 分页查询用户数据
+ * @param pageQueryDTO
+ * @returns
+ */
+export function pageQueryUserList(pageQueryDTO: any) {
+  return xhRequest.get({
+    headers: new AxiosHeaders(),
+    url: '/user/user/page',
+    params: pageQueryDTO,
+  })
+}

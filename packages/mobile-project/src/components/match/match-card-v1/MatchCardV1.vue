@@ -1,17 +1,18 @@
 <template>
   <div class="match-card-v1">
     <div class="head-img">
-      <img :src="userInfo.avatar" alt="" />
+      <img :src="item?.avatar ?? ''" alt="" />
     </div>
     <div class="content">
       <div class="title-time">
-        <div class="title nowrap_ellipsis">辰海烟雨</div>
+        <div class="title nowrap_ellipsis">{{ item?.name }}</div>
         <div class="time">在线</div>
       </div>
-      <div class="signature">希望赵宇轩一路长红</div>
+      <div class="signature">{{ item?.signature }}</div>
       <div class="label">
-        <van-tag plain type="primary">java</van-tag>
-        <van-tag plain type="primary">python</van-tag>
+        <van-tag plain type="primary" v-for="item in tags" :key="item">
+          {{ item }}
+        </van-tag>
       </div>
     </div>
     <div class="call">联系他</div>
@@ -19,18 +20,23 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
-import { useUserStore } from '@/stores'
+import { ref } from 'vue'
 
-// 获取用户数据
-const userStore = useUserStore()
-const { userInfo } = storeToRefs(userStore)
+const props = defineProps({
+  item: {
+    type: Array,
+    default: () => [],
+  },
+})
+
+const tags = ref(JSON.parse(props.item?.tags))
 </script>
 
 <style lang="scss" scoped>
 .match-card-v1 {
   position: relative;
   display: flex;
+  margin-top: 5px;
   padding: 10px 9px;
   background-color: #ffffff;
   .head-img {
@@ -39,6 +45,7 @@ const { userInfo } = storeToRefs(userStore)
     img {
       width: 100px;
       height: 100px;
+      border-radius: 5px;
     }
   }
   .content {
@@ -51,7 +58,6 @@ const { userInfo } = storeToRefs(userStore)
       flex: 1;
       .title {
         flex: 1;
-        font-weight: normal;
       }
       .time {
         position: relative;
