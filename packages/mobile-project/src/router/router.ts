@@ -348,4 +348,15 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+  {
+    // 搜索搭子的页面
+    path: '/search/friend',
+    component: () =>
+      import(
+        '@/views/hall/child/metch-hall/child/search-friend/SearchFriend.vue'
+      ),
+    meta: {
+      hideTabBar: true,
+    },
+  },
 ]

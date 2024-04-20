@@ -3,9 +3,9 @@
     <van-nav-bar
       title="匹配搭子"
       left-text="返回"
-      right-text="支付设置"
       left-arrow
       @click-left="back"
+      @click-right="goSearch"
     >
       <template #right>
         <van-icon name="search" size="18" />
@@ -36,6 +36,11 @@ import { useUserStore } from '@/stores'
 const router = useRouter()
 const back = () => {
   router.back()
+}
+
+// 跳转到搜索搭子页面
+const goSearch = () => {
+  router.push('/search/friend')
 }
 
 // 准备分页查询数据
