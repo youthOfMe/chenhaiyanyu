@@ -34,3 +34,14 @@ export function getFriendList(
     },
   })
 }
+
+/**
+ * 用户签到
+ * @returns
+ */
+export function sign() {
+  return xhRequest.get({
+    headers: new AxiosHeaders(),
+    url: '/user/user/sign',
+  })
+}

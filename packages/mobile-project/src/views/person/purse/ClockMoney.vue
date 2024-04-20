@@ -19,18 +19,26 @@
       ></SvgIcon>
     </div>
     <div class="clockBox">
-      <div class="clockContent">已连续签到66天</div>
-      <van-button plain type="primary" class="clock">签到</van-button>
+      <div class="clockContent">已连续签到{{ userInfo.signDay }}天</div>
+      <van-button plain type="primary" class="clock" @click="fetchSign">
+        签到
+      </van-button>
     </div>
     <div class="content">
       <div class="balance">
-        <div class="head">余额(1￥ = 10星海币)</div>
+        <div class="head">余额(1签到币 = 0.001星海币)</div>
         <div class="money">
           签到币:
-          <span>888</span>
+          <span>{{ userInfo.signIcon }}</span>
         </div>
-        <van-button plain type="primary" class="recharge" size="small">
-          立即充值
+        <van-button
+          plain
+          type="primary"
+          class="recharge"
+          size="small"
+          @click="fetchSign"
+        >
+          立即签到
         </van-button>
       </div>
       <div class="info-content">
@@ -57,11 +65,33 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia'
+import { sign } from '@/api'
+import { useUserStore } from '@/stores'
+import { showFailToast, showSuccessToast } from 'vant'
+// 确认框样式问题
+import 'vant/es/toast/style'
 
 // 路由回退
 const router = useRouter()
 const back = () => {
   router.back()
+}
+
+// 获取用户数据
+const userStore = useUserStore()
+const { userInfo } = storeToRefs(userStore)
+
+// 用户签到
+const fetchSign = () => {
+  if (userStore.userInfo.isSign) {
+    showFailToast('您今天已经签到过了')
+    return
+  }
+  showSuccessToast('签到成功！积分加5')
+  sign()
+  userStore.userInfo.signIcon = userStore.userInfo.signIcon + 5
+  userStore.userInfo.signDay = userStore.userInfo.signDay + 1
 }
 </script>
 
@@ -83,14 +113,14 @@ const back = () => {
     }
   }
   .clockBox {
-    height: 30vw;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     margin: 10px 9px 0;
     padding: 10px;
+    height: 30vw;
     background-color: #ffffff;
+    flex-direction: column;
     .clockContent {
       margin-top: 5vw;
       font-size: 28px;
