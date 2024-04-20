@@ -42,6 +42,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia'
+import { useUserStore } from '@/stores'
 
 // 路由回退
 const router = useRouter()
@@ -73,8 +75,14 @@ const originTagList = [
 // 标签列表
 const tagList = ref(originTagList)
 // 已选中的标签
-const activeIds = ref([])
+const activeIds = ref(['JAVA', '前端'])
 const activeIndex = ref(0)
+
+// 进行根据标签搜索用户
+const userStore = useUserStore()
+const onClickButton = () => {
+  userStore.fetchUsersByTagList(activeIds.value)
+}
 </script>
 
 <style lang="scss" scoped>

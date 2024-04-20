@@ -4,6 +4,7 @@ import {
   resetUserInfo,
   getFriendList,
   pageQueryUserList,
+  searchUsersByTags,
 } from '@/api'
 import {
   GET_IM_TOKEN,
@@ -21,6 +22,7 @@ export const useUserStore = defineStore('user', {
     username: '',
     userInfo: {},
     userList: [],
+    searchUsersByTagList: [],
   }),
   actions: {
     // 登录
@@ -64,6 +66,11 @@ export const useUserStore = defineStore('user', {
     async fetchPageUserList(pageQueryDTO: any) {
       const res = await pageQueryUserList(pageQueryDTO)
       this.userList = res.data.records
+    },
+    // 根据标签获取用户
+    async fetchUsersByTagList(tagNameList: any) {
+      const res = await searchUsersByTags(tagNameList)
+      this.searchUsersByTagList = res.data
     },
     // 退出登录
     userLogout() {

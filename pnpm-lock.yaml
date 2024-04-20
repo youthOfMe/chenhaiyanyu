@@ -184,6 +184,9 @@ importers:
       axios:
         specifier: ^1.6.8
         version: 1.6.8
+      qs:
+        specifier: ^6.12.1
+        version: 6.12.1
       unplugin-auto-import:
         specifier: ^0.17.5
         version: 0.17.5
@@ -4723,6 +4726,13 @@ packages:
   /punycode@2.3.1:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==, tarball: https://registry.npmmirror.com/punycode/-/punycode-2.3.1.tgz}
     engines: {node: '>=6'}
+    dev: true
+
+  /qs@6.12.1:
+    resolution: {integrity: sha512-zWmv4RSuB9r2mYQw3zxQuHWeU+42aKi1wWig/j4ele4ygELZ7PEO6MM7rim9oAQH2A5MWfsAVf/jPvTPgCbvUQ==, tarball: https://registry.npmmirror.com/qs/-/qs-6.12.1.tgz}
+    engines: {node: '>=0.6'}
+    dependencies:
+      side-channel: 1.0.6
     dev: true
 
   /query-string@4.3.4:

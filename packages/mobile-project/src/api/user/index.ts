@@ -58,3 +58,22 @@ export function pageQueryUserList(pageQueryDTO: any) {
     params: pageQueryDTO,
   })
 }
+
+import qs from 'qs'
+/**
+ * 根据标签搜索用户
+ * @param tagNameList
+ * @returns
+ */
+export function searchUsersByTags(tagNameList: any) {
+  return xhRequest.get({
+    headers: new AxiosHeaders(),
+    url: '/user/user/search/tags',
+    params: {
+      tagNameList,
+    },
+    paramsSerializer: (params) => {
+      return qs.stringify(params, { indices: false })
+    },
+  })
+}
