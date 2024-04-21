@@ -77,3 +77,18 @@ export function searchUsersByTags(tagNameList: any) {
     },
   })
 }
+
+/**
+ * 线性拟合匹配算法接口
+ * @param num
+ * @returns
+ */
+export function getMatchUserList(num: number) {
+  return xhRequest.get({
+    headers: new AxiosHeaders(),
+    url: '/user/user/match',
+    params: {
+      num,
+    },
+  })
+}

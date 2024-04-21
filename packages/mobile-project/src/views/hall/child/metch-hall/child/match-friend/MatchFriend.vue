@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useUserStore } from '@/stores'
@@ -55,6 +55,14 @@ userStore.fetchPageUserList(pageQueryDTO.value)
 
 // 心动模式
 const isMatchMode = ref(false)
+// 进行心动匹配
+watch(isMatchMode, (newValue) => {
+  if (newValue) {
+    userStore.fetchMatchUserList(10)
+  } else {
+    userStore.fetchPageUserList(pageQueryDTO.value)
+  }
+})
 </script>
 
 <style lang="scss" scoped>

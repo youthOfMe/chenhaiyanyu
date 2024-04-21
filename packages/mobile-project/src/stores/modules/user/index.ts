@@ -5,6 +5,7 @@ import {
   getFriendList,
   pageQueryUserList,
   searchUsersByTags,
+  getMatchUserList,
 } from '@/api'
 import {
   GET_IM_TOKEN,
@@ -72,6 +73,11 @@ export const useUserStore = defineStore('user', {
     async fetchUsersByTagList(tagNameList: any) {
       const res = await searchUsersByTags(tagNameList)
       this.searchUsersByTagList = res.data
+    },
+    // 通过线性拟合中心算法获取匹配用户
+    async fetchMatchUserList(num: number) {
+      const res = await getMatchUserList(num)
+      this.userList = res.data
     },
     // 退出登录
     userLogout() {
