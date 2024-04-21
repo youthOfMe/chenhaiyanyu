@@ -22,6 +22,7 @@ export const useUserStore = defineStore('user', {
     username: '',
     userInfo: {},
     userList: [],
+    tsgList: [],
     searchUsersByTagList: [],
   }),
   actions: {

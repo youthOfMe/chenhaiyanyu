@@ -81,6 +81,7 @@ const activeIndex = ref(0)
 // 进行根据标签搜索用户
 const userStore = useUserStore()
 const onClickButton = () => {
+  userStore.tagList = activeIds.value
   userStore.fetchUsersByTagList(activeIds.value)
   router.push('/search/friend/result')
 }
