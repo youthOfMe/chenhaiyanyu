@@ -65,3 +65,16 @@ export function getListMyJoinTeams(teamQueryDTO: any) {
     params: teamQueryDTO,
   })
 }
+
+/**
+ * 退出队伍
+ * @param teamQueryDTO
+ * @returns
+ */
+export function quitTeam(teamQueryDTO: any) {
+  return xhRequest.post<any>({
+    headers: new AxiosHeaders(),
+    url: '/user/team/quit',
+    data: teamQueryDTO,
+  })
+}

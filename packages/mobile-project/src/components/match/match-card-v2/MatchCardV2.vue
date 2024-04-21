@@ -40,6 +40,7 @@
         size="small"
         plain
         type="danger"
+        @click="doQuitTeam(item?.id)"
       >
         退出队伍
       </van-button>
@@ -68,8 +69,10 @@
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { showSuccessToast, showFailToast } from 'vant'
-import { joinTeam } from '@/api'
+import { joinTeam, quitTeam } from '@/api'
 import { useUserStore } from '@/stores'
+// 确认框样式问题
+import 'vant/es/toast/style'
 
 defineProps({
   item: {
@@ -115,6 +118,19 @@ const doJoinTeam = async () => {
     doJoinCancel()
   } else {
     showFailToast('加入失败！' + res.msg)
+  }
+}
+
+/**
+ * 退出队伍
+ * @param id
+ */
+const doQuitTeam = async (id: number) => {
+  const res = await quitTeam({ teamId: id })
+  if (res?.code === 1) {
+    showSuccessToast('操作成功！')
+  } else {
+    showFailToast('操作失败！' + res.msg)
   }
 }
 </script>
