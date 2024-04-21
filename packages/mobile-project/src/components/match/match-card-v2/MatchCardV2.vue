@@ -22,10 +22,33 @@
         hairline
         size="small"
         @click="preJoinTeam(item)"
+        v-if="item.userId !== userInfo?.id && !item.hasJoin"
       >
         加入队伍
       </van-button>
-      <van-button type="danger" plain hairline size="small">
+      <van-button
+        v-if="item.userId === userInfo?.id"
+        size="small"
+        plain
+        type="success"
+      >
+        更新队伍
+      </van-button>
+      <!-- 仅加入队伍可见 -->
+      <van-button
+        v-if="item.userId !== userInfo?.id && item.hasJoin"
+        size="small"
+        plain
+        type="danger"
+      >
+        退出队伍
+      </van-button>
+      <van-button
+        v-if="item.userId === userInfo?.id"
+        size="small"
+        type="danger"
+        plain
+      >
         解散队伍
       </van-button>
     </div>
@@ -43,8 +66,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
 import { showSuccessToast, showFailToast } from 'vant'
 import { joinTeam } from '@/api'
+import { useUserStore } from '@/stores'
 
 defineProps({
   item: {
@@ -52,6 +77,10 @@ defineProps({
     default: () => {},
   },
 })
+
+// 获取关于我的信息
+const userStore = useUserStore()
+const { userInfo } = storeToRefs(userStore)
 
 // 加入队伍
 const showPasswordDialog = ref(false)
