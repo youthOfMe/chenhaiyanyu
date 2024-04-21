@@ -24,7 +24,11 @@
     <van-tabs v-model:active="active">
       <van-tab title="公开">
         <div class="open-list">
-          <MatchCardV2></MatchCardV2>
+          <MatchCardV2
+            v-for="item in teamList"
+            :key="item.id"
+            :item="item"
+          ></MatchCardV2>
         </div>
       </van-tab>
       <van-tab title="加密"></van-tab>
@@ -36,7 +40,7 @@
 import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
-import { useUserStore } from '@/stores'
+import { useUserStore, useTeamStore } from '@/stores'
 
 // 路由回退
 const router = useRouter()
@@ -48,6 +52,15 @@ const back = () => {
 const goSearch = () => {
   router.push('/search/friend')
 }
+
+// 获取队伍列表
+const teamStore = useTeamStore()
+const { teamList } = storeToRefs(teamStore)
+teamStore.fetchTeamList({
+  searchText: undefined,
+  pageNum: 1,
+  status: 0,
+})
 </script>
 
 <style lang="scss" scoped></style>

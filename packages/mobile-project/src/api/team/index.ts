@@ -13,3 +13,16 @@ export function createTeam(teamDTO: any) {
     data: teamDTO,
   })
 }
+
+/**
+ * 获取队伍列表
+ * @param teamQueryDTO
+ * @returns
+ */
+export function getListTeams(teamQueryDTO: any) {
+  return xhRequest.get<any>({
+    headers: new AxiosHeaders(),
+    url: '/user/team/list',
+    params: teamQueryDTO,
+  })
+}

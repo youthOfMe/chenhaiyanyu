@@ -1,15 +1,19 @@
 <template>
   <div class="match-card-v2">
     <div class="head-img">
-      <img :src="item?.avatar ?? ''" alt="" />
+      <img :src="item?.createUser?.avatar ?? ''" alt="" />
     </div>
     <div class="content">
-      <div class="name nowrap_ellipsis">队伍名称</div>
-      <div class="desc">队伍描述</div>
-      <div class="tag"><van-tag plain type="danger">标签</van-tag></div>
-      <div class="person-number">队伍人数: 2 / 4</div>
-      <div class="create-time">创建时间</div>
-      <div class="update-time">更新时间</div>
+      <div class="name nowrap_ellipsis">{{ item?.name || '队伍名称' }}</div>
+      <div class="desc">{{ item?.description || '队伍描述' }}</div>
+      <div class="tag">
+        <van-tag plain type="danger" v-if="item.status === 0">公开</van-tag>
+      </div>
+      <div class="person-number">
+        队伍人数: {{ item?.hasJoinNum }} / {{ item?.maxNum }}
+      </div>
+      <div class="create-time">创建时间: {{ item?.createTime }}</div>
+      <div class="update-time">更新时间: {{ item?.updateTime }}</div>
     </div>
     <div class="operation">
       <van-button type="success" plain hairline size="small">
@@ -22,7 +26,14 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineProps({
+  item: {
+    type: Object,
+    default: () => {},
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 .match-card-v2 {
