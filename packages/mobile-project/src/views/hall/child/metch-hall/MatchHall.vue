@@ -23,6 +23,7 @@
         text="创建队伍"
         icon="cluster-o"
         icon-color="var(--primary-color)"
+        @click="goCreateContingent"
       ></van-grid-item>
       <van-grid-item
         text="匹配组队"
@@ -43,6 +44,10 @@ const router = useRouter()
 // 跳转到匹配搭子页面
 const goMatchFriend = () => {
   router.push('/match/friend')
+}
+// 跳转到创建队伍的页面
+const goCreateContingent = () => {
+  router.push('/create/contingent')
 }
 
 // 获取轮播图数据
