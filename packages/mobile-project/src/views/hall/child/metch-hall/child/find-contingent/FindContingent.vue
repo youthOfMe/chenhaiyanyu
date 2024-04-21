@@ -21,17 +21,21 @@
         <div @click="onClickButton">搜索</div>
       </template>
     </van-search>
-    <van-tabs v-model:active="active">
+    <van-tabs v-model:active="type">
       <van-tab title="公开">
-        <div class="open-list">
+        <div class="open-list" v-if="teamList?.length > 0">
           <MatchCardV2
             v-for="item in teamList"
             :key="item.id"
             :item="item"
           ></MatchCardV2>
         </div>
+        <van-empty v-if="teamList?.length < 1" description="数据为空" />
       </van-tab>
-      <van-tab title="加密"></van-tab>
+      <van-tab title="加密">
+        <div class="secret-list" v-if="teamList?.length > 0"></div>
+        <van-empty v-if="teamList?.length < 1" description="数据为空" />
+      </van-tab>
     </van-tabs>
   </div>
 </template>
@@ -54,12 +58,31 @@ const goSearch = () => {
 }
 
 // 获取队伍列表
+const type = ref(0)
 const teamStore = useTeamStore()
 const { teamList } = storeToRefs(teamStore)
 teamStore.fetchTeamList({
   searchText: undefined,
   pageNum: 1,
   status: 0,
+})
+watch(type, (newValue) => {
+  console.log(newValue, 999)
+
+  if (newValue === 0) {
+    teamStore.fetchTeamList({
+      searchText: undefined,
+      pageNum: 1,
+      status: 0,
+    })
+  }
+  if (newValue === 1) {
+    teamStore.fetchTeamList({
+      searchText: undefined,
+      pageNum: 1,
+      status: 2,
+    })
+  }
 })
 </script>
 
