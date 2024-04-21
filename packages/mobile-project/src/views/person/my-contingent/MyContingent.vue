@@ -64,12 +64,12 @@ watch(type, (newValue) => {
       pageNum: 1,
     })
   }
-  // if (newValue === 1) {
-  //   teamStore.fetchTeamList({
-  //     searchText: undefined,
-  //     pageNum: 1,
-  //   })
-  // }
+  if (newValue === 1) {
+    teamStore.fetchMyJoinTeamList({
+      searchText: undefined,
+      pageNum: 1,
+    })
+  }
 })
 </script>
 

@@ -1,4 +1,4 @@
-import { getListMyCreateTeams, getListTeams } from '@/api'
+import { getListMyCreateTeams, getListMyJoinTeams, getListTeams } from '@/api'
 import { defineStore } from 'pinia'
 
 export const useTeamStore = defineStore('team', {
@@ -13,6 +13,10 @@ export const useTeamStore = defineStore('team', {
     },
     async fetchMyTeamList(teamQueryDTO: any) {
       const res = await getListMyCreateTeams(teamQueryDTO)
+      this.myTeamList = res.data
+    },
+    async fetchMyJoinTeamList(teamQueryDTO: any) {
+      const res = await getListMyJoinTeams(teamQueryDTO)
       this.myTeamList = res.data
     },
   },

@@ -52,3 +52,16 @@ export function joinTeam(teamJoinDTO: any) {
     data: teamJoinDTO,
   })
 }
+
+/**
+ * 获取我加入的队伍列表
+ * @param teamQueryDTO
+ * @returns
+ */
+export function getListMyJoinTeams(teamQueryDTO: any) {
+  return xhRequest.get<any>({
+    headers: new AxiosHeaders(),
+    url: '/user/team/list/my/join',
+    params: teamQueryDTO,
+  })
+}
