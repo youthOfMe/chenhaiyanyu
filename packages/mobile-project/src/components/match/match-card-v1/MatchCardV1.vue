@@ -24,8 +24,8 @@ import { ref } from 'vue'
 
 const props = defineProps({
   item: {
-    type: Array,
-    default: () => [],
+    type: Object,
+    default: () => {},
   },
 })
 

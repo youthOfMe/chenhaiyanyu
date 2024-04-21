@@ -36,8 +36,8 @@ const back = () => {
 
 // 获取数据
 const userStore = useUserStore()
-const { searchUsersByTagList, tagList } = storeToRefs(userStore)
-userStore.fetchUsersByTagList(tagList)
+const { searchUsersByTagList, chooseTagList } = storeToRefs(userStore)
+userStore.fetchUsersByTagList(chooseTagList)
 </script>
 
 <style lang="scss" scoped>

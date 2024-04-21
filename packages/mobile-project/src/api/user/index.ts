@@ -92,3 +92,14 @@ export function getMatchUserList(num: number) {
     },
   })
 }
+
+/**
+ * 获取标签列表
+ * @returns
+ */
+export function getTags() {
+  return xhRequest.get({
+    headers: new AxiosHeaders(),
+    url: '/user/user/tags',
+  })
+}

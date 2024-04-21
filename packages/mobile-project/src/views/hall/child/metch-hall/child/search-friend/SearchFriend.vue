@@ -7,20 +7,20 @@
       @click-left="back"
     ></van-nav-bar>
     <van-search
-      v-model="value"
+      v-model="searchText"
       show-action
       placeholder="请输入搜索关键词"
-      @search="onSearch"
+      @search="onSearchTagList"
     >
       <template #action>
-        <div @click="onClickButton">搜索</div>
+        <div @click="onSearchTagList">搜索</div>
       </template>
     </van-search>
     <div class="content">
       <van-divider content-position="left">已选标签</van-divider>
-      <div class="choose">请选择标签</div>
+      <div class="choose" v-if="!activeIds.length">请选择标签</div>
       <van-row gutter="16" style="padding: 0 16px">
-        <van-col>
+        <van-col v-for="tag in activeIds" :key="tag">
           <van-tag closeable size="small" type="primary" @close="doClose(tag)">
             {{ tag }}
           </van-tag>
@@ -30,17 +30,17 @@
       <van-tree-select
         v-model:active-id="activeIds"
         v-model:main-active-index="activeIndex"
-        :items="tagList"
+        :items="dispalyTagList"
       />
     </div>
     <div style="padding: 12px" class="bottom">
-      <van-button block type="primary" @click="doSearchResult">搜索</van-button>
+      <van-button block type="primary" @click="onSearchClick">搜索</van-button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useUserStore } from '@/stores'
@@ -51,39 +51,62 @@ const back = () => {
   router.back()
 }
 
-const originTagList = [
-  {
-    text: '性别',
-    children: [
-      { text: '男', id: '男' },
-      { text: '女', id: '女' },
-    ],
-  },
-  {
-    text: '年级',
-    children: [
-      { text: '大一', id: '大一' },
-      { text: '大二', id: '大二' },
-      { text: '大3', id: '大3' },
-      { text: '大4', id: '大4' },
-      { text: '大5', id: '大5aaaaaaa' },
-      { text: '大6', id: '大6aaaaaaa' },
-    ],
-  },
-]
-
 // 标签列表
-const tagList = ref(originTagList)
+const userStore = useUserStore()
+const { tagList } = storeToRefs(userStore)
+const dispalyTagList = ref([])
+userStore.fetchTags()
+const parentIndex = ref(0)
+watch(tagList, (newValue) => {
+  newValue.map((item: any, index: number) => {
+    if (!item.parentId) {
+      dispalyTagList.value[parentIndex.value] = {}
+      dispalyTagList.value[parentIndex.value].children = []
+      dispalyTagList.value[parentIndex.value].text = item.tagName
+      parentIndex.value++
+    }
+    if (item.parentId) {
+      parentIndex.value--
+      dispalyTagList.value[parentIndex.value].children.push({
+        text: item.tagName,
+        id: item.tagName,
+      })
+      parentIndex.value++
+    }
+  })
+  console.log(dispalyTagList)
+})
+// const tagList = ref(originTagList)
+// const tagList = ref(originTagList)
 // 已选中的标签
-const activeIds = ref(['JAVA', '前端'])
+const activeIds = ref([])
 const activeIndex = ref(0)
 
 // 进行根据标签搜索用户
-const userStore = useUserStore()
-const onClickButton = () => {
-  userStore.tagList = activeIds.value
+const onSearchClick = () => {
+  userStore.chooseTagList = activeIds.value
   userStore.fetchUsersByTagList(activeIds.value)
   router.push('/search/friend/result')
+}
+
+// 搜索标签
+const searchText = ref('')
+const onSearchTagList = () => {
+  dispalyTagList.value = dispalyTagList.value.map((parentTag: any) => {
+    const tempChildren = [...parentTag.children]
+    const tempParentTag = { ...parentTag }
+    tempParentTag.children = tempChildren.filter((item) =>
+      item.text.includes(searchText.value),
+    )
+    return tempParentTag
+  })
+}
+
+// 移除标签
+const doClose = (tag) => {
+  activeIds.value = activeIds.value.filter((item) => {
+    return item !== tag
+  })
 }
 </script>
 
