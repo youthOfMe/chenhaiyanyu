@@ -19,7 +19,16 @@
             v-model:current-rate="currentRate"
             :rate="30"
             :speed="100"
-            text="社区等级"
+            text="我的社区"
+            :color="gradientColor"
+          />
+        </div>
+        <div class="item" @click="goMyContingent">
+          <van-circle
+            v-model:current-rate="currentRate"
+            :rate="30"
+            :speed="100"
+            text="我的组队"
             :color="gradientColor"
           />
         </div>
@@ -28,16 +37,7 @@
             v-model:current-rate="currentRate"
             :rate="30"
             :speed="100"
-            text="交易等级"
-            :color="gradientColor"
-          />
-        </div>
-        <div class="item">
-          <van-circle
-            v-model:current-rate="currentRate"
-            :rate="30"
-            :speed="100"
-            text="学习等级"
+            text="我的学习"
             :color="gradientColor"
           />
         </div>
@@ -131,6 +131,11 @@ communityStore.fetchPostListById(undefined, undefined, userInfo.id)
 const router = useRouter()
 const goShoppingCart = () => {
   router.push('/shoppingCart')
+}
+
+// 跳转到我的组队
+const goMyContingent = () => {
+  router.push('/myContingent')
 }
 </script>
 

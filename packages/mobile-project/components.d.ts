@@ -44,6 +44,8 @@ declare module 'vue' {
     VanCircle: typeof import('vant/es')['Circle']
     VanCol: typeof import('vant/es')['Col']
     VanCountDown: typeof import('vant/es')['CountDown']
+    VanCouponCell: typeof import('vant/es')['CouponCell']
+    VanCouponList: typeof import('vant/es')['CouponList']
     VanDatePicker: typeof import('vant/es')['DatePicker']
     VanDatetimePicker: typeof import('vant/es')['DatetimePicker']
     VanDialog: typeof import('vant/es')['Dialog']

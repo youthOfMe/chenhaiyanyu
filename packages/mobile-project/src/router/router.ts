@@ -401,4 +401,12 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+  {
+    // 我的组队界面
+    path: '/myContingent',
+    component: () => import('@/views/person/my-contingent/MyContingent.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
 ]

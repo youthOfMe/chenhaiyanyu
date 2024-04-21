@@ -26,3 +26,16 @@ export function getListTeams(teamQueryDTO: any) {
     params: teamQueryDTO,
   })
 }
+
+/**
+ * 获取我创建的队伍列表
+ * @param teamQueryDTO
+ * @returns
+ */
+export function getListMyCreateTeams(teamQueryDTO: any) {
+  return xhRequest.get<any>({
+    headers: new AxiosHeaders(),
+    url: '/user/team/list/my/create',
+    params: teamQueryDTO,
+  })
+}

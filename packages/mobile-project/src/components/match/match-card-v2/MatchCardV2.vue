@@ -7,7 +7,7 @@
       <div class="name nowrap_ellipsis">{{ item?.name || '队伍名称' }}</div>
       <div class="desc">{{ item?.description || '队伍描述' }}</div>
       <div class="tag">
-        <van-tag plain type="danger" v-if="item.status === 0">公开</van-tag>
+        <van-tag plain type="danger" v-if="item?.status === 0">公开</van-tag>
       </div>
       <div class="person-number">
         队伍人数: {{ item?.hasJoinNum }} / {{ item?.maxNum }}
