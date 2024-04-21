@@ -9,27 +9,6 @@
         <div class="head" @click="showList = true">
           <img :src="userInfo.avatar" alt="" />
         </div>
-        <van-popup
-          v-model:show="showList"
-          round
-          position="bottom"
-          style="padding-top: 4px; height: 40%"
-        >
-          <van-cell-group :columns="columns">
-            <van-cell
-              style="font-size: 14px; color: rgb(0 0 0 / 50%) !important"
-              title="设置你的头像"
-            />
-            <van-cell title="从微信导入" />
-            <van-cell title="从QQ导入" />
-            <van-cell title="从手机相册中选择" />
-            <van-cell
-              style="position: absolute; margin-top: 30px"
-              title="取消"
-              @click="onCancel"
-            />
-          </van-cell-group>
-        </van-popup>
         <div class="edit" @click="toeditPersonInfo">编辑资料</div>
         <div class="name">
           <span>{{ userInfo.name }}</span>
@@ -111,12 +90,33 @@
         />
       </van-cell-group>
     </van-dialog>
+    <van-popup
+      v-model:show="showList"
+      round
+      position="bottom"
+      style="padding-top: 4px; height: 40%"
+    >
+      <van-cell-group :columns="columns">
+        <van-cell
+          style="font-size: 14px; color: rgb(0 0 0 / 50%) !important"
+          title="设置你的头像"
+        />
+        <van-cell title="从微信导入" />
+        <van-cell title="从QQ导入" />
+        <van-cell title="从手机相册中选择" @click="goUpdateHeadImg" />
+        <van-cell
+          style="position: absolute; margin-top: 30px"
+          title="取消"
+          @click="onCancel"
+        />
+      </van-cell-group>
+    </van-popup>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, use } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useUserStore, useCommunityStore } from '@/stores'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
@@ -146,7 +146,7 @@ const submitResetUserName = () => {
     showFailToast('用户昵称不可为空')
     return
   }
-  userStore.fetchResetUserInfo({ name: nameInput.value })
+  userStore.fetchResetUserInfo({ name: nameInput.value, type: 1 })
   showResetName.value = false
 }
 
@@ -160,10 +160,15 @@ const columns = ref([column])
 const showList = ref(false)
 
 const onConfirm = (index) => {
-  showList.value = false
+  // console.log(index)
+  // showList.value = false
 }
 const onCancel = (index) => {
   showList.value = false
+}
+// 更换头像
+const goUpdateHeadImg = () => {
+  router.push('/switch/headImg')
 }
 
 // 获取个人帖子列表

@@ -370,4 +370,24 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+  {
+    // 创建队伍页面
+    path: '/create/contingent',
+    component: () =>
+      import(
+        '@/views/hall/child/metch-hall/child/create-contingent/CreateContingent.vue'
+      ),
+    meta: {
+      hideTabBar: true,
+    },
+  },
+  {
+    // 更改头像界面
+    path: '/switch/headImg',
+    component: () =>
+      import('@/views/person-info/child/switch-info/SwitchInfo.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
 ]
