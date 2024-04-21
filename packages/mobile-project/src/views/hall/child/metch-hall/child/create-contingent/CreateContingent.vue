@@ -9,7 +9,7 @@
     />
   </div>
   <div class="content">
-    <van-form>
+    <van-form @submit="onSubmit">
       <van-cell-group inset>
         <van-field
           v-model="addTeamData.name"
@@ -30,17 +30,33 @@
           is-link
           readonly
           name="datetimePicker"
-          label="过期时间"
-          :placeholder="addTeamData.expireTime ?? '点击选择过期时间'"
+          label="过期日期"
+          :placeholder="addTeamData.expireDate ?? '点击选择过期日期'"
           @click="showPicker = true"
         />
         <van-popup v-model:show="showPicker" position="bottom">
           <van-date-picker
-            v-model="addTeamData.expireTime"
-            @confirm="showPicker = false"
-            type="datetime"
-            title="请选择过期时间"
+            v-model="addTeamData.expireDate"
+            title="选择日期"
             :min-date="minDate"
+            :max-date="maxDate"
+            @confirm="showPicker = false"
+          />
+        </van-popup>
+        <van-field
+          is-link
+          readonly
+          name="datetimePicker"
+          label="过期时间"
+          :placeholder="addTeamData.expireTime ?? '点击选择过期时间'"
+          @click="showTimePicker = true"
+        />
+        <van-popup v-model:show="showTimePicker" position="bottom">
+          <van-time-picker
+            v-model="addTeamData.expireTime"
+            title="选择时间"
+            :min-time="minTime"
+            @confirm="showTimePicker = false"
           />
         </van-popup>
         <van-field name="stepper" label="最大人数">
@@ -82,6 +98,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+// 确认框样式问题
+import 'vant/es/toast/style'
+import { showSuccessToast, showFailToast } from 'vant'
+// 引入请求函数
+import { createTeam } from '@/api'
 
 // 路由回退
 const router = useRouter()
@@ -89,9 +110,62 @@ const back = () => {
   router.back()
 }
 
-// 提交信息
-const addTeamData = ref({})
+// 展示日期选择器
 const showPicker = ref(false)
+const showTimePicker = ref(false)
+
+const initFormData = {
+  name: '',
+  description: '',
+  expireDate: [],
+  expireTime: [],
+  maxNum: 3,
+  password: '',
+  status: 0,
+}
+
+const minDate = new Date()
+const minTime =
+  String(minDate.getHours()) +
+  ':' +
+  String(minDate.getMinutes()) +
+  ':' +
+  String(minDate.getSeconds())
+
+// 需要用户填写的表单数据
+const addTeamData = ref({ ...initFormData })
+
+// 提交
+const onSubmit = async () => {
+  const date = new Date(
+    addTeamData.value.expireDate[0] +
+      '-' +
+      addTeamData.value.expireDate[1] +
+      '-' +
+      addTeamData.value.expireDate[2] +
+      ' ' +
+      addTeamData.value.expireTime[0] +
+      ':' +
+      addTeamData.value.expireTime[1],
+  )
+
+  const postData = {
+    ...addTeamData.value,
+    status: Number(addTeamData.value.status),
+    expireTime: date,
+  }
+  // todo 前端参数校验
+  const res = await createTeam(postData)
+  if (res?.code === 1 && res.data) {
+    showSuccessToast('添加成功！')
+    router.push({
+      path: '/team',
+      replace: true,
+    })
+  } else {
+    showFailToast('添加失败！')
+  }
+}
 </script>
 
 <style lang="scss" scoped>
