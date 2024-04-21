@@ -16,6 +16,7 @@ import SocailCardV1 from '@/components/socail-card-v1/SocailCardV1.vue'
 import AnnouncementCardV1 from '@/components/announcement-card-v1/AnnouncementCardV1.vue'
 import CodeOrderCardV1 from '@/components/code-order/code-order-card-v1/CodeOrderCardV1.vue'
 import MatchCardV1 from '@/components/match/match-card-v1/MatchCardV1.vue'
+import MatchCardV2 from '@/components/match/match-card-v2/MatchCardV2.vue'
 
 declare module 'vue' {
   interface GlobalComponents {
@@ -37,5 +38,6 @@ declare module 'vue' {
     AnnouncementCardV1: typeof AnnouncementCardV1
     CodeOrderCardV1: typeof CodeOrderCardV1
     MatchCardV1: typeof MatchCardV1
+    MatchCardV2: typeof MatchCardV2
   }
 }

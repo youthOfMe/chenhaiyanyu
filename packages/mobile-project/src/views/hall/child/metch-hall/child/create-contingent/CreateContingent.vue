@@ -5,7 +5,6 @@
       left-text="返回"
       left-arrow
       @click-left="back"
-      @click-right="goSearch"
     />
   </div>
   <div class="content">

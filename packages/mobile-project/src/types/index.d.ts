@@ -15,6 +15,7 @@ import SocailCardV1 from '@/components/socail-card-v1/SocailCardV1.vue'
 import AnnouncementCardV1 from '@/components/announcement-card-v1/AnnouncementCardV1.vue'
 import CodeOrderCardV1 from '@/components/code-order/code-order-card-v1/CodeOrderCardV1.vue'
 import MatchCardV1 from '@/components/match/match-card-v1/MatchCardV1.vue'
+import MatchCardV2 from '@/components/match/match-card-v2/MatchCardV2.vue'
 
 // 定义全局自动注册对象的类型
 type allGlobalComponentType = {
@@ -35,6 +36,7 @@ type allGlobalComponentType = {
   [announcementCardV1: string]: typeof AnnouncementCardV1
   [codeOrderCardV1: string]: typeof CodeOrderCardV1
   [matchCardV1: string]: typeof MatchCardV1
+  [MatchCardV2: string]: typeof MatchCardV2
 }
 
 export { allGlobalComponentType }

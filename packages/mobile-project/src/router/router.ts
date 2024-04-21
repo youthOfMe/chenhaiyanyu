@@ -390,4 +390,15 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+  {
+    // 匹配组队页面
+    path: '/match/contingent',
+    component: () =>
+      import(
+        '@/views/hall/child/metch-hall/child/find-contingent/FindContingent.vue'
+      ),
+    meta: {
+      hideTabBar: true,
+    },
+  },
 ]

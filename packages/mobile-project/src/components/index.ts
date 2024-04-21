@@ -16,6 +16,7 @@ import SocailCardV1 from './socail-card-v1/SocailCardV1.vue'
 import AnnouncementCardV1 from './announcement-card-v1/AnnouncementCardV1.vue'
 import CodeOrderCardV1 from './code-order/code-order-card-v1/CodeOrderCardV1.vue'
 import MatchCardV1 from './match/match-card-v1/MatchCardV1.vue'
+import MatchCardV2 from './match/match-card-v2/MatchCardV2.vue'
 import type { allGlobalComponentType } from '@/types'
 
 // 全局对象
@@ -38,6 +39,7 @@ const allGlobalComponent: allGlobalComponentType = {
   announcementCardV1: AnnouncementCardV1,
   codeOrderCardV1: CodeOrderCardV1,
   MatchCardV1: MatchCardV1,
+  MatchCardV2: MatchCardV2,
 }
 
 // 对外暴露插件对象

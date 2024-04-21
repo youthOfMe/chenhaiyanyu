@@ -18,6 +18,8 @@ declare module 'vue' {
     GoodPostBlock: typeof import('./src/components/good-post-block/GoodPostBlock.vue')['default']
     Loading: typeof import('./src/components/loading/Loading.vue')['default']
     MatchCardV1: typeof import('./src/components/match/match-card-v1/MatchCardV1.vue')['default']
+    MatchCardv2: typeof import('./src/components/match/match-card-v2/MatchCardv2.vue')['default']
+    MatchCardV2: typeof import('./src/components/match/match-card-v2/MatchCardV2.vue')['default']
     OurStoryCard: typeof import('./src/components/our-story-card/OurStoryCard.vue')['default']
     PostBlock: typeof import('./src/components/post-block/PostBlock.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
