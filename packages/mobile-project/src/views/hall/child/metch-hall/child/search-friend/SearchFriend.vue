@@ -82,6 +82,7 @@ const activeIndex = ref(0)
 const userStore = useUserStore()
 const onClickButton = () => {
   userStore.fetchUsersByTagList(activeIds.value)
+  router.push('/search/friend/result')
 }
 </script>
 
