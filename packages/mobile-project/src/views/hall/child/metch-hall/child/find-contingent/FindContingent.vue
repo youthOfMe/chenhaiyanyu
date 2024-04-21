@@ -67,8 +67,6 @@ teamStore.fetchTeamList({
   status: 0,
 })
 watch(type, (newValue) => {
-  console.log(newValue, 999)
-
   if (newValue === 0) {
     teamStore.fetchTeamList({
       searchText: undefined,

@@ -38,6 +38,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useTeamStore } from '@/stores'
@@ -49,11 +50,26 @@ const back = () => {
 }
 
 // 获取我的组队的数据
+const type = ref(0)
 const teamStore = useTeamStore()
 const { myTeamList } = storeToRefs(teamStore)
 teamStore.fetchMyTeamList({
   searchText: undefined,
   pageNum: 1,
+})
+watch(type, (newValue) => {
+  if (newValue === 0) {
+    teamStore.fetchMyTeamList({
+      searchText: undefined,
+      pageNum: 1,
+    })
+  }
+  // if (newValue === 1) {
+  //   teamStore.fetchTeamList({
+  //     searchText: undefined,
+  //     pageNum: 1,
+  //   })
+  // }
 })
 </script>
 

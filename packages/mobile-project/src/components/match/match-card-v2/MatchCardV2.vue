@@ -16,23 +16,78 @@
       <div class="update-time">更新时间: {{ item?.updateTime }}</div>
     </div>
     <div class="operation">
-      <van-button type="success" plain hairline size="small">
+      <van-button
+        type="success"
+        plain
+        hairline
+        size="small"
+        @click="preJoinTeam(item)"
+      >
         加入队伍
       </van-button>
       <van-button type="danger" plain hairline size="small">
         解散队伍
       </van-button>
     </div>
+    <van-dialog
+      v-model:show="showPasswordDialog"
+      title="请输入密码"
+      show-cancel-button
+      @confirm="doJoinTeam"
+      @cancel="doJoinCancel"
+    >
+      <van-field v-model="password" placeholder="请输入密码" />
+    </van-dialog>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+import { showSuccessToast, showFailToast } from 'vant'
+import { joinTeam } from '@/api'
+
 defineProps({
   item: {
     type: Object,
     default: () => {},
   },
 })
+
+// 加入队伍
+const showPasswordDialog = ref(false)
+const joinTeamId = ref(0)
+const password = ref('')
+const preJoinTeam = (team: any) => {
+  joinTeamId.value = team.id
+  if (team.status === 0) {
+    doJoinTeam()
+  } else {
+    showPasswordDialog.value = true
+  }
+}
+const doJoinCancel = () => {
+  joinTeamId.value = 0
+  password.value = ''
+}
+
+/**
+ * 加入队伍
+ */
+const doJoinTeam = async () => {
+  if (!joinTeamId.value) {
+    return
+  }
+  const res = await joinTeam({
+    teamId: joinTeamId.value,
+    password: password.value,
+  })
+  if (res?.code === 1 && res?.data != null) {
+    showSuccessToast('加入成功！')
+    doJoinCancel()
+  } else {
+    showFailToast('加入失败！' + res.msg)
+  }
+}
 </script>
 
 <style lang="scss" scoped>

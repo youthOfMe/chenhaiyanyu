@@ -155,7 +155,7 @@ const onSubmit = async () => {
   }
   // todo 前端参数校验
   const res = await createTeam(postData)
-  if (res?.code === 1 && res.data) {
+  if (res?.code === 1) {
     showSuccessToast('添加成功！')
     router.push({
       path: '/team',

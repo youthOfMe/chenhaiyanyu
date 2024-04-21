@@ -39,3 +39,16 @@ export function getListMyCreateTeams(teamQueryDTO: any) {
     params: teamQueryDTO,
   })
 }
+
+/**
+ * 加入队伍
+ * @param teamJoinDTO
+ * @returns
+ */
+export function joinTeam(teamJoinDTO: any) {
+  return xhRequest.post<any>({
+    headers: new AxiosHeaders(),
+    url: '/user/team/join',
+    data: teamJoinDTO,
+  })
+}
