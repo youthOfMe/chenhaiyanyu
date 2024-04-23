@@ -1,5 +1,5 @@
 <template>
-  <div class="create-contingent">
+  <div class="update-contigent">
     <van-nav-bar
       title="创建队伍"
       left-text="返回"
@@ -95,7 +95,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 // 确认框样式问题
 import 'vant/es/toast/style'
@@ -133,6 +133,28 @@ const minTime =
 
 // 需要用户填写的表单数据
 const addTeamData = ref({ ...initFormData })
+
+// 队伍获取ID
+const route = useRoute()
+const id = route.query.id
+
+// 获取之前的队伍信息
+onMounted(async () => {
+  if (id <= 0) {
+    showFailToast('加载队伍失败')
+    return
+  }
+  // const res = await myAxios.get('/team/get', {
+  //   params: {
+  //     id,
+  //   },
+  // })
+  // if (res?.code === 0) {
+  //   addTeamData.value = res.data
+  // } else {
+  //   Toast.fail('加载队伍失败，请刷新重试')
+  // }
+})
 
 // 提交
 const onSubmit = async () => {

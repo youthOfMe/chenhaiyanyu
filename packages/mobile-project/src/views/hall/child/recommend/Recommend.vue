@@ -12,6 +12,7 @@
         text="低代码平台"
         icon="shrink"
         icon-color="var(--primary-color)"
+        @click="goLowCode"
       ></van-grid-item>
       <van-grid-item
         text="编程学习"
@@ -22,6 +23,7 @@
         text="云控中心"
         icon="cluster-o"
         icon-color="var(--primary-color)"
+        @click="goCloud"
       ></van-grid-item>
       <van-grid-item
         text="智能BI"
@@ -32,11 +34,13 @@
         text="匹配组队"
         icon="friends-o"
         icon-color="var(--primary-color)"
+        @click="goMatch"
       ></van-grid-item>
       <van-grid-item
         text="代码生成"
         icon="passed"
         icon-color="var(--primary-color)"
+        @click="goWenXin"
       ></van-grid-item>
       <van-grid-item
         text="图片识别"
@@ -80,7 +84,7 @@
 
 <script setup lang="ts">
 import { onUnmounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useSettingStore, useAppStore, useCommunityStore } from '@/stores'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
@@ -94,6 +98,27 @@ onUnmounted(() => {
   settingStore.tabbarData[1].path = path
   settingStore.hallTabBarIndex = 0
 })
+
+// 页面跳转
+const router = useRouter()
+// 跳转到低代码平台
+const goLowCode = () => {
+  window.open('http://520.nxxd.cn/', '_blank')
+}
+// 跳转到云空中心
+const goCloud = () => {
+  window.open('https://github.com/youthOfMe/Cloud-Control-Center', '__blank')
+}
+// 跳转到匹配组队
+const goMatch = () => {
+  router.push('/match/contingent')
+}
+// 跳转到代码生成
+const goWenXin = () => {
+  window.open('https://yiyan.baidu.com/welcome', '_blank')
+}
+// 跳转到图片识别
+// 跳转到AI聊天
 
 // 获取轮播图数据
 const appStore = useAppStore()
