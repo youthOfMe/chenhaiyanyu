@@ -20,6 +20,7 @@
   "dependencies": {
     "@vant/area-data": "^1.5.1",
     "dayjs": "^1.11.10",
+    "echarts": "^5.5.0",
     "mockjs": "^1.1.0",
     "pinia": "^2.1.7",
     "socket.io-client": "^4.7.5",
