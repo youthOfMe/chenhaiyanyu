@@ -16,17 +16,18 @@
         <van-field type="tel" v-model="mobile" :rules="mobileRules" />
         <text>验证码</text>
         <div class="verCode">
-          <van-field style="width: 63%" v-model="verCode" type="tel" />
+          <van-field
+            style="width: 63%"
+            v-model="verCode"
+            :rules="verCodeRules"
+            type="tel"
+          />
           <van-button style="margin-left: 25px" @click="getVerCode">
             获取验证码
           </van-button>
-          <van-notify v-model:show="show" type="warning">
-            <van-icon name="warning-o" style="margin-right: 4px" />
-            <span>请先填写手机号</span>
-          </van-notify>
         </div>
         <div class="cp-cell">
-          <van-button type="primary" native-type="submit">注 册</van-button>
+          <van-button type="primary" native-type="submit">登 录</van-button>
         </div>
       </van-form>
     </div>
@@ -49,38 +50,43 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
-import { mobileRules, usernameRules } from '@/utils/Rules.ts'
+import { mobileRules, verCodeRules } from '@/utils/Rules.ts'
 import { useUserStore } from '@/stores'
+// vant提示框样式问题处理
+import 'vant/es/dialog/style'
+import { showSuccessToast, showFailToast } from 'vant'
 
 const mobile = ref('')
 const verCode = ref('')
-//消息提示
-const show = ref(false)
+
 const router = useRouter()
 let goBack = () => {
-  router.replace('/register')
+  router.replace('/login')
 }
 
 // 手机号登录
 const userStore = useUserStore()
+
 const getVerCode = () => {
+  console.log(mobile.value)
   if (mobile.value === '') {
-    console.log('输入不能为空')
-    show.value = true
-    setTimeout(() => {
-      show.value = false
-    }, 2000)
+    showFailToast('请先填写手机号')
   } else {
-    console.log('输入有效')
+    console.log('发送验证码')
+    showSuccessToast('获取验证码成功')
   }
 }
-
 const onSubmit = async () => {
-  await userStore.fetchLogin({
-    phone: mobile.value,
-    verCode: verCode.value,
-    type: 2,
-  })
+  if (mobile.value === '' || verCode.value === '') {
+    console.log('必须填写手机号和验证码')
+  } else {
+    showSuccessToast('成功文案')
+    await userStore.fetchLogin({
+      phone: mobile.value,
+      verCode: verCode.value,
+      type: 2,
+    })
+  }
   router.replace('/')
 }
 </script>
