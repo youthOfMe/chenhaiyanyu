@@ -37,7 +37,7 @@
         <div class="roundTre"></div>
         <div class="roundFour"></div>
       </div>
-      <router-link to="/login">
+      <router-link to="/login" replace>
         <div class="bottom-words">
           <text>已 有 账 号</text>
         </div>
@@ -58,7 +58,7 @@ const verCode = ref('')
 const show = ref(false)
 const router = useRouter()
 let goBack = () => {
-  router.go(-1)
+  router.replace('/register')
 }
 
 // 手机号登录

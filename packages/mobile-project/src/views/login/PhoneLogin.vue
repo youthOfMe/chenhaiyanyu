@@ -38,11 +38,11 @@
         <div class="roundFour"></div>
       </div>
       <div class="bottom-words">
-        <router-link to="/register">
+        <router-link to="/register" replace>
           <text>注册</text>
         </router-link>
         <text>|</text>
-        <router-link to="/foundAccount">
+        <router-link to="/foundAccount" replace>
           <text>找回</text>
         </router-link>
       </div>
@@ -62,7 +62,7 @@ const verCode = ref('')
 const show = ref(false)
 const router = useRouter()
 let goBack = () => {
-  router.go(-1)
+  router.replace('/login')
 }
 
 // 手机号登录

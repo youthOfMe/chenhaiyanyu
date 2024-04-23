@@ -29,7 +29,11 @@ router.beforeEach(async (to: any, from: any, next: any) => {
       to.path === '/login' ||
       to.path === '/login/' ||
       to.path === '/phoneLogin' ||
-      to.path === '/phoneLogin/'
+      to.path === '/phoneLogin/' ||
+      to.path === '/register' ||
+      to.path === '/register/' ||
+      to.path === '/phoneRegister' ||
+      to.path === '/phoneRegister/'
     )
       next({ path: '/' })
     else {
@@ -52,7 +56,11 @@ router.beforeEach(async (to: any, from: any, next: any) => {
       to.path === '/login' ||
       to.path === '/login/' ||
       to.path === '/phoneLogin' ||
-      to.path === '/phoneLogin/'
+      to.path === '/phoneLogin/' ||
+      to.path === '/register' ||
+      to.path === '/register/' ||
+      to.path === '/phoneRegister' ||
+      to.path === '/phoneRegister/'
     )
       next()
     else next({ path: '/login', query: { redirect: to.path } })

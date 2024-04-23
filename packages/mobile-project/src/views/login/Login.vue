@@ -2,11 +2,11 @@
   <div class="login">
     <div class="topContent">
       <div class="top-back">
-        <svg-icon
+        <!-- <svg-icon
           class="left-icon"
           name="login-back"
           @click="goBack()"
-        ></svg-icon>
+        ></svg-icon> -->
       </div>
       <div class="user-avatar"></div>
     </div>
@@ -16,7 +16,7 @@
         <van-field type="tel" v-model="username" :rules="usernameRules" />
         <text>密码</text>
         <van-field type="password" v-model="password" :rules="passwordRules" />
-        <router-link to="/phoneLogin">
+        <router-link to="/phoneLogin" replace>
           <p>去使用手机号登录</p>
         </router-link>
         <div class="cp-cell">
@@ -32,11 +32,11 @@
         <div class="roundFour"></div>
       </div>
       <div class="bottom-words">
-        <router-link to="/register">
+        <router-link to="/register" replace>
           <text>注册</text>
         </router-link>
         <text>|</text>
-        <router-link to="/foundAccount">
+        <router-link to="/foundAccount" replace>
           <text>找回</text>
         </router-link>
       </div>

@@ -2,11 +2,11 @@
   <div class="register">
     <div class="topContent">
       <div class="top-back">
-        <svg-icon
+        <!-- <svg-icon
           class="left-icon"
           name="login-back"
           @click="goBack()"
-        ></svg-icon>
+        ></svg-icon> -->
       </div>
       <text>欢迎新用户</text>
     </div>
@@ -32,7 +32,7 @@
           ref="confirmPasswordInput"
           :rules="passwordRules"
         />
-        <router-link to="/phoneRegister">
+        <router-link to="/phoneRegister" replace>
           <p>去使用手机号注册</p>
         </router-link>
         <div class="cp-cell">
@@ -47,7 +47,7 @@
         <div class="roundTre"></div>
         <div class="roundFour"></div>
       </div>
-      <router-link to="/login">
+      <router-link to="/login" replace>
         <div class="bottom-words">
           <text>已 有 账 号</text>
         </div>
@@ -68,7 +68,7 @@ const onSubmit = () => {
 }
 const router = useRouter()
 let goBack = () => {
-  router.go(-1)
+  router.replace('/register')
 }
 </script>
 
