@@ -29,6 +29,7 @@
         text="智能BI"
         icon="bar-chart-o"
         icon-color="var(--primary-color)"
+        @click="goAIBI"
       ></van-grid-item>
       <van-grid-item
         text="匹配组队"
@@ -108,6 +109,10 @@ const goLowCode = () => {
 // 跳转到云空中心
 const goCloud = () => {
   window.open('https://github.com/youthOfMe/Cloud-Control-Center', '__blank')
+}
+// 跳转到智能BI
+const goAIBI = () => {
+  router.push('/aibi')
 }
 // 跳转到匹配组队
 const goMatch = () => {

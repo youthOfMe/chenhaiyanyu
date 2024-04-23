@@ -409,4 +409,12 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+  {
+    // 智能BI
+    path: '/aibi',
+    component: () => import('@/views/hall/child/recommend/ai-bi/AIBI.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
 ]
