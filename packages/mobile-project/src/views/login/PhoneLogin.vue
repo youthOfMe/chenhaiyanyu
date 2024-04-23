@@ -84,11 +84,8 @@ const getVerCode = () => {
       show.value = false
     }, 2000)
   } else {
-<<<<<<< HEAD
     console.log('等待获取验证码')
-=======
     showSuccessToast('成功文案')
->>>>>>> e2d940c30b5fce789257d5fe0eb43e46a3443de4
   }
 }
 const onSubmit = async () => {

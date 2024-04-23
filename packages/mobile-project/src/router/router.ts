@@ -417,4 +417,13 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+  {
+    // 智能AI聊天
+    path: '/aichart',
+    component: () =>
+      import('@/views/hall/child/recommend/ai-chart/AiChart.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
 ]

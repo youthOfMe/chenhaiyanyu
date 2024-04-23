@@ -52,6 +52,7 @@
         text="AI聊天"
         icon="manager-o"
         icon-color="var(--primary-color)"
+        @click="goAiChart"
       ></van-grid-item>
     </van-grid>
     <div class="good-post">
@@ -124,6 +125,9 @@ const goWenXin = () => {
 }
 // 跳转到图片识别
 // 跳转到AI聊天
+const goAiChart = () => {
+  router.push('/aichart')
+}
 
 // 获取轮播图数据
 const appStore = useAppStore()
