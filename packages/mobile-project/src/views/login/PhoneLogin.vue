@@ -60,6 +60,9 @@ import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import { mobileRules, verCodeRules } from '@/utils/Rules.ts'
 import { useUserStore } from '@/stores'
+// vant提示框样式问题处理
+import 'vant/es/dialog/style'
+import { showSuccessToast, showFailToast } from 'vant'
 
 const mobile = ref('')
 const verCode = ref('')
@@ -74,14 +77,18 @@ let goBack = () => {
 const userStore = useUserStore()
 
 const getVerCode = () => {
-  if (mobile.value === '') {
-    console.log('输入不能为空')
+  if (mobile.value === '' || verCode.value === '') {
+    showFailToast('必须填写手机号和验证码')
     show.value = true
     setTimeout(() => {
       show.value = false
     }, 2000)
   } else {
+<<<<<<< HEAD
     console.log('等待获取验证码')
+=======
+    showSuccessToast('成功文案')
+>>>>>>> e2d940c30b5fce789257d5fe0eb43e46a3443de4
   }
 }
 const onSubmit = async () => {
