@@ -16,7 +16,12 @@
         <van-field type="tel" v-model="mobile" :rules="mobileRules" />
         <text>验证码</text>
         <div class="verCode">
-          <van-field style="width: 63%" v-model="verCode" type="tel" />
+          <van-field
+            style="width: 63%"
+            v-model="verCode"
+            :rules="verCodeRules"
+            type="tel"
+          />
           <van-button style="margin-left: 25px" @click="getVerCode">
             获取验证码
           </van-button>
@@ -53,7 +58,7 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
-import { mobileRules, usernameRules } from '@/utils/Rules.ts'
+import { mobileRules, verCodeRules } from '@/utils/Rules.ts'
 import { useUserStore } from '@/stores'
 // vant提示框样式问题处理
 import 'vant/es/dialog/style'
@@ -70,6 +75,7 @@ let goBack = () => {
 
 // 手机号登录
 const userStore = useUserStore()
+
 const getVerCode = () => {
   if (mobile.value === '' || verCode.value === '') {
     showFailToast('必须填写手机号和验证码')
@@ -78,7 +84,11 @@ const getVerCode = () => {
       show.value = false
     }, 2000)
   } else {
+<<<<<<< HEAD
+    console.log('等待获取验证码')
+=======
     showSuccessToast('成功文案')
+>>>>>>> e2d940c30b5fce789257d5fe0eb43e46a3443de4
   }
 }
 const onSubmit = async () => {

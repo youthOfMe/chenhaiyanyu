@@ -19,4 +19,11 @@ const usernameRules = [
     message: '用户名需6-18个字符',
   },
 ]
-export { mobileRules, passwordRules, usernameRules }
+const verCodeRules = [
+  { required: true, message: '请输入验证码' },
+  {
+    pattern: /^\d{6}$/,
+    message: '验证码格式不正确',
+  },
+]
+export { mobileRules, passwordRules, usernameRules, verCodeRules }
