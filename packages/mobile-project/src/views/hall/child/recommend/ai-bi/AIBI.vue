@@ -8,9 +8,9 @@
     ></van-nav-bar>
     <van-tabs v-model:active="active">
       <van-tab title="智能分析"></van-tab>
-      <van-tab title="我的分析">内容 2</van-tab>
+      <van-tab title="我的分析"></van-tab>
     </van-tabs>
-    <div class="ai-content">
+    <div class="ai-content" v-if="active === 0">
       <div class="input">
         <div class="head">
           <div class="title">提交分析</div>
@@ -115,11 +115,16 @@
           <van-loading
             size="24px"
             style="width: 100%; height: 50px; text-align: center"
-            v-if="isLoading"
+            v-show="isLoading"
           >
             加载中...
           </van-loading>
         </div>
+      </div>
+    </div>
+    <div class="my-chart" v-show="active === 1">
+      <div class="list">
+        <BiCard></BiCard>
       </div>
     </div>
   </div>
@@ -134,6 +139,8 @@ import { showFailToast, showSuccessToast } from 'vant'
 import 'vant/es/toast/style'
 // 引入分析数据的接口
 import { genChartByAiUsingPOST } from '@/api'
+// 引入卡片组件
+import BiCard from './cpns/bi-card/BiCard.vue'
 
 // 路由回退
 const router = useRouter()
@@ -211,6 +218,14 @@ const onSubmit = async () => {
 </script>
 
 <style lang="scss" scoped>
+.my-chart {
+  overflow-y: auto;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  .list {
+    padding: 5px 9px 20px;
+  }
+}
 .ai-content {
   overflow-y: auto;
   padding-top: 10px;
