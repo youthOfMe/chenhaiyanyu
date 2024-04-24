@@ -72,6 +72,14 @@
         </div>
       </div>
     </div>
+    <div class="chat-operation">
+      <van-search
+        v-model="commit"
+        shape="round"
+        placeholder="请输入搜索关键词"
+      />
+      <div class="button" @click="postCommit">发送</div>
+    </div>
   </div>
 </template>
 
@@ -82,14 +90,17 @@ export default {
 </script>
 <script setup lang="ts">
 import { ref, watch, computed, onMounted } from 'vue'
-import { isThumb, thumb } from '@/api'
+import { isThumb, thumb, postPostCommit } from '@/api'
 import { storeToRefs } from 'pinia'
 import { useCommunityStore } from '@/stores'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
 import { showImagePreview } from 'vant'
+import { showFailToast, showSuccessToast } from 'vant'
 import Commit from './cpns/commit/Commit.vue'
 // 确认框样式问题
 import 'vant/es/image-preview/style'
+// vant提示框样式问题处理
+import 'vant/es/toast/style'
 
 // 判断用户是否进行点赞了
 // 记录页面点赞状态
@@ -136,6 +147,20 @@ const getThumb = async (type: number) => {
 const commitBarIndex = ref(0)
 // 是否只看作者的评论
 const onlySeeAuthor = ref('')
+
+// 发布帖子评论
+const commit = ref('')
+const postCommit = async () => {
+  const res = await postPostCommit({
+    postId: communityStore.postId,
+    commitContent: commit.value,
+  })
+  if (res.code === 1) {
+    showSuccessToast('发布评论成功！')
+  } else {
+    showFailToast('发布评论失败')
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -143,7 +168,7 @@ const onlySeeAuthor = ref('')
   overflow-y: auto;
   padding: 15px 9px 5px;
   box-sizing: border-box;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 80px - 50px);
   background-color: #ffffff;
   .content-title {
     font-size: 22px;
@@ -203,6 +228,25 @@ const onlySeeAuthor = ref('')
         color: var(--second-color);
       }
     }
+  }
+}
+.chat-operation {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  height: 50px;
+  .van-search {
+    flex: 1;
+  }
+  .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    color: var(--primary-color);
+    background-color: #ffffff;
   }
 }
 </style>

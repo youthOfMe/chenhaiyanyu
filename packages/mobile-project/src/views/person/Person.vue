@@ -19,8 +19,9 @@
             v-model:current-rate="currentRate"
             :rate="30"
             :speed="100"
-            text="我的社区"
+            text="我的地址"
             :color="gradientColor"
+            @click="goMyAddress"
           />
         </div>
         <div class="item" @click="goMyContingent">
@@ -136,6 +137,11 @@ const goShoppingCart = () => {
 // 跳转到我的组队
 const goMyContingent = () => {
   router.push('/myContingent')
+}
+
+// 跳转到地址页面
+const goMyAddress = () => {
+  router.push('/addressBook')
 }
 </script>
 

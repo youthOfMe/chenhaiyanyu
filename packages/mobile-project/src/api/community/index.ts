@@ -111,3 +111,18 @@ export function isThumb(postId: string) {
     },
   })
 }
+
+/**
+ * 帖子发布评论
+ * @param postCommitDTO
+ * @returns
+ */
+export function postPostCommit(postCommitDTO: any) {
+  return xhRequest.post<any>({
+    headers: new AxiosHeaders(),
+    url: '/user/community/commit/post',
+    data: {
+      ...postCommitDTO,
+    },
+  })
+}
