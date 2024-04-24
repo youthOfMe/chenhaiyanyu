@@ -32,7 +32,7 @@
 
 <script setup lang="ts">
 // import tabbarData from '@/assets/data/tabbar'
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
 const props = defineProps({
@@ -43,13 +43,20 @@ const props = defineProps({
 })
 
 // 监听路由改变时, 找到对应的索引, 设置currentIndex
+
 const route = useRoute()
+onMounted(() => {
+  const index = props.tabbarData.findIndex((item) => item.path === route.path)
+  if (route.path.includes('hall')) index = 1
+  currentIndex.value = index
+})
 const currentIndex = ref(0)
 watch(route, (newRoute) => {
+  console.log(newRoute.path, 666)
+
   // 找不到就返回-1
-  const index = props.tabbarData.findIndex(
-    (item) => item.path === newRoute.path,
-  )
+  let index = props.tabbarData.findIndex((item) => item.path === newRoute.path)
+  if (route.path.includes('hall')) index = 1
   if (index === -1) return
   currentIndex.value = index
 })

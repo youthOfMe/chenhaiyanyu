@@ -53,8 +53,9 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { GridItem } from 'vant'
+import { ref, onMounted } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 const props = defineProps({
   themeColor: {
     type: String,
@@ -77,6 +78,13 @@ const props = defineProps({
     type: Object,
     default: () => {},
   },
+})
+
+// 监听路由
+const route = useRoute()
+onMounted(() => {
+  let index = props.tabBarData.findIndex((item) => item.path === route.path)
+  tabActive.value = index
 })
 
 // 控制tabs

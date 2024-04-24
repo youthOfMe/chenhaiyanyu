@@ -140,7 +140,10 @@ const onlySeeAuthor = ref('')
 
 <style lang="scss" scoped>
 .content {
+  overflow-y: auto;
   padding: 15px 9px 5px;
+  box-sizing: border-box;
+  height: calc(100vh - 80px);
   background-color: #ffffff;
   .content-title {
     font-size: 22px;
