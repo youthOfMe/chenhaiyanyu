@@ -1,5 +1,5 @@
 <template>
-  <div class="commodity-card-v2">
+  <div class="commodity-card-v2" @click="goDetail(info?.id)">
     <img :src="info?.image || ''" alt="" />
     <div class="info">
       <div class="info-title"></div>
@@ -20,6 +20,7 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
 
 defineProps({
@@ -32,12 +33,18 @@ defineProps({
     default: () => {},
   },
 })
+
+const router = useRouter()
+const goDetail = (id) => {
+  router.push(`/commodity/${id}`)
+}
 </script>
 
 <style lang="scss" scoped>
 .commodity-card-v2 {
   margin: 10px;
   padding: 10px;
+  background-color: #ffffff;
   box-shadow: rgb(0 0 0 / 24%) 0 3px 8px;
   img {
     width: 100%;

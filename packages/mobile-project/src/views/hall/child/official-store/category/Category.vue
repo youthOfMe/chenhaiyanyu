@@ -40,7 +40,7 @@ const categories = ref([])
 const activeIndex = ref(0)
 const officialShopStore = useOfficailShopStore()
 officialShopStore.fetchCategoryList()
-officialShopStore.fetchCommodityList(16)
+officialShopStore.fetchCommodityList(22)
 const { categoryList, commodityList } = storeToRefs(officialShopStore)
 watch(categoryList, (newValue) => {
   categories.value = categoryList.value

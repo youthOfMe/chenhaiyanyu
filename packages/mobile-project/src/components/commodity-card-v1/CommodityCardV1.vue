@@ -1,5 +1,5 @@
 <template>
-  <div class="commodity-card-v1" @click="goDetail">
+  <div class="commodity-card-v1">
     <img :src="info.image" alt="" class="commodity-img" />
     <div class="info">
       <div class="name nowrap_ellipsis">{{ info.name }}</div>
@@ -28,8 +28,8 @@ defineProps({
 })
 
 const router = useRouter()
-const goDetail = () => {
-  router.push('/commodity')
+const goDetail = (id) => {
+  router.push(`/commodity/${id}`)
 }
 </script>
 

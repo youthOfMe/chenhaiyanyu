@@ -32,7 +32,7 @@ const back = () => {
 const officialShopStore = useOfficailShopStore()
 officialShopStore.fetchCommodityPageList({
   page: 1,
-  pageSize: 10,
+  pageSize: 25,
 })
 const { commodityPageList } = storeToRefs(officialShopStore)
 </script>
