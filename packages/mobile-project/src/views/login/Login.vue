@@ -45,10 +45,13 @@
 </template>
 
 <script lang="ts" setup>
-import { useRouter } from 'vue-router'
 import { ref } from 'vue'
-import { mobileRules, passwordRules, usernameRules } from '@/utils/Rules.ts'
+import { useRouter } from 'vue-router'
+import { passwordRules, usernameRules } from '@/utils/Rules.ts'
 import { useUserStore } from '@/stores'
+import { showFailToast, showSuccessToast } from 'vant'
+// vant提示框样式问题处理
+import 'vant/es/toast/style'
 
 const username = ref('')
 const password = ref('')
@@ -60,12 +63,17 @@ let goBack = () => {
 // 手机号登录
 const userStore = useUserStore()
 const onSubmit = async () => {
-  await userStore.fetchLogin({
-    account: username.value,
-    password: password.value,
-    type: 1,
-  })
-  router.replace('/')
+  try {
+    await userStore.fetchLogin({
+      account: username.value,
+      password: password.value,
+      type: 1,
+    })
+    showSuccessToast('登录成功')
+    router.replace('/')
+  } catch (error) {
+    showFailToast('登录失败')
+  }
 }
 </script>
 

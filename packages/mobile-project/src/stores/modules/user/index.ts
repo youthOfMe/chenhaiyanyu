@@ -7,6 +7,7 @@ import {
   searchUsersByTags,
   getMatchUserList,
   getTags,
+  register,
 } from '@/api'
 import {
   GET_IM_TOKEN,
@@ -32,9 +33,18 @@ export const useUserStore = defineStore('user', {
     // 登录
     async fetchLogin(params: any) {
       const res = await login(params)
-      if (res.code === 1) {
+      if (res.code === 1 && res.data != null) {
         this.token = res.data.token
         SET_TOKEN(this.token)
+        return 'ok'
+      } else return Promise.reject(new Error(res.msg))
+    },
+    // 注册
+    async fetchRegister(params: any) {
+      const res = await register(params)
+      if (res.code === 1 && res.data != null) {
+        this.token = res.data.token
+        SET_TOKEN(res.data.token)
         return 'ok'
       } else return Promise.reject(new Error(res.msg))
     },

@@ -36,7 +36,13 @@
           <p>去使用手机号注册</p>
         </router-link>
         <div class="cp-cell">
-          <van-button type="primary" native-type="submit">注 册</van-button>
+          <van-button
+            type="primary"
+            native-type="submit"
+            @click="confirmRegister"
+          >
+            注 册
+          </van-button>
         </div>
       </van-form>
     </div>
@@ -59,7 +65,12 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { mobileRules, passwordRules, usernameRules } from '@/utils/Rules.ts'
+import { useUserStore } from '@/stores'
+import { passwordRules, usernameRules } from '@/utils/Rules.ts'
+import { showFailToast, showSuccessToast } from 'vant'
+// vant提示框样式问题处理
+import 'vant/es/toast/style'
+
 const username = ref('')
 const confirmPassword = ref('')
 const password = ref('')
@@ -69,6 +80,22 @@ const onSubmit = () => {
 const router = useRouter()
 let goBack = () => {
   router.replace('/register')
+}
+
+// 进行注册
+const userStore = useUserStore()
+const confirmRegister = async () => {
+  try {
+    await userStore.fetchRegister({
+      type: 1,
+      account: username.value,
+      password: password.value,
+    })
+    showSuccessToast('注册成功')
+    router.replace('/')
+  } catch (error) {
+    showFailToast('注册失败')
+  }
 }
 </script>
 

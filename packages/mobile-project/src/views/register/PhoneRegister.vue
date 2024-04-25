@@ -22,12 +22,18 @@
             :rules="verCodeRules"
             type="tel"
           />
-          <van-button style="margin-left: 25px" @click="getVerCode">
+          <van-button
+            style="margin-left: 25px"
+            @click="getVerCode"
+            :loading="isLoading"
+          >
             获取验证码
           </van-button>
         </div>
         <div class="cp-cell">
-          <van-button type="primary" native-type="submit">登 录</van-button>
+          <van-button type="primary" native-type="submit" @click="confirmLogin">
+            登 录
+          </van-button>
         </div>
       </van-form>
     </div>
@@ -51,6 +57,7 @@
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import { mobileRules, verCodeRules } from '@/utils/Rules.ts'
+import { getVeriCode } from '@/api'
 import { useUserStore } from '@/stores'
 // vant提示框样式问题处理
 import 'vant/es/dialog/style'
@@ -67,20 +74,25 @@ let goBack = () => {
 // 手机号登录
 const userStore = useUserStore()
 
-const getVerCode = () => {
-  console.log(mobile.value)
+// 获取验证码
+const isLoading = ref(false)
+const getVerCode = async () => {
+  isLoading.value = true
   if (mobile.value === '') {
     showFailToast('请先填写手机号')
   } else {
-    console.log('发送验证码')
-    showSuccessToast('获取验证码成功')
+    const res = await getVeriCode(mobile.value)
+    if (res.msg != null) {
+      showSuccessToast('获取验证码成功')
+    }
+    showFailToast(res.msg)
   }
 }
 const onSubmit = async () => {
   if (mobile.value === '' || verCode.value === '') {
     console.log('必须填写手机号和验证码')
   } else {
-    showSuccessToast('成功文案')
+    showSuccessToast('获取成功')
     await userStore.fetchLogin({
       phone: mobile.value,
       verCode: verCode.value,
@@ -88,6 +100,21 @@ const onSubmit = async () => {
     })
   }
   router.replace('/')
+}
+
+// 手机号登录
+const confirmLogin = async () => {
+  try {
+    await userStore.fetchLogin({
+      phone: mobile.value,
+      code: verCode.value,
+      type: 2,
+    })
+    showSuccessToast('登录成功')
+    router.replace('/')
+  } catch (error) {
+    showFailToast('登录失败')
+  }
 }
 </script>
 
