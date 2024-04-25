@@ -426,4 +426,13 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+  {
+    // 全部商品页面
+    path: '/allCommodity',
+    component: () =>
+      import('@/views/hall/child/official-store/commodity/Commodity.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
 ]

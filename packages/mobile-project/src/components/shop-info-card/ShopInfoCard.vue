@@ -3,7 +3,11 @@
     <div class="content-title">店铺介绍</div>
     <div class="content">
       <div class="base-info">
-        <img :src="getAssetURL('home/head.jpg')" @click="toPersonInfo" alt="" />
+        <img
+          :src="getAssetURL('shop/three.png')"
+          @click="toPersonInfo"
+          alt=""
+        />
         <div class="info">
           <div class="name-title">
             <span class="name">辰海烟雨官方店铺</span>
