@@ -22,7 +22,11 @@
             :rules="verCodeRules"
             type="tel"
           />
-          <van-button style="margin-left: 25px" @click="getVerCode">
+          <van-button
+            style="margin-left: 25px"
+            @click="getVerCode"
+            :loading="isLoading"
+          >
             获取验证码
           </van-button>
         </div>
@@ -59,6 +63,7 @@ import { useUserStore } from '@/stores'
 // vant提示框样式问题处理
 import 'vant/es/dialog/style'
 import { showSuccessToast, showFailToast } from 'vant'
+import { getVeriCode } from '@/api'
 
 const mobile = ref('')
 const verCode = ref('')
@@ -69,29 +74,36 @@ let goBack = () => {
 }
 
 // 手机号登录
+const isLoading = ref(false)
 const userStore = useUserStore()
 
-const getVerCode = () => {
-  console.log(mobile.value)
+const getVerCode = async () => {
+  isLoading.value = true
   if (mobile.value === '') {
     showFailToast('请先填写手机号')
   } else {
-    console.log('发送验证码')
+    const res = await getVeriCode(mobile.value)
+    if (res.msg != null) {
+      showFailToast(res.msg)
+    }
     showSuccessToast('获取验证码成功')
   }
 }
 const onSubmit = async () => {
   if (mobile.value === '' || verCode.value === '') {
-    console.log('必须填写手机号和验证码')
-  } else {
-    showSuccessToast('成功文案')
+    showFailToast('手机号和验证码不许为空')
+  }
+  try {
     await userStore.fetchLogin({
       phone: mobile.value,
-      verCode: verCode.value,
+      code: verCode.value,
       type: 2,
     })
+    showSuccessToast('登录成功')
+    router.replace('/')
+  } catch (error) {
+    showFailToast('登录失败')
   }
-  router.replace('/')
 }
 </script>
 

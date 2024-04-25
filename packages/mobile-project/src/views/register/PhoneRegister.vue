@@ -32,7 +32,7 @@
         </div>
         <div class="cp-cell">
           <van-button type="primary" native-type="submit" @click="confirmLogin">
-            登 录
+            注 册
           </van-button>
         </div>
       </van-form>
@@ -83,29 +83,19 @@ const getVerCode = async () => {
   } else {
     const res = await getVeriCode(mobile.value)
     if (res.msg != null) {
-      showSuccessToast('获取验证码成功')
+      showFailToast(res.msg)
     }
-    showFailToast(res.msg)
+    showSuccessToast('获取验证码成功')
   }
-}
-const onSubmit = async () => {
-  if (mobile.value === '' || verCode.value === '') {
-    console.log('必须填写手机号和验证码')
-  } else {
-    showSuccessToast('获取成功')
-    await userStore.fetchLogin({
-      phone: mobile.value,
-      verCode: verCode.value,
-      type: 2,
-    })
-  }
-  router.replace('/')
 }
 
 // 手机号登录
 const confirmLogin = async () => {
+  if (mobile.value === '' || verCode.value === '') {
+    showFailToast('手机号和验证码不许为空')
+  }
   try {
-    await userStore.fetchLogin({
+    await userStore.fetchRegister({
       phone: mobile.value,
       code: verCode.value,
       type: 2,
