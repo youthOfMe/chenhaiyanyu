@@ -126,3 +126,18 @@ export function postPostCommit(postCommitDTO: any) {
     },
   })
 }
+
+/**
+ * 获取帖子评论列表
+ * @param postId
+ * @returns
+ */
+export function getPostCommitList(postId: number) {
+  return xhRequest.get<any>({
+    headers: new AxiosHeaders(),
+    url: '/user/community/commit/list',
+    params: {
+      postId,
+    },
+  })
+}

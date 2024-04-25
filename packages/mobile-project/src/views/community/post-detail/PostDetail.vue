@@ -65,7 +65,11 @@
         <div class="van-bar-wrap">
           <van-tabs v-model:active="commitBarIndex" swipeable>
             <van-tab title="评论">
-              <Commit></Commit>
+              <Commit
+                v-for="item in commitList"
+                :item="item"
+                :key="(item as any).content"
+              ></Commit>
             </van-tab>
             <van-tab title="相关">111</van-tab>
           </van-tabs>
@@ -90,7 +94,7 @@ export default {
 </script>
 <script setup lang="ts">
 import { ref, watch, computed, onMounted } from 'vue'
-import { isThumb, thumb, postPostCommit } from '@/api'
+import { isThumb, thumb, postPostCommit, getPostCommitList } from '@/api'
 import { storeToRefs } from 'pinia'
 import { useCommunityStore } from '@/stores'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
@@ -161,6 +165,14 @@ const postCommit = async () => {
     showFailToast('发布评论失败')
   }
 }
+
+// 获取帖子评论列表
+const commitList = ref([])
+const fetchPostCommitList = async () => {
+  const res = await getPostCommitList(communityStore.postId)
+  commitList.value = res.data
+}
+fetchPostCommitList()
 </script>
 
 <style lang="scss" scoped>
