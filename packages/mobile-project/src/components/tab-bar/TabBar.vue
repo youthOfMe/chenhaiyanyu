@@ -46,7 +46,7 @@ const props = defineProps({
 
 const route = useRoute()
 onMounted(() => {
-  const index = props.tabbarData.findIndex((item) => item.path === route.path)
+  let index = props.tabbarData.findIndex((item) => item.path === route.path)
   if (route.path.includes('hall')) index = 1
   currentIndex.value = index
 })
