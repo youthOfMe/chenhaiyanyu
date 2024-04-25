@@ -8,12 +8,12 @@
         <div class="content">
           <div class="name-time">
             <div class="name nowrap_ellipsis">
-              <span class="reply" v-if="false">回复牛马</span>
-              我不是星海
+              <span class="reply" v-if="false">回复</span>
+              作者
             </div>
-            <div class="time">2024-03-23</div>
+            <div class="time">{{ item.createdTime }}</div>
           </div>
-          <div class="text">评论内容</div>
+          <div class="text">{{ item.content }}</div>
         </div>
         <div class="operation">
           <SvgIcon></SvgIcon>
@@ -25,7 +25,7 @@
                   ></SvgIcon> -->
         </div>
       </div>
-      <div class="reply-list">
+      <!-- <div class="reply-list">
         <div class="commit">
           <div class="head-img">
             <img :src="getAssetURL('home/head-bg.jpg')" alt="" />
@@ -46,13 +46,13 @@
               name="postblock-thumb"
               width="20px"
               height="20px"
-            ></SvgIcon>
-            <!-- <SvgIcon
+            ></SvgIcon> -->
+      <!-- <SvgIcon
                     name="postblock-thumb_active"
                     width="20px"
                     height="20px"
                   ></SvgIcon> -->
-          </div>
+      <!-- </div>
         </div>
         <div class="commit">
           <div class="head-img">
@@ -74,25 +74,32 @@
               name="postblock-thumb"
               width="20px"
               height="20px"
-            ></SvgIcon>
-            <!-- <SvgIcon
+            ></SvgIcon> -->
+      <!-- <SvgIcon
                     name="postblock-thumb_active"
                     width="20px"
                     height="20px"
                   ></SvgIcon> -->
-          </div>
+      <!-- </div>
         </div>
         <div class="bottom-operation">
           查看全部5条回复
           <SvgIcon name="community-post_detail-down" class="icon"></SvgIcon>
         </div>
-      </div>
+      </div>  -->
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
+
+defineProps({
+  item: {
+    type: Object,
+    default: () => {},
+  },
+})
 </script>
 
 <style lang="scss" scoped>

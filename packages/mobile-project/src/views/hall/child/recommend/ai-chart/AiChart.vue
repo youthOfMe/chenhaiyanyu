@@ -62,7 +62,6 @@ const isLoading = ref(false)
 
 // 发送消息
 const sendMessage = async () => {
-  message.value = ''
   isLoading.value = true
   let date = new Date()
   const hours = date.getHours()
@@ -83,6 +82,7 @@ const sendMessage = async () => {
       message: res.data,
       time: hours + ':' + minutes + ':' + seconds,
     })
+    message.value = ''
   } else {
     isLoading.value = false
     showFailToast('获取AI聊天失败')

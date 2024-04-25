@@ -212,7 +212,7 @@ const onSubmit = async () => {
       }
     }
   } catch (e: any) {
-    showFailToast('分析失败，' + e.message)
+    // showFailToast('分析失败，' + e.message)
   }
 }
 </script>

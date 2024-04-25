@@ -47,6 +47,7 @@
         text="图片识别"
         icon="photo-o"
         icon-color="var(--primary-color)"
+        @click="goImage"
       ></van-grid-item>
       <van-grid-item
         text="AI聊天"
@@ -68,9 +69,11 @@
     <div class="good-seller">
       <div class="content-title">优质商品</div>
       <div class="content">
-        <GoodPostBlock></GoodPostBlock>
-        <GoodPostBlock></GoodPostBlock>
-        <GoodPostBlock></GoodPostBlock>
+        <GoodPostBlock
+          v-for="item in commodityPageList.records"
+          :item="item"
+          :key="item.id"
+        ></GoodPostBlock>
       </div>
     </div>
     <div class="list">
@@ -88,7 +91,12 @@
 import { onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
-import { useSettingStore, useAppStore, useCommunityStore } from '@/stores'
+import {
+  useSettingStore,
+  useAppStore,
+  useCommunityStore,
+  useOfficailShopStore,
+} from '@/stores'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
 
 // 持久化页面 可抽取为hooks
@@ -124,6 +132,9 @@ const goWenXin = () => {
   window.open('https://yiyan.baidu.com/welcome', '_blank')
 }
 // 跳转到图片识别
+const goImage = () => {
+  window.open('http://43.136.71.207:7860', '_blank')
+}
 // 跳转到AI聊天
 const goAiChart = () => {
   router.push('/aichart')
@@ -138,6 +149,14 @@ appStore.fetchAppImgListByType(1)
 const communityStore = useCommunityStore()
 const { postList } = storeToRefs(communityStore)
 communityStore.fetchPostListById(undefined, 1)
+
+// 展示商品数据
+const officialShopStore = useOfficailShopStore()
+officialShopStore.fetchCommodityPageList({
+  page: 1,
+  pageSize: 10,
+})
+const { commodityPageList } = storeToRefs(officialShopStore)
 </script>
 
 <style lang="scss" scoped>

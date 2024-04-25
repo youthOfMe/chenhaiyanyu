@@ -1,14 +1,20 @@
 <template>
   <div class="good-post-block">
-    <img :src="item?.coverUrl || ''" alt="" class="big-img" />
+    <img :src="item?.coverUrl || item?.image || ''" alt="" class="big-img" />
     <div class="content">
       <div class="base-info">
-        <img :src="item?.avatarUrl" @click="toPersonInfo" alt="" />
+        <img
+          :src="item?.avatarUrl || item?.image"
+          @click="toPersonInfo"
+          alt=""
+        />
         <div class="info">
           <div class="name-title">
             <span class="name nowrap_ellipsis">{{ item?.name }}</span>
           </div>
-          <div class="signature nowrap_ellipsis">{{ item?.title }}</div>
+          <div class="signature nowrap_ellipsis">
+            {{ item?.title || item?.description }}
+          </div>
         </div>
       </div>
     </div>

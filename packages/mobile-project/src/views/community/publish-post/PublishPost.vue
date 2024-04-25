@@ -8,27 +8,29 @@
       @click-left="back"
       @click-right="comfirmPublishPost"
     />
-    <van-cell-group>
-      <van-field v-model="title" placeholder="标题" size="large" />
-      <van-field
-        v-model="content"
-        rows="2"
-        autosize
-        type="textarea"
-        maxlength="5000"
-        placeholder="写点什么"
-        show-word-limit
-      />
-    </van-cell-group>
-    <div class="upload-image">
-      <div class="label">上传封面</div>
-      <van-uploader
-        :after-read="uploadCoverImg"
-        v-model="coverImgList"
-        :max-count="1"
-      />
-      <div class="label">上传图片</div>
-      <van-uploader :after-read="uploadEssayImg" v-model="essayImgList" />
+    <div class="content">
+      <van-cell-group>
+        <van-field v-model="title" placeholder="标题" size="large" />
+        <van-field
+          v-model="content"
+          rows="2"
+          autosize
+          type="textarea"
+          maxlength="5000"
+          placeholder="写点什么"
+          show-word-limit
+        />
+      </van-cell-group>
+      <div class="upload-image">
+        <div class="label">上传封面</div>
+        <van-uploader
+          :after-read="uploadCoverImg"
+          v-model="coverImgList"
+          :max-count="1"
+        />
+        <div class="label">上传图片</div>
+        <van-uploader :after-read="uploadEssayImg" v-model="essayImgList" />
+      </div>
     </div>
   </div>
 </template>
@@ -116,5 +118,9 @@ const comfirmPublishPost = async () => {
     font-size: 16px;
     font-weight: 530;
   }
+}
+.content {
+  overflow-y: auto;
+  height: calc(100vh - 46px);
 }
 </style>

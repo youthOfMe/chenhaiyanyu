@@ -8,10 +8,11 @@
         </div>
       </div>
       <div class="content">
-        <OurStoryCard></OurStoryCard>
-        <OurStoryCard></OurStoryCard>
-        <OurStoryCard></OurStoryCard>
-        <OurStoryCard></OurStoryCard>
+        <OurStoryCard
+          v-for="item in postList"
+          :item="item"
+          :key="item.id"
+        ></OurStoryCard>
       </div>
     </div>
     <div class="code-web">
@@ -25,12 +26,15 @@
         <CodeWebCard></CodeWebCard>
       </div>
     </div>
-    <div class="code-resource">
+    <div class="code-web">
       <div class="content-title">
         <span class="main-title">编程学习路线</span>
         <div class="more">
           <SvgIcon name="common-right"></SvgIcon>
         </div>
+      </div>
+      <div class="content">
+        <CodeWebCard></CodeWebCard>
       </div>
     </div>
   </div>
@@ -40,7 +44,7 @@
 import { onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { storeToRefs } from 'pinia'
-import { useSettingStore } from '@/stores'
+import { useSettingStore, useCommunityStore } from '@/stores'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
 
 // 持久化页面 可抽取为hooks
@@ -52,6 +56,11 @@ onUnmounted(() => {
   settingStore.tabbarData[1].path = path
   settingStore.hallTabBarIndex = 2
 })
+
+// 获取推荐帖子列表
+const communityStore = useCommunityStore()
+const { postList } = storeToRefs(communityStore)
+communityStore.fetchPostListById(undefined, 1)
 </script>
 
 <style lang="scss" scoped>

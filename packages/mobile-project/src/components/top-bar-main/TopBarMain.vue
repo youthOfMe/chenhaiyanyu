@@ -1,7 +1,7 @@
 <template>
   <div class="top-bar">
     <div class="head-img-wrapper">
-      <div class="head-img" v-if="isHeadImgDisplay">
+      <div class="head-img" v-if="isHeadImgDisplay" @click="goPersonInfo">
         <img :src="userInfo.avatar" alt="" />
       </div>
     </div>
@@ -80,6 +80,12 @@ const props = defineProps({
   },
 })
 
+// 跳转到个人信息页面
+const router = useRouter()
+const goPersonInfo = () => {
+  router.push('/personInfo')
+}
+
 // 监听路由
 const route = useRoute()
 onMounted(() => {
@@ -95,7 +101,6 @@ const searchBarPLR = props.isHeadImgDisplay ? '0px' : '11px'
 const messagePR = props.isHeadImgDisplay ? '0px' : '6px'
 
 // 跳转路由
-const router = useRouter()
 const goPost = () => {
   router.push('/publishPost')
 }

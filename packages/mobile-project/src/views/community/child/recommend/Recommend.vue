@@ -1,18 +1,18 @@
 <template>
   <div class="recommend">
     <div class="nav-block">
-      <div class="item" v-for="i in 6" :key="i">
-        <img :src="getAssetURL('home/head-bg.jpg')" alt="" />
-        <div class="name nowrap_ellipsis">牛马社区</div>
+      <div class="item" v-for="item in categoryList" :key="item">
+        <img :src="item?.coverUrl" alt="" />
+        <div class="name nowrap_ellipsis">{{ item?.name }}</div>
       </div>
     </div>
     <div class="list">
-      <div class="item" v-for="i in 5" :key="i">
-        <img :src="getAssetURL('home/head-bg.jpg')" alt="" />
-        <div class="item-title">已经不抱任何玩下去这个游戏的念头了</div>
+      <div class="item" v-for="item in postList" :key="item">
+        <img :src="item.coverUrl" alt="" />
+        <div class="item-title nowrap_ellipsis">{{ item.title }}</div>
         <div class="info">
-          <img :src="getAssetURL('home/head-bg.jpg')" alt="" />
-          <div class="name nowrap_ellipsis">我是牛马</div>
+          <img :src="item?.avatarUrl" alt="" />
+          <div class="name nowrap_ellipsis">{{ item?.name }}</div>
           <div class="thumb">
             <SvgIcon
               name="postblock-thumb"
@@ -23,15 +23,24 @@
           </div>
         </div>
       </div>
-      <div class="item">
-        <img :src="getAssetURL('home/head-bg.jpg')" alt="" />
-      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useCommunityStore } from '@/stores'
 import { getAssetURL } from '@/utils/LoadAssetsImg'
+
+// 获取板块数据
+const communityStore = useCommunityStore()
+communityStore.fetchCategoryList(undefined, 1)
+const { categoryList } = storeToRefs(communityStore)
+
+// 获取推荐帖子列表
+const { postList } = storeToRefs(communityStore)
+communityStore.fetchPostListById(undefined, 1)
 </script>
 
 <style lang="scss" scoped>
@@ -67,8 +76,9 @@ import { getAssetURL } from '@/utils/LoadAssetsImg'
     flex-wrap: wrap;
     background-color: #ffffff;
     .item {
-      padding: 0 9px;
-      flex: 1;
+      overflow: hidden;
+      padding: 0 5px;
+      flex: 0 1 48%;
       img {
         width: 100%;
         height: 120px;

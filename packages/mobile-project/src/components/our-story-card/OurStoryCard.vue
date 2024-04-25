@@ -1,14 +1,16 @@
 <template>
   <div class="good-post-block" @click="goOurStory">
-    <img :src="getAssetURL('home/head.jpg')" alt="" class="big-img" />
+    <img :src="item?.coverUrl" alt="" class="big-img" />
     <div class="content">
       <div class="base-info">
-        <img :src="getAssetURL('home/home-bg.jpg')" alt="" />
+        <img :src="item?.avatarUrl" alt="" />
         <div class="info">
           <div class="name-title">
-            <span class="name nowrap_ellipsis">我是牛马你记住</span>
+            <span class="name nowrap_ellipsis">{{ item?.name }}</span>
           </div>
-          <div class="signature nowrap_ellipsis">爱已随风起, 风止意难平</div>
+          <div class="signature nowrap_ellipsis">
+            {{ item?.title || item?.description }}
+          </div>
         </div>
       </div>
       <div class="label">
@@ -24,6 +26,13 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { getAssetURL } from '@/utils/LoadAssetsImg.js'
+
+defineProps({
+  item: {
+    type: Object,
+    default: () => {},
+  },
+})
 
 const router = useRouter()
 const goOurStory = () => {

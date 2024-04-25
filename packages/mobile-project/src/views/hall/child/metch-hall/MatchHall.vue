@@ -32,10 +32,19 @@
         @click="goMatchContingent"
       ></van-grid-item>
     </van-grid>
+    <div class="content">
+      <MatchCardV1
+        v-for="item in userList"
+        :key="item.id"
+        :item="item"
+      ></MatchCardV1>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref, watch } from 'vue'
+import { useUserStore } from '@/stores'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useAppStore } from '@/stores'
@@ -59,6 +68,16 @@ const goMatchContingent = () => {
 const appStore = useAppStore()
 const { appImgList } = storeToRefs(appStore)
 appStore.fetchAppImgListByType(1)
+
+// 准备分页查询数据
+const pageQueryDTO = ref({
+  page: 1,
+  pageSize: 10,
+})
+// 获取推荐搭子数据
+const userStore = useUserStore()
+const { userList } = storeToRefs(userStore)
+userStore.fetchPageUserList(pageQueryDTO.value)
 </script>
 
 <style lang="scss" scoped>
@@ -85,6 +104,9 @@ appStore.fetchAppImgListByType(1)
 
     margin: 0 9px;
     background-color: #ffffff;
+  }
+  .content {
+    margin: 0 9px;
   }
 }
 </style>

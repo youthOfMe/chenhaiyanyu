@@ -3,10 +3,10 @@
     <div class="carousel">
       <van-swipe class="swipe" :autoplay="3000" indicator-color="white">
         <van-swipe-item>
-          <img :src="getAssetURL('home/head-bg.jpg')" alt="" />
+          <img :src="getAssetURL('take-out/two.png')" alt="" />
         </van-swipe-item>
         <van-swipe-item>
-          <img :src="getAssetURL('home/head-bg.jpg')" alt="" />
+          <img :src="getAssetURL('take-out/five.png')" alt="" />
         </van-swipe-item>
         <van-swipe-item>
           <img :src="getAssetURL('home/head-bg.jpg')" alt="" />
@@ -18,11 +18,52 @@
     </div>
     <van-grid square class="nav-content">
       <van-grid-item
-        v-for="value in 8"
-        :key="value"
+        text="低代码平台"
+        icon="shrink"
+        icon-color="var(--primary-color)"
+        @click="goLowCode"
+      ></van-grid-item>
+      <van-grid-item
+        text="编程学习"
+        icon="apps-o"
+        icon-color="var(--primary-color)"
+      ></van-grid-item>
+      <van-grid-item
+        text="云控中心"
+        icon="cluster-o"
+        icon-color="var(--primary-color)"
+        @click="goCloud"
+      ></van-grid-item>
+      <van-grid-item
+        text="智能BI"
+        icon="bar-chart-o"
+        icon-color="var(--primary-color)"
+        @click="goAIBI"
+      ></van-grid-item>
+      <van-grid-item
+        text="匹配组队"
+        icon="friends-o"
+        icon-color="var(--primary-color)"
+        @click="goMatch"
+      ></van-grid-item>
+      <van-grid-item
+        text="代码生成"
+        icon="passed"
+        icon-color="var(--primary-color)"
+        @click="goWenXin"
+      ></van-grid-item>
+      <van-grid-item
+        text="图片识别"
         icon="photo-o"
-        text="文字"
-      />
+        icon-color="var(--primary-color)"
+        @click="goImage"
+      ></van-grid-item>
+      <van-grid-item
+        text="AI聊天"
+        icon="manager-o"
+        icon-color="var(--primary-color)"
+        @click="goAiChart"
+      ></van-grid-item>
     </van-grid>
     <van-tabs v-model:active="active" class="tabs">
       <van-tab>
@@ -39,7 +80,9 @@
           <van-icon name="more-o" />
           民间接单
         </template>
-        内容 {{ index }}
+        <div class="official-list">
+          <CodeOrderCardV1 v-for="i in 3" :key="i"></CodeOrderCardV1>
+        </div>
       </van-tab>
     </van-tabs>
   </div>
