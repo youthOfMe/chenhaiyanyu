@@ -27,7 +27,7 @@ export const useOrderStore = defineStore('order', {
       status?: number,
     ) {
       const res = await getOrderListPage(this.page, this.pageSize, this.status)
-      this.historyOrderDataList.push(...res.data.records)
+      this.historyOrderDataList = [...res.data.records]
       return res
     },
   },
