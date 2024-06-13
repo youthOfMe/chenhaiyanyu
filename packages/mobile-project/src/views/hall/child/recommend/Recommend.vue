@@ -18,6 +18,7 @@
         text="编程学习"
         icon="apps-o"
         icon-color="var(--primary-color)"
+        @click="goStudyCode"
       ></van-grid-item>
       <van-grid-item
         text="云控中心"
@@ -114,6 +115,10 @@ const router = useRouter()
 // 跳转到低代码平台
 const goLowCode = () => {
   window.open('http://520.nxxd.cn/', '_blank')
+}
+// 跳转到编程学习界面
+const goStudyCode = () => {
+  router.push('/code/study')
 }
 // 跳转到云空中心
 const goCloud = () => {

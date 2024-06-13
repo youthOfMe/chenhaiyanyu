@@ -13,7 +13,7 @@
     <div class="userinfo">
       <van-form autocomplete="off" @submit="onSubmit">
         <text>手机号</text>
-        <van-field type="tel" v-model="mobile" :rules="mobileRules" />
+        <van-field v-model="mobile" :rules="mobileRules" />
         <text>验证码</text>
         <div class="verCode">
           <van-field

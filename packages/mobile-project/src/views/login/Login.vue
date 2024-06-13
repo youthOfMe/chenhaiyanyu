@@ -13,7 +13,7 @@
     <div class="userinfo">
       <van-form autocomplete="off" @submit="onSubmit">
         <text>用户名</text>
-        <van-field type="tel" v-model="username" :rules="usernameRules" />
+        <van-field v-model="username" :rules="usernameRules" />
         <text>密码</text>
         <van-field type="password" v-model="password" :rules="passwordRules" />
         <router-link to="/phoneLogin" replace>

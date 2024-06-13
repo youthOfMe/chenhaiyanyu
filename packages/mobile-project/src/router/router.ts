@@ -435,4 +435,13 @@ export const constantRoute = [
       hideTabBar: true,
     },
   },
+  {
+    // 编程学习界面
+    path: '/code/study',
+    component: () =>
+      import('@/views/hall/child/recommend/code-study/CodeStudy.vue'),
+    meta: {
+      hideTabBar: true,
+    },
+  },
 ]
